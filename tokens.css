@@ -1,0 +1,233 @@
+/* ─────────────────────────────────────────────────────────────────────────
+ * design-systems/kazabi/tokens.css
+ *
+ * Kazabi — CRM inmobiliario para agentes en Ecuador.
+ * Interfaz densa para jornadas de trabajo largas: tablas de contactos,
+ * bandeja de mensajes, fichas de propiedades.
+ *
+ * Identidad en tres frases:
+ *   1. Navy (#0B2249) es el color de la MARCA — cabeceras, sidebar,
+ *      elementos institucionales. Nunca se usa como acción interactiva.
+ *   2. Azul de ACCIÓN (#3A54CC) es exclusivamente para botones primarios,
+ *      foco, estados activos. Nunca se usa como color de marca.
+ *   3. Arena (#F7F5EE → #1B1712) aporta calidez al fondo y conecta
+ *      con el navy a través de la arena-400 (#C5B69F), que funciona
+ *      como texto legible sobre navy a 7.89:1.
+ *
+ * Contrastes verificados:
+ *   navy sobre arena-50 = 14.37:1
+ *   blanco sobre navy   = 15.68:1
+ *   arena-400 sobre navy = 7.89:1 (texto body en dark)
+ *   acero-claro sobre arena = 3.49:1 (solo gráfico / 24px+)
+ *   ámbar #765B12 sobre arena-50 = 5.88:1
+ *   success dark #67C58A sobre navy = 7.41:1
+ *   warn dark #E4B95F sobre navy = 8.51:1
+ *   danger dark #F0808E sobre navy = 6.11:1
+ * ─────────────────────────────────────────────────────────────────── */
+
+/* ═══════════════════════════════════════════════════════════════════
+ *  TEMA CLARO (por defecto)
+ * ═══════════════════════════════════════════════════════════════════ */
+
+:root {
+  /* ─── Superficies ─────────────────────────────────────────────── */
+  --bg:           #F7F5EE;              /* arena-50 — lienzo principal */
+  --surface:      #FFFFFF;              /* tarjetas y paneles elevados */
+  --surface-warm: #F0EBE0;             /* arena-100 — sidebar, fondo secundario */
+
+  /* ─── Texto ───────────────────────────────────────────────────── */
+  --fg:   #131A20;                      /* tinta — titulares, texto primario */
+  --fg-2: #131A20;                      /* tinta — cuerpo de texto */
+  --muted: #57626C;                     /* texto secundario, descripciones */
+  --meta:  #6E6455;                     /* arena-700 — timestamps, contadores */
+
+  /* ─── Bordes ──────────────────────────────────────────────────── */
+  --border:      #DDD8CC;              /* línea — separadores principales */
+  --border-soft: #E3DBCB;             /* arena-200 — divisores sutiles */
+
+  /* ─── Acento (ACCIÓN — solo interactivo) ──────────────────────── */
+  --accent:        #3A54CC;            /* azul de acción — botón primario */
+  --accent-on:     #FFFFFF;
+  --accent-hover:  #2C40A0;           /* ink — más oscuro en hover (tema claro) */
+  --accent-active: #2C40A0;
+  --accent-soft:   #E7EAF9;           /* fondo de selección, badges activos */
+
+  /* ─── Marca (NAVY — solo identidad) ──────────────────────────── */
+  --brand:             #0B2249;        /* navy principal */
+  --brand-deep:        #0C1F41;        /* navy hondo */
+  --brand-mid:         #133C6F;        /* navy medio */
+  --brand-steel:       #2C5C93;        /* acero */
+  --brand-steel-light: #5985BD;        /* acero claro (solo gráfico 24px+) */
+  --brand-on:          #FFFFFF;        /* texto sobre navy */
+
+  /* ─── Semántico ───────────────────────────────────────────────── */
+  --success:      #147A46;
+  --success-soft: #E0F0E7;
+  --danger:       #BE3346;
+  --danger-soft:  #F8E3E6;
+  --warn:         #765B12;            /* ámbar arena — 5.88:1 sobre arena-50 */
+  --warn-soft:    #EFE4C8;            /* ámbar arena suave — 5.07:1 con --warn */
+
+  /* ─── Tipografía ──────────────────────────────────────────────── */
+  --font-display: "Poppins", -apple-system, system-ui, "Segoe UI", sans-serif;
+  --font-body:    "Inter Variable", "Inter", -apple-system, system-ui, "Segoe UI", Roboto, sans-serif;
+  --font-mono:    "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Monaco, Consolas, monospace;
+
+  /* Escala tipográfica — 8 pasos para interfaz densa.
+   * Base = 14px (no 16px) porque es una herramienta de trabajo diario.
+   * Cada paso sube ~1.15x o es un salto de 2px en la zona densa.
+   *
+   * ┌────────────┬──────┬────────────────────────────────────────┐
+   * │ Token      │ Tamaño │ Uso principal                        │
+   * ├────────────┼──────┼────────────────────────────────────────┤
+   * │ --text-2xs │ 11px │ timestamps, contadores, metadata mín. │
+   * │ --text-xs  │ 12px │ etiquetas, badges, cabeceras de tabla │
+   * │ --text-sm  │ 13px │ cuerpo de tabla, sidebar, listas      │
+   * │ --text-base│ 14px │ texto por defecto, inputs, mensajes   │
+   * │ --text-md  │ 16px │ títulos de tarjeta, nav, subtítulos   │
+   * │ --text-lg  │ 20px │ títulos de página, cabeceras panel    │
+   * │ --text-xl  │ 24px │ títulos de sección, dashboard headers  │
+   * │ --text-2xl │ 32px │ KPIs, números hero, display           │
+   * └────────────┴──────┴────────────────────────────────────────┘ */
+  --text-2xs:  11px;
+  --text-xs:   12px;
+  --text-sm:   13px;
+  --text-base: 14px;
+  --text-md:   16px;
+  --text-lg:   20px;
+  --text-xl:   24px;
+  --text-2xl:  32px;
+
+  /* Interlineado y tracking */
+  --leading-body:    1.5;
+  --leading-snug:    1.35;             /* tablas y listas densas */
+  --leading-tight:   1.2;             /* titulares */
+  --tracking-display: -0.02em;        /* tracking para display/xl */
+  --tracking-tight:   -0.01em;        /* tracking para lg/md */
+
+  /* ─── Espaciado ──────────────────────────────────────────────── */
+  /* Escala canónica --sp-*; no existe un alias --space-*.
+   * Base-4. Cada token = paso × 4px, con 2px y 6px como
+   * pasos intermedios para ajuste fino en interfaz densa.
+   *
+   * ┌──────────┬──────┬──────────────────────────────────────────┐
+   * │ Token    │ Valor │ Uso típico                              │
+   * ├──────────┼──────┼──────────────────────────────────────────┤
+   * │ --sp-0.5 │  2px │ hairline, ajuste de icono               │
+   * │ --sp-1   │  4px │ gap dentro de badges, padding mínimo    │
+   * │ --sp-1.5 │  6px │ gap icon-texto, padding de chip         │
+   * │ --sp-2   │  8px │ padding-y de input, gap entre inline    │
+   * │ --sp-3   │ 12px │ padding de card, gap de lista           │
+   * │ --sp-4   │ 16px │ gap entre campos de form, gutter card   │
+   * │ --sp-5   │ 20px │ padding grande de card, margin sección  │
+   * │ --sp-6   │ 24px │ padding de panel, gutter de sidebar     │
+   * │ --sp-8   │ 32px │ spacing mayor entre bloques             │
+   * │ --sp-10  │ 40px │ vertical entre secciones de página      │
+   * │ --sp-12  │ 48px │ ritmo vertical de sección desktop       │
+   * │ --sp-16  │ 64px │ separación de secciones principales     │
+   * └──────────┴──────┴──────────────────────────────────────────┘ */
+  --sp-0\.5:  2px;
+  --sp-1:     4px;
+  --sp-1\.5:  6px;
+  --sp-2:     8px;
+  --sp-3:    12px;
+  --sp-4:    16px;
+  --sp-5:    20px;
+  --sp-6:    24px;
+  --sp-8:    32px;
+  --sp-10:   40px;
+  --sp-12:   48px;
+  --sp-16:   64px;
+
+  /* Ritmo vertical de sección */
+  --section-y-desktop: 48px;
+  --section-y-tablet:  32px;
+  --section-y-phone:   24px;
+
+  /* ─── Radio de borde ──────────────────────────────────────────── */
+  --radius-sm:   8px;                 /* botones, inputs, badges */
+  --radius-md:  12px;                 /* tarjetas, dropdowns */
+  --radius-lg:  20px;                 /* paneles, modales, sheets */
+  --radius-pill: 9999px;              /* chips, tags de estado */
+
+  /* ─── Elevación ──────────────────────────────────────────────── */
+  --elev-flat:   none;
+  --elev-ring:   0 0 0 1px var(--border);
+  --elev-raised:
+    0 1px 2px rgba(27, 23, 18, 0.04),
+    0 12px 32px -16px rgba(27, 23, 18, 0.18);
+
+  /* ─── Foco ───────────────────────────────────────────────────── */
+  --focus-ring:
+    0 0 0 2px var(--bg),
+    0 0 0 4px var(--accent);
+
+  /* ─── Movimiento ─────────────────────────────────────────────── */
+  --motion-fast:   120ms;
+  --motion-base:   200ms;
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+
+  /* ─── Layout ─────────────────────────────────────────────────── */
+  --container-max:            1280px;
+  --container-gutter-desktop: 24px;
+  --container-gutter-tablet:  16px;
+  --container-gutter-phone:   12px;
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════
+ *  TEMA OSCURO
+ *  El navy se convierte en el lienzo. La arena aporta el texto.
+ *  El azul de acción sube a #7488FF para mantener contraste.
+ * ═══════════════════════════════════════════════════════════════════ */
+
+[data-theme="dark"],
+.dark,
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* ─── Superficies ───────────────────────────────────────────── */
+    --bg:           #0C1F41;            /* navy hondo — lienzo principal */
+    --surface:      #0B2249;            /* navy — tarjetas elevadas */
+    --surface-warm: #133C6F;           /* navy medio — sidebar, paneles */
+
+    /* ─── Texto ─────────────────────────────────────────────────── */
+    --fg:   #F7F5EE;                    /* arena-50 — titulares */
+    --fg-2: #E3DBCB;                    /* arena-200 — cuerpo */
+    --muted: #C5B69F;                   /* arena-400 — 7.89:1 sobre navy ✓ */
+    --meta:  #5985BD;                   /* acero claro — SOLO gráfico 24px+ */
+
+    /* ─── Bordes ────────────────────────────────────────────────── */
+    --border:      rgba(247, 245, 238, 0.12);   /* arena semi-transparente */
+    --border-soft: rgba(247, 245, 238, 0.07);   /* sutil */
+
+    /* ─── Acento ────────────────────────────────────────────────── */
+    --accent:        #7488FF;          /* azul claro — brilla sobre navy */
+    --accent-on:     #0C1F41;          /* navy hondo sobre acento */
+    --accent-hover:  #3A54CC;          /* azul base como hover */
+    --accent-active: #2C40A0;
+    --accent-soft:   rgba(58, 84, 204, 0.15);
+
+    /* ─── Marca ─────────────────────────────────────────────────── */
+    /* En dark, el navy es el lienzo. Los acentos de marca se
+       expresan con acero y arena. */
+    --brand-on: #F7F5EE;
+
+    /* ─── Semántico ─────────────────────────────────────────────── */
+    --success:      #67C58A;          /* verde mineral — 7.41:1 sobre navy */
+    --success-soft: rgba(20, 122, 70, 0.2);
+    --danger:       #F0808E;          /* coral mineral — 6.11:1 sobre navy */
+    --danger-soft:  rgba(190, 51, 70, 0.2);
+    --warn:         #E4B95F;          /* ámbar arena luminoso — 8.51:1 sobre navy */
+    --warn-soft:    rgba(228, 185, 95, 0.15);
+
+    /* ─── Elevación ─────────────────────────────────────────────── */
+    --elev-raised:
+      0 1px 2px rgba(0, 0, 0, 0.2),
+      0 12px 32px -16px rgba(0, 0, 0, 0.5);
+
+    /* ─── Foco ──────────────────────────────────────────────────── */
+    --focus-ring:
+      0 0 0 2px var(--bg),
+      0 0 0 4px var(--accent);
+  }
+}

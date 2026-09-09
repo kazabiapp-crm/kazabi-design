@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Kazabi — tipografía</title>
+    <link rel="stylesheet" href="../tokens.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+    <style>
+      body { margin: 0; background: var(--bg); color: var(--fg); font-family: var(--font-body); }
+      main { max-width: var(--container-max); margin: 0 auto; padding: var(--sp-12) var(--sp-6); }
+      h1 { margin: 0 0 var(--sp-8); font-family: var(--font-display); font-size: var(--text-xl); font-weight: 600; line-height: var(--leading-tight); letter-spacing: var(--tracking-display); }
+
+      .type-stack { display: grid; gap: var(--sp-6); max-width: 800px; }
+      .type-row { display: grid; grid-template-columns: 100px 1fr; gap: var(--sp-4); align-items: baseline; }
+      .type-label { font-size: var(--text-xs); font-weight: 500; color: var(--meta); text-transform: uppercase; letter-spacing: 0.02em; white-space: nowrap; }
+
+      .t-2xl { font-family: var(--font-display); font-size: var(--text-2xl); font-weight: 700; line-height: 1.1; letter-spacing: var(--tracking-display); }
+      .t-xl  { font-family: var(--font-display); font-size: var(--text-xl);  font-weight: 600; line-height: var(--leading-tight); letter-spacing: var(--tracking-display); }
+      .t-lg  { font-family: var(--font-display); font-size: var(--text-lg);  font-weight: 600; line-height: var(--leading-tight); letter-spacing: -0.01em; }
+      .t-md  { font-family: var(--font-display); font-size: var(--text-md);  font-weight: 500; line-height: var(--leading-snug); letter-spacing: -0.01em; }
+      .t-base { font-size: var(--text-base); line-height: var(--leading-body); }
+      .t-sm  { font-size: var(--text-sm);   line-height: var(--leading-body); color: var(--muted); }
+      .t-xs  { font-size: var(--text-xs);   font-weight: 500; line-height: var(--leading-snug); color: var(--muted); }
+      .t-2xs { font-size: var(--text-2xs);  line-height: var(--leading-snug); color: var(--meta); }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Tipografía</h1>
+
+      <section class="type-stack">
+        <div class="type-row">
+          <span class="type-label">2xl · 32px</span>
+          <span class="t-2xl">147 propiedades activas</span>
+        </div>
+        <div class="type-row">
+          <span class="type-label">xl · 24px</span>
+          <span class="t-xl">Resumen del mes</span>
+        </div>
+        <div class="type-row">
+          <span class="type-label">lg · 20px</span>
+          <span class="t-lg">Contactos recientes</span>
+        </div>
+        <div class="type-row">
+          <span class="type-label">md · 16px</span>
+          <span class="t-md">Depto. 3 hab. — La Carolina, Quito</span>
+        </div>
+        <div class="type-row">
+          <span class="type-label">base · 14px</span>
+          <span class="t-base">Cliente interesado en propiedades de 2 a 3 habitaciones en el sector norte de Quito, presupuesto entre $120k y $180k.</span>
+        </div>
+        <div class="type-row">
+          <span class="type-label">sm · 13px</span>
+          <span class="t-sm">María Fernanda Ruiz · 0998 765 432 · La Carolina</span>
+        </div>
+        <div class="type-row">
+          <span class="type-label">xs · 12px</span>
+          <span class="t-xs">CONTACTO · TELÉFONO · PROPIEDAD · ESTADO</span>
+        </div>
+        <div class="type-row">
+          <span class="type-label">2xs · 11px</span>
+          <span class="t-2xs">Hace 2 horas · 12 mensajes · Actualizado ayer</span>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

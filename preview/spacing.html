@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Kazabi — espaciado y radio</title>
+    <link rel="stylesheet" href="../tokens.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+    <style>
+      body { margin: 0; background: var(--bg); color: var(--fg); font-family: var(--font-body); }
+      main { max-width: var(--container-max); margin: 0 auto; padding: var(--sp-12) var(--sp-6); }
+      h1 { margin: 0 0 var(--sp-6); font-family: var(--font-display); font-size: var(--text-xl); font-weight: 600; line-height: var(--leading-tight); letter-spacing: var(--tracking-display); }
+      h2 { margin: var(--sp-8) 0 var(--sp-4); font-family: var(--font-display); font-size: var(--text-md); font-weight: 600; color: var(--muted); }
+
+      .stack { display: grid; gap: var(--sp-3); margin-bottom: var(--sp-8); }
+      .row { display: grid; grid-template-columns: 120px 1fr; align-items: center; gap: var(--sp-4); color: var(--muted); font-size: var(--text-sm); }
+      .bar { height: var(--sp-4); min-width: 2px; background: var(--accent); border-radius: 2px; }
+      .radii { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: var(--sp-4); }
+      .radii article {
+        min-height: 88px;
+        display: grid;
+        place-items: center;
+        border: 1px solid var(--border);
+        background: var(--surface);
+        color: var(--muted);
+        font-size: var(--text-sm);
+        box-shadow: var(--elev-ring);
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Espaciado y radio</h1>
+
+      <h2>Escala de espaciado (base 4)</h2>
+      <section class="stack">
+        <div class="row"><span>--sp-0.5 · 2px</span><div class="bar" style="width: 2px"></div></div>
+        <div class="row"><span>--sp-1 · 4px</span><div class="bar" style="width: 4px"></div></div>
+        <div class="row"><span>--sp-1.5 · 6px</span><div class="bar" style="width: 6px"></div></div>
+        <div class="row"><span>--sp-2 · 8px</span><div class="bar" style="width: 8px"></div></div>
+        <div class="row"><span>--sp-3 · 12px</span><div class="bar" style="width: 12px"></div></div>
+        <div class="row"><span>--sp-4 · 16px</span><div class="bar" style="width: 16px"></div></div>
+        <div class="row"><span>--sp-5 · 20px</span><div class="bar" style="width: 20px"></div></div>
+        <div class="row"><span>--sp-6 · 24px</span><div class="bar" style="width: 24px"></div></div>
+        <div class="row"><span>--sp-8 · 32px</span><div class="bar" style="width: 32px"></div></div>
+        <div class="row"><span>--sp-10 · 40px</span><div class="bar" style="width: 40px"></div></div>
+        <div class="row"><span>--sp-12 · 48px</span><div class="bar" style="width: 48px"></div></div>
+        <div class="row"><span>--sp-16 · 64px</span><div class="bar" style="width: 64px"></div></div>
+      </section>
+
+      <h2>Radio de borde</h2>
+      <section class="radii">
+        <article style="border-radius: var(--radius-sm)"><span>sm · 8px</span></article>
+        <article style="border-radius: var(--radius-md)"><span>md · 12px</span></article>
+        <article style="border-radius: var(--radius-lg)"><span>lg · 20px</span></article>
+        <article style="border-radius: var(--radius-pill)"><span>pill · 9999px</span></article>
+      </section>
+
+      <h2>Sombra</h2>
+      <section class="radii">
+        <article style="border-radius: var(--radius-md); box-shadow: none"><span>flat</span></article>
+        <article style="border-radius: var(--radius-md); box-shadow: var(--elev-ring)"><span>ring</span></article>
+        <article style="border-radius: var(--radius-md); box-shadow: var(--elev-raised)"><span>raised</span></article>
+      </section>
+    </main>
+  </body>
+</html>

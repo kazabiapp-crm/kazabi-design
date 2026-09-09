@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Kazabi — colores</title>
+    <link rel="stylesheet" href="../tokens.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+    <style>
+      body { margin: 0; background: var(--bg); color: var(--fg); font-family: var(--font-body); }
+      main { max-width: var(--container-max); margin: 0 auto; padding: var(--sp-12) var(--sp-6); }
+      h1 { margin: 0 0 var(--sp-6); font-family: var(--font-display); font-size: var(--text-xl); font-weight: 600; line-height: var(--leading-tight); letter-spacing: var(--tracking-display); }
+      h2 { margin: var(--sp-8) 0 var(--sp-4); font-family: var(--font-display); font-size: var(--text-md); font-weight: 600; color: var(--muted); }
+
+      .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: var(--sp-4); }
+      .swatch { border: 1px solid var(--border-soft); border-radius: var(--radius-md); background: var(--surface); overflow: hidden; box-shadow: var(--elev-raised); }
+      .color { height: 88px; }
+      .meta { padding: var(--sp-3); color: var(--muted); font-size: var(--text-sm); }
+      strong { display: block; margin-bottom: 2px; color: var(--fg); font-weight: 500; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Roles de color</h1>
+
+      <h2>Navy — Marca</h2>
+      <section class="grid">
+        <article class="swatch"><div class="color" style="background:#0B2249"></div><div class="meta"><strong>Navy</strong>--brand · #0B2249</div></article>
+        <article class="swatch"><div class="color" style="background:#0C1F41"></div><div class="meta"><strong>Navy hondo</strong>--brand-deep · #0C1F41</div></article>
+        <article class="swatch"><div class="color" style="background:#133C6F"></div><div class="meta"><strong>Navy medio</strong>--brand-mid · #133C6F</div></article>
+        <article class="swatch"><div class="color" style="background:#2C5C93"></div><div class="meta"><strong>Acero</strong>--brand-steel · #2C5C93</div></article>
+        <article class="swatch"><div class="color" style="background:#5985BD"></div><div class="meta"><strong>Acero claro</strong>--brand-steel-light · #5985BD</div></article>
+      </section>
+
+      <h2>Arena — Calidez</h2>
+      <section class="grid">
+        <article class="swatch"><div class="color" style="background:#F7F5EE"></div><div class="meta"><strong>Arena 50</strong>--bg · #F7F5EE</div></article>
+        <article class="swatch"><div class="color" style="background:#F0EBE0"></div><div class="meta"><strong>Arena 100</strong>--surface-warm · #F0EBE0</div></article>
+        <article class="swatch"><div class="color" style="background:#E3DBCB"></div><div class="meta"><strong>Arena 200</strong>--border-soft · #E3DBCB</div></article>
+        <article class="swatch"><div class="color" style="background:#C5B69F"></div><div class="meta"><strong>Arena 400</strong>#C5B69F</div></article>
+        <article class="swatch"><div class="color" style="background:#6E6455"></div><div class="meta"><strong>Arena 700</strong>--meta · #6E6455</div></article>
+        <article class="swatch"><div class="color" style="background:#1B1712"></div><div class="meta"><strong>Arena 900</strong>#1B1712</div></article>
+      </section>
+
+      <h2>Azul — Acción</h2>
+      <section class="grid">
+        <article class="swatch"><div class="color" style="background:#3A54CC"></div><div class="meta"><strong>Acción</strong>--accent · #3A54CC</div></article>
+        <article class="swatch"><div class="color" style="background:#2C40A0"></div><div class="meta"><strong>Ink</strong>--accent-hover · #2C40A0</div></article>
+        <article class="swatch"><div class="color" style="background:#7488FF"></div><div class="meta"><strong>Claro</strong>#7488FF (dark mode)</div></article>
+        <article class="swatch"><div class="color" style="background:#E7EAF9"></div><div class="meta"><strong>Soft</strong>--accent-soft · #E7EAF9</div></article>
+      </section>
+
+      <h2>Interfaz</h2>
+      <section class="grid">
+        <article class="swatch"><div class="color" style="background:#FFFFFF"></div><div class="meta"><strong>Surface</strong>--surface · #FFFFFF</div></article>
+        <article class="swatch"><div class="color" style="background:#131A20"></div><div class="meta"><strong>Tinta</strong>--fg · #131A20</div></article>
+        <article class="swatch"><div class="color" style="background:#57626C"></div><div class="meta"><strong>Muted</strong>--muted · #57626C</div></article>
+        <article class="swatch"><div class="color" style="background:#DDD8CC"></div><div class="meta"><strong>Línea</strong>--border · #DDD8CC</div></article>
+      </section>
+
+      <h2>Semántico</h2>
+      <section class="grid">
+        <article class="swatch"><div class="color" style="background:#147A46"></div><div class="meta"><strong>Éxito</strong>--success · #147A46</div></article>
+        <article class="swatch"><div class="color" style="background:#E0F0E7"></div><div class="meta"><strong>Éxito soft</strong>--success-soft · #E0F0E7</div></article>
+        <article class="swatch"><div class="color" style="background:#BE3346"></div><div class="meta"><strong>Crítico</strong>--danger · #BE3346</div></article>
+        <article class="swatch"><div class="color" style="background:#F8E3E6"></div><div class="meta"><strong>Crítico soft</strong>--danger-soft · #F8E3E6</div></article>
+        <article class="swatch"><div class="color" style="background:#765B12"></div><div class="meta"><strong>Advertencia</strong>--warn · #765B12</div></article>
+        <article class="swatch"><div class="color" style="background:#EFE4C8"></div><div class="meta"><strong>Adv. soft</strong>--warn-soft · #EFE4C8</div></article>
+      </section>
+    </main>
+  </body>
+</html>

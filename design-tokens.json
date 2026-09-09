@@ -1,0 +1,893 @@
+{
+  "schemaVersion": 1,
+  "format": "od-design-tokens/v1",
+  "contract": "TOKEN_SCHEMA",
+  "generatedAt": "2026-09-09T19:08:21.058Z",
+  "source": {
+    "tokensCss": "tokens.css",
+    "tokenContractReport": null
+  },
+  "summary": {
+    "totalTokens": 72,
+    "declaredTokens": 72,
+    "sourceBackedTokens": 72,
+    "sourceBackedA1": 41,
+    "fallbackTokens": 29,
+    "aliasTokens": 0,
+    "layerCounts": {
+      "A1-identity": 9,
+      "B-slot": 4,
+      "A2": 27,
+      "A1-structure": 32
+    },
+    "score": 100,
+    "grade": "excellent",
+    "recommendRebuild": false
+  },
+  "tokens": [
+    {
+      "name": "--bg",
+      "value": "#F7F5EE",
+      "type": "color",
+      "layer": "A1-identity",
+      "confidence": "high",
+      "reason": "Bundled tokens.css declares --bg.",
+      "sources": [
+        "tokens.css:35"
+      ],
+      "sourceName": "--bg"
+    },
+    {
+      "name": "--surface",
+      "value": "#FFFFFF",
+      "type": "color",
+      "layer": "A1-identity",
+      "confidence": "high",
+      "reason": "Bundled tokens.css declares --surface.",
+      "sources": [
+        "tokens.css:36"
+      ],
+      "sourceName": "--surface"
+    },
+    {
+      "name": "--surface-warm",
+      "value": "#F0EBE0",
+      "type": "color",
+      "layer": "B-slot",
+      "confidence": "high",
+      "reason": "Bundled tokens.css declares --surface-warm.",
+      "sources": [
+        "tokens.css:37"
+      ],
+      "sourceName": "--surface-warm"
+    },
+    {
+      "name": "--fg",
+      "value": "#131A20",
+      "type": "color",
+      "layer": "A1-identity",
+      "confidence": "high",
+      "reason": "Bundled tokens.css declares --fg.",
+      "sources": [
+        "tokens.css:40"
+      ],
+      "sourceName": "--fg"
+    },
+    {
+      "name": "--fg-2",
+      "value": "#131A20",
+      "type": "color",
+      "layer": "B-slot",
+      "confidence": "high",
+      "reason": "Bundled tokens.css declares --fg-2.",
+      "sources": [
+        "tokens.css:41"
+      ],
+      "sourceName": "--fg-2"
+    },
+    {
+      "name": "--muted",
+      "value": "#57626C",
+      "type": "color",
+      "layer": "A1-identity",
+      "confidence": "high",
+      "reason": "Bundled tokens.css declares --muted.",
+      "sources": [
+        "tokens.css:42"
+      ],
+      "sourceName": "--muted"
+    },
+    {
+      "name": "--meta",
+      "value": "#6E6455",
+      "type": "color",
+      "layer": "B-slot",
+      "confidence": "high",
+      "reason": "Bundled tokens.css declares --meta.",
+      "sources": [
+        "tokens.css:43"
+      ],
+      "sourceName": "--meta"
+    },
+    {
+      "name": "--border",
+      "value": "#DDD8CC",
+      "type": "color",
+      "layer": "A1-identity",
+      "confidence": "high",
+      "reason": "Bundled tokens.css declares --border.",
+      "sources": [
+        "tokens.css:46"
+      ],
+      "sourceName": "--border"
+    },
+    {
+      "name": "--border-soft",
+      "value": "#E3DBCB",
+      "type": "color",
+      "layer": "B-slot",
+      "confidence": "high",
+      "reason": "Bundled tokens.css declares --border-soft.",
+      "sources": [
+        "tokens.css:47"
+      ],
+      "sourceName": "--border-soft"
+    },
+    {
+      "name": "--accent",
+      "value": "#3A54CC",
+      "type": "color",
+      "layer": "A1-identity",
+      "confidence": "high",
+      "reason": "Bundled tokens.css declares --accent.",
+      "sources": [
+        "tokens.css:50"
+      ],
+      "sourceName": "--accent"
+    },
+    {
+      "name": "--accent-on",
+      "value": "#FFFFFF",
+      "type": "color",
+      "layer": "A2",
+      "confidence": "high",
+      "reason": "Bundled tokens.css declares --accent-on.",
+      "sources": [
+        "tokens.css:51"
+      ],
+      "sourceName": "--accent-on"
+    },
+    {
+      "name": "--accent-hover",
+      "value": "#2C40A0",
+      "type": "color",
+      "layer": "A2",
+      "confidence": "high",
+      "reason": "Bundled tokens.css declares --accent-hover.",
+      "sources": [
+        "tokens.css:52"
+      ],
+      "sourceName": "--accent-hover"
+    },
+    {
+      "name": "--accent-active",
+      "value": "#2C40A0",
+      "type": "color",
+      "layer": "A2",
+      "confidence": "high",
+      "reason": "Bundled tokens.css declares --accent-active.",
+      "sources": [
+        "tokens.css:53"
+      ],
+      "sourceName": "--accent-active"
+    },
+    {
+      "name": "--accent-soft",
+      "value": "#E7EAF9",
+      "type": "color",
+      "layer": "A2",
+      "confidence": "high",
+      "reason": "Bundled tokens.css declares --accent-soft.",
+      "sources": [
+        "tokens.css:54"
+      ],
+      "sourceName": "--accent-soft"
+    },
+    {
+      "name": "--brand",
+      "value": "#0B2249",
+      "type": "color",
+      "layer": "A1-identity",
+      "confidence": "high",
+      "reason": "Bundled tokens.css declares --brand.",
+      "sources": [
+        "tokens.css:57"
+      ],
+      "sourceName": "--brand"
+    },
+    {
+      "name": "--brand-deep",
+      "value": "#0C1F41",
+      "type": "color",
+      "layer": "A2",
+      "confidence": "high",
+      "reason": "Bundled tokens.css declares --brand-deep.",
+      "sources": [
+        "tokens.css:58"
+      ],
+      "sourceName": "--brand-deep"
+    },
+    {
+      "name": "--brand-mid",
+      "value": "#133C6F",
+      "type": "color",
+      "layer": "A2",
+      "confidence": "high",
+      "reason": "Bundled tokens.css declares --brand-mid.",
+      "sources": [
+        "tokens.css:59"
+      ],
+      "sourceName": "--brand-mid"
+    },
+    {
+      "name": "--brand-steel",
+      "value": "#2C5C93",
+      "type": "color",
+      "layer": "A2",
+      "confidence": "high",
+      "reason": "Bundled tokens.css declares --brand-steel.",
+      "sources": [
+        "tokens.css:60"
+      ],
+      "sourceName": "--brand-steel"
+    },
+    {
+      "name": "--brand-steel-light",
+      "value": "#5985BD",
+      "type": "color",
+      "layer": "A2",
+      "confidence": "high",
+      "reason": "Bundled tokens.css declares --brand-steel-light.",
+      "sources": [
+        "tokens.css:61"
+      ],
+      "sourceName": "--brand-steel-light"
+    },
+    {
+      "name": "--brand-on",
+      "value": "#FFFFFF",
+      "type": "color",
+      "layer": "A2",
+      "confidence": "high",
+      "reason": "Bundled tokens.css declares --brand-on.",
+      "sources": [
+        "tokens.css:62"
+      ],
+      "sourceName": "--brand-on"
+    },
+    {
+      "name": "--success",
+      "value": "#147A46",
+      "type": "color",
+      "layer": "A2",
+      "confidence": "high",
+      "reason": "Bundled tokens.css declares --success.",
+      "sources": [
+        "tokens.css:65"
+      ],
+      "sourceName": "--success"
+    },
+    {
+      "name": "--success-soft",
+      "value": "#E0F0E7",
+      "type": "color",
+      "layer": "A2",
+      "confidence": "high",
+      "reason": "Bundled tokens.css declares --success-soft.",
+      "sources": [
+        "tokens.css:66"
+      ],
+      "sourceName": "--success-soft"
+    },
+    {
+      "name": "--danger",
+      "value": "#BE3346",
+      "type": "color",
+      "layer": "A2",
+      "confidence": "high",
+      "reason": "Bundled tokens.css declares --danger.",
+      "sources": [
+        "tokens.css:67"
+      ],
+      "sourceName": "--danger"
+    },
+    {
+      "name": "--danger-soft",
+      "value": "#F8E3E6",
+      "type": "color",
+      "layer": "A2",
+      "confidence": "high",
+      "reason": "Bundled tokens.css declares --danger-soft.",
+      "sources": [
+        "tokens.css:68"
+      ],
+      "sourceName": "--danger-soft"
+    },
+    {
+      "name": "--warn",
+      "value": "#765B12",
+      "type": "color",
+      "layer": "A2",
+      "confidence": "high",
+      "reason": "Bundled tokens.css declares --warn.",
+      "sources": [
+        "tokens.css:64"
+      ],
+      "sourceName": "--warn"
+    },
+    {
+      "name": "--warn-soft",
+      "value": "#EFE4C8",
+      "type": "color",
+      "layer": "A2",
+      "confidence": "high",
+      "reason": "Bundled tokens.css declares --warn-soft.",
+      "sources": [
+        "tokens.css:65"
+      ],
+      "sourceName": "--warn-soft"
+    },
+    {
+      "name": "--font-display",
+      "value": "\"Poppins\", -apple-system, system-ui, \"Segoe UI\", sans-serif",
+      "type": "fontFamily",
+      "layer": "A1-identity",
+      "confidence": "high",
+      "reason": "Bundled tokens.css declares --font-display.",
+      "sources": [
+        "tokens.css:73"
+      ],
+      "sourceName": "--font-display"
+    },
+    {
+      "name": "--font-body",
+      "value": "\"Inter Variable\", \"Inter\", -apple-system, system-ui, \"Segoe UI\", Roboto, sans-serif",
+      "type": "fontFamily",
+      "layer": "A1-identity",
+      "confidence": "high",
+      "reason": "Bundled tokens.css declares --font-body.",
+      "sources": [
+        "tokens.css:74"
+      ],
+      "sourceName": "--font-body"
+    },
+    {
+      "name": "--font-mono",
+      "value": "\"JetBrains Mono\", ui-monospace, \"SF Mono\", Menlo, Monaco, Consolas, monospace",
+      "type": "fontFamily",
+      "layer": "A2",
+      "confidence": "high",
+      "reason": "Bundled tokens.css declares --font-mono.",
+      "sources": [
+        "tokens.css:75"
+      ],
+      "sourceName": "--font-mono"
+    },
+    {
+      "name": "--text-2xs",
+      "value": "11px",
+      "type": "dimension",
+      "layer": "A1-structure",
+      "confidence": "high",
+      "reason": "Bundled tokens.css declares --text-2xs.",
+      "sources": [
+        "tokens.css:78"
+      ],
+      "sourceName": "--text-2xs"
+    },
+    {
+      "name": "--text-xs",
+      "value": "12px",
+      "type": "dimension",
+      "layer": "A1-structure",
+      "confidence": "high",
+      "reason": "Bundled tokens.css declares --text-xs.",
+      "sources": [
+        "tokens.css:79"
+      ],
+      "sourceName": "--text-xs"
+    },
+    {
+      "name": "--text-sm",
+      "value": "13px",
+      "type": "dimension",
+      "layer": "A1-structure",
+      "confidence": "high",
+      "reason": "Bundled tokens.css declares --text-sm.",
+      "sources": [
+        "tokens.css:80"
+      ],
+      "sourceName": "--text-sm"
+    },
+    {
+      "name": "--text-base",
+      "value": "14px",
+      "type": "dimension",
+      "layer": "A1-structure",
+      "confidence": "high",
+      "reason": "Bundled tokens.css declares --text-base.",
+      "sources": [
+        "tokens.css:81"
+      ],
+      "sourceName": "--text-base"
+    },
+    {
+      "name": "--text-md",
+      "value": "16px",
+      "type": "dimension",
+      "layer": "A1-structure",
+      "confidence": "high",
+      "reason": "Bundled tokens.css declares --text-md.",
+      "sources": [
+        "tokens.css:82"
+      ],
+      "sourceName": "--text-md"
+    },
+    {
+      "name": "--text-lg",
+      "value": "20px",
+      "type": "dimension",
+      "layer": "A1-structure",
+      "confidence": "high",
+      "reason": "Bundled tokens.css declares --text-lg.",
+      "sources": [
+        "tokens.css:83"
+      ],
+      "sourceName": "--text-lg"
+    },
+    {
+      "name": "--text-xl",
+      "value": "24px",
+      "type": "dimension",
+      "layer": "A1-structure",
+      "confidence": "high",
+      "reason": "Bundled tokens.css declares --text-xl.",
+      "sources": [
+        "tokens.css:84"
+      ],
+      "sourceName": "--text-xl"
+    },
+    {
+      "name": "--text-2xl",
+      "value": "32px",
+      "type": "dimension",
+      "layer": "A1-structure",
+      "confidence": "high",
+      "reason": "Bundled tokens.css declares --text-2xl.",
+      "sources": [
+        "tokens.css:85"
+      ],
+      "sourceName": "--text-2xl"
+    },
+    {
+      "name": "--leading-body",
+      "value": "1.5",
+      "type": "number",
+      "layer": "A1-structure",
+      "confidence": "high",
+      "reason": "Bundled tokens.css declares --leading-body.",
+      "sources": [
+        "tokens.css:88"
+      ],
+      "sourceName": "--leading-body"
+    },
+    {
+      "name": "--leading-snug",
+      "value": "1.35",
+      "type": "number",
+      "layer": "A1-structure",
+      "confidence": "high",
+      "reason": "Bundled tokens.css declares --leading-snug.",
+      "sources": [
+        "tokens.css:89"
+      ],
+      "sourceName": "--leading-snug"
+    },
+    {
+      "name": "--leading-tight",
+      "value": "1.2",
+      "type": "number",
+      "layer": "A1-structure",
+      "confidence": "high",
+      "reason": "Bundled tokens.css declares --leading-tight.",
+      "sources": [
+        "tokens.css:90"
+      ],
+      "sourceName": "--leading-tight"
+    },
+    {
+      "name": "--tracking-display",
+      "value": "-0.02em",
+      "type": "dimension",
+      "layer": "A1-structure",
+      "confidence": "high",
+      "reason": "Bundled tokens.css declares --tracking-display.",
+      "sources": [
+        "tokens.css:91"
+      ],
+      "sourceName": "--tracking-display"
+    },
+    {
+      "name": "--tracking-tight",
+      "value": "-0.01em",
+      "type": "dimension",
+      "layer": "A1-structure",
+      "confidence": "high",
+      "reason": "Bundled tokens.css declares --tracking-tight.",
+      "sources": [
+        "tokens.css:92"
+      ],
+      "sourceName": "--tracking-tight"
+    },
+    {
+      "name": "--sp-0.5",
+      "value": "2px",
+      "type": "dimension",
+      "layer": "A1-structure",
+      "confidence": "high",
+      "reason": "Bundled tokens.css declares --sp-0.5.",
+      "sources": [
+        "tokens.css:124"
+      ],
+      "sourceName": "--sp-0.5"
+    },
+    {
+      "name": "--sp-1",
+      "value": "4px",
+      "type": "dimension",
+      "layer": "A1-structure",
+      "confidence": "high",
+      "reason": "Bundled tokens.css declares --sp-1.",
+      "sources": [
+        "tokens.css:125"
+      ],
+      "sourceName": "--sp-1"
+    },
+    {
+      "name": "--sp-1.5",
+      "value": "6px",
+      "type": "dimension",
+      "layer": "A1-structure",
+      "confidence": "high",
+      "reason": "Bundled tokens.css declares --sp-1.5.",
+      "sources": [
+        "tokens.css:126"
+      ],
+      "sourceName": "--sp-1.5"
+    },
+    {
+      "name": "--sp-2",
+      "value": "8px",
+      "type": "dimension",
+      "layer": "A1-structure",
+      "confidence": "high",
+      "reason": "Bundled tokens.css declares --sp-2.",
+      "sources": [
+        "tokens.css:127"
+      ],
+      "sourceName": "--sp-2"
+    },
+    {
+      "name": "--sp-3",
+      "value": "12px",
+      "type": "dimension",
+      "layer": "A1-structure",
+      "confidence": "high",
+      "reason": "Bundled tokens.css declares --sp-3.",
+      "sources": [
+        "tokens.css:128"
+      ],
+      "sourceName": "--sp-3"
+    },
+    {
+      "name": "--sp-4",
+      "value": "16px",
+      "type": "dimension",
+      "layer": "A1-structure",
+      "confidence": "high",
+      "reason": "Bundled tokens.css declares --sp-4.",
+      "sources": [
+        "tokens.css:129"
+      ],
+      "sourceName": "--sp-4"
+    },
+    {
+      "name": "--sp-5",
+      "value": "20px",
+      "type": "dimension",
+      "layer": "A1-structure",
+      "confidence": "high",
+      "reason": "Bundled tokens.css declares --sp-5.",
+      "sources": [
+        "tokens.css:130"
+      ],
+      "sourceName": "--sp-5"
+    },
+    {
+      "name": "--sp-6",
+      "value": "24px",
+      "type": "dimension",
+      "layer": "A1-structure",
+      "confidence": "high",
+      "reason": "Bundled tokens.css declares --sp-6.",
+      "sources": [
+        "tokens.css:131"
+      ],
+      "sourceName": "--sp-6"
+    },
+    {
+      "name": "--sp-8",
+      "value": "32px",
+      "type": "dimension",
+      "layer": "A1-structure",
+      "confidence": "high",
+      "reason": "Bundled tokens.css declares --sp-8.",
+      "sources": [
+        "tokens.css:132"
+      ],
+      "sourceName": "--sp-8"
+    },
+    {
+      "name": "--sp-10",
+      "value": "40px",
+      "type": "dimension",
+      "layer": "A1-structure",
+      "confidence": "high",
+      "reason": "Bundled tokens.css declares --sp-10.",
+      "sources": [
+        "tokens.css:133"
+      ],
+      "sourceName": "--sp-10"
+    },
+    {
+      "name": "--sp-12",
+      "value": "48px",
+      "type": "dimension",
+      "layer": "A1-structure",
+      "confidence": "high",
+      "reason": "Bundled tokens.css declares --sp-12.",
+      "sources": [
+        "tokens.css:134"
+      ],
+      "sourceName": "--sp-12"
+    },
+    {
+      "name": "--sp-16",
+      "value": "64px",
+      "type": "dimension",
+      "layer": "A1-structure",
+      "confidence": "high",
+      "reason": "Bundled tokens.css declares --sp-16.",
+      "sources": [
+        "tokens.css:135"
+      ],
+      "sourceName": "--sp-16"
+    },
+    {
+      "name": "--section-y-desktop",
+      "value": "48px",
+      "type": "dimension",
+      "layer": "A1-structure",
+      "confidence": "high",
+      "reason": "Bundled tokens.css declares --section-y-desktop.",
+      "sources": [
+        "tokens.css:105"
+      ],
+      "sourceName": "--section-y-desktop"
+    },
+    {
+      "name": "--section-y-tablet",
+      "value": "32px",
+      "type": "dimension",
+      "layer": "A1-structure",
+      "confidence": "high",
+      "reason": "Bundled tokens.css declares --section-y-tablet.",
+      "sources": [
+        "tokens.css:106"
+      ],
+      "sourceName": "--section-y-tablet"
+    },
+    {
+      "name": "--section-y-phone",
+      "value": "24px",
+      "type": "dimension",
+      "layer": "A1-structure",
+      "confidence": "high",
+      "reason": "Bundled tokens.css declares --section-y-phone.",
+      "sources": [
+        "tokens.css:107"
+      ],
+      "sourceName": "--section-y-phone"
+    },
+    {
+      "name": "--radius-sm",
+      "value": "8px",
+      "type": "dimension",
+      "layer": "A2",
+      "confidence": "high",
+      "reason": "Bundled tokens.css declares --radius-sm.",
+      "sources": [
+        "tokens.css:110"
+      ],
+      "sourceName": "--radius-sm"
+    },
+    {
+      "name": "--radius-md",
+      "value": "12px",
+      "type": "dimension",
+      "layer": "A2",
+      "confidence": "high",
+      "reason": "Bundled tokens.css declares --radius-md.",
+      "sources": [
+        "tokens.css:111"
+      ],
+      "sourceName": "--radius-md"
+    },
+    {
+      "name": "--radius-lg",
+      "value": "20px",
+      "type": "dimension",
+      "layer": "A2",
+      "confidence": "high",
+      "reason": "Bundled tokens.css declares --radius-lg.",
+      "sources": [
+        "tokens.css:112"
+      ],
+      "sourceName": "--radius-lg"
+    },
+    {
+      "name": "--radius-pill",
+      "value": "9999px",
+      "type": "dimension",
+      "layer": "A2",
+      "confidence": "high",
+      "reason": "Bundled tokens.css declares --radius-pill.",
+      "sources": [
+        "tokens.css:113"
+      ],
+      "sourceName": "--radius-pill"
+    },
+    {
+      "name": "--elev-flat",
+      "value": "none",
+      "type": "shadow",
+      "layer": "A2",
+      "confidence": "high",
+      "reason": "Bundled tokens.css declares --elev-flat.",
+      "sources": [
+        "tokens.css:116"
+      ],
+      "sourceName": "--elev-flat"
+    },
+    {
+      "name": "--elev-ring",
+      "value": "0 0 0 1px var(--border)",
+      "type": "shadow",
+      "layer": "A2",
+      "confidence": "high",
+      "reason": "Bundled tokens.css declares --elev-ring.",
+      "sources": [
+        "tokens.css:117"
+      ],
+      "sourceName": "--elev-ring"
+    },
+    {
+      "name": "--elev-raised",
+      "value": "0 1px 2px rgba(27, 23, 18, 0.04), 0 12px 32px -16px rgba(27, 23, 18, 0.18)",
+      "type": "shadow",
+      "layer": "A2",
+      "confidence": "high",
+      "reason": "Bundled tokens.css declares --elev-raised.",
+      "sources": [
+        "tokens.css:118"
+      ],
+      "sourceName": "--elev-raised"
+    },
+    {
+      "name": "--focus-ring",
+      "value": "0 0 0 2px var(--bg), 0 0 0 4px var(--accent)",
+      "type": "shadow",
+      "layer": "A2",
+      "confidence": "high",
+      "reason": "Bundled tokens.css declares --focus-ring.",
+      "sources": [
+        "tokens.css:121"
+      ],
+      "sourceName": "--focus-ring"
+    },
+    {
+      "name": "--motion-fast",
+      "value": "120ms",
+      "type": "duration",
+      "layer": "A2",
+      "confidence": "high",
+      "reason": "Bundled tokens.css declares --motion-fast.",
+      "sources": [
+        "tokens.css:124"
+      ],
+      "sourceName": "--motion-fast"
+    },
+    {
+      "name": "--motion-base",
+      "value": "200ms",
+      "type": "duration",
+      "layer": "A2",
+      "confidence": "high",
+      "reason": "Bundled tokens.css declares --motion-base.",
+      "sources": [
+        "tokens.css:125"
+      ],
+      "sourceName": "--motion-base"
+    },
+    {
+      "name": "--ease-standard",
+      "value": "cubic-bezier(0.2, 0, 0, 1)",
+      "type": "cubicBezier",
+      "layer": "A2",
+      "confidence": "high",
+      "reason": "Bundled tokens.css declares --ease-standard.",
+      "sources": [
+        "tokens.css:126"
+      ],
+      "sourceName": "--ease-standard"
+    },
+    {
+      "name": "--container-max",
+      "value": "1280px",
+      "type": "dimension",
+      "layer": "A1-structure",
+      "confidence": "high",
+      "reason": "Bundled tokens.css declares --container-max.",
+      "sources": [
+        "tokens.css:129"
+      ],
+      "sourceName": "--container-max"
+    },
+    {
+      "name": "--container-gutter-desktop",
+      "value": "24px",
+      "type": "dimension",
+      "layer": "A1-structure",
+      "confidence": "high",
+      "reason": "Bundled tokens.css declares --container-gutter-desktop.",
+      "sources": [
+        "tokens.css:130"
+      ],
+      "sourceName": "--container-gutter-desktop"
+    },
+    {
+      "name": "--container-gutter-tablet",
+      "value": "16px",
+      "type": "dimension",
+      "layer": "A1-structure",
+      "confidence": "high",
+      "reason": "Bundled tokens.css declares --container-gutter-tablet.",
+      "sources": [
+        "tokens.css:131"
+      ],
+      "sourceName": "--container-gutter-tablet"
+    },
+    {
+      "name": "--container-gutter-phone",
+      "value": "12px",
+      "type": "dimension",
+      "layer": "A1-structure",
+      "confidence": "high",
+      "reason": "Bundled tokens.css declares --container-gutter-phone.",
+      "sources": [
+        "tokens.css:132"
+      ],
+      "sourceName": "--container-gutter-phone"
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "schemaVersion": "od-design-system-project/v1",
+  "id": "kazabi",
+  "name": "Kazabi",
+  "category": "Productivity & SaaS",
+  "description": "CRM inmobiliario para agentes en Ecuador. Paleta navy + arena con azul de acción separado. Interfaz densa y calmada para uso prolongado — tablas de contactos, bandeja de mensajes, fichas de propiedades.",
+  "source": {
+    "type": "bundled",
+    "origin": "OpenDesign curated bundled fixture"
+  },
+  "files": {
+    "design": "DESIGN.md",
+    "tokens": "tokens.css",
+    "designTokens": "design-tokens.json",
+    "tailwind": "tailwind-v4.css",
+    "components": "components.html"
+  },
+  "usage": "USAGE.md",
+  "componentsManifest": "components.manifest.json",
+  "importMode": "normalized",
+  "craft": {
+    "applies": [],
+    "suggested": [
+      "color",
+      "accessibility-baseline"
+    ],
+    "exemptions": []
+  },
+  "preview": {
+    "dir": "preview",
+    "pages": [
+      {
+        "path": "preview/colors.html",
+        "role": "colors",
+        "title": "Colores"
+      },
+      {
+        "path": "preview/typography.html",
+        "role": "typography",
+        "title": "Tipografía"
+      },
+      {
+        "path": "preview/spacing.html",
+        "role": "spacing",
+        "title": "Espaciado"
+      }
+    ]
+  }
+}

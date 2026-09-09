@@ -1,0 +1,4 @@
+node_modules/
+*.artifact.json
+.DS_Store
+Thumbs.db
