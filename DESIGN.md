@@ -63,7 +63,8 @@ El azul es exclusivamente el color interactivo. Nunca aparece como fondo decorat
 | `--accent` | `#3A54CC` | Botón primario, foco, enlace activo |
 | `--accent-hover` | `#2C40A0` | Hover de botón primario (más oscuro en light) |
 | `--accent-soft` | `#E7EAF9` | Fondo de selección, badge activo, row selected |
-| Azul claro | `#7488FF` | Acento en dark mode (brilla sobre navy) |
+| `--link` | `#2C40A0` | Azul de TEXTO: enlaces y cifras de acción (8.2:1 sobre arena-50). En dark `#9DAAFF` |
+| Azul claro | `#7488FF` | Acento en dark mode |
 
 ### Texto e Interfaz
 
@@ -83,13 +84,27 @@ El azul es exclusivamente el color interactivo. Nunca aparece como fondo decorat
 
 El ámbar de advertencia se deriva de la familia arena: conserva su temperatura terrosa y evita introducir un amarillo externo a la marca.
 
-**Tema oscuro sobre navy `#0B2249`**
+**Tema oscuro: grafito frío, no navy** (decisión del 2026-09-10)
 
-| Estado | Primario | Contraste |
-|--------|----------|-----------|
-| Éxito (OK) | `#67C58A` | 7.41:1 |
-| Advertencia | `#E4B95F` | 8.51:1 |
-| Crítico | `#F0808E` | 6.11:1 |
+El navy es marca y acción, no lienzo. Un lienzo navy con tarjetas navy daba 1.04:1 entre
+`--surface` y `--bg` (tarjetas invisibles), los enlaces caían a 2.5:1 y el texto apagado
+usaba un acero pensado solo para gráficos. Medido en producción, se cambió por un grafito con
+tinte frío que deja al navy y al azul de acción destacar.
+
+| Token | Hex | Contraste sobre `--surface` #151B24 |
+|-------|-----|------------------------------------|
+| `--bg` | `#0E1219` | lienzo |
+| `--surface` | `#151B24` | tarjetas (1.08:1 sobre bg, con borde 14 %) |
+| `--surface-warm` | `#1C2430` | sidebar, paneles secundarios |
+| `--fg` | `#F2F1EC` | 15.3:1 |
+| `--fg-2` | `#DCD9D0` | 12.3:1 |
+| `--muted` | `#AEB4BE` | 8.3:1 |
+| `--meta` | `#8B93A1` | 5.6:1 — apto para texto pequeño |
+| `--accent` | `#7488FF` | 5.5:1 |
+| `--link` | `#9DAAFF` | 7.9:1 |
+| Éxito | `#67C58A` | 8.2:1 |
+| Advertencia | `#E4B95F` | 9.4:1 |
+| Crítico | `#F0808E` | 6.7:1 |
 
 ### Contrastes Verificados
 
@@ -105,9 +120,13 @@ Estos ratios están medidos y son parte del contrato del sistema:
 | Acero claro `#5985BD` sobre arena `#F7F5EE` | 3.49:1 | Solo gráfico/24px+ |
 | Ámbar `#765B12` sobre arena-50 `#F7F5EE` | 5.88:1 | AA |
 | Ámbar `#765B12` sobre ámbar suave `#EFE4C8` | 5.07:1 | AA |
-| Éxito dark `#67C58A` sobre navy `#0B2249` | 7.41:1 | AAA |
-| Advertencia dark `#E4B95F` sobre navy `#0B2249` | 8.51:1 | AAA |
-| Crítico dark `#F0808E` sobre navy `#0B2249` | 6.11:1 | AA |
+| Link `#2C40A0` sobre arena-50 `#F7F5EE` | 8.2:1 | AAA |
+| Link dark `#9DAAFF` sobre grafito `#151B24` | 7.93:1 | AAA |
+| Muted dark `#AEB4BE` sobre grafito `#151B24` | 8.3:1 | AAA |
+| Meta dark `#8B93A1` sobre grafito `#151B24` | 5.59:1 | AA |
+| Éxito dark `#67C58A` sobre grafito `#151B24` | 8.18:1 | AAA |
+| Advertencia dark `#E4B95F` sobre grafito `#151B24` | 9.39:1 | AAA |
+| Crítico dark `#F0808E` sobre grafito `#151B24` | 6.74:1 | AA |
 
 ## 3. Reglas de Tipografía
 

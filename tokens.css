@@ -51,6 +51,7 @@
   --accent-hover:  #2C40A0;           /* ink — más oscuro en hover (tema claro) */
   --accent-active: #2C40A0;
   --accent-soft:   #E7EAF9;           /* fondo de selección, badges activos */
+  --link:          #2C40A0;           /* azul de TEXTO — enlaces y cifras de acción; 8.2:1 sobre arena-50 */
 
   /* ─── Marca (NAVY — solo identidad) ──────────────────────────── */
   --brand:             #0B2249;        /* navy principal */
@@ -194,41 +195,34 @@
 [data-theme="dark"],
 .dark {
   /* ─── Superficies ───────────────────────────────────────────── */
-  --bg:           #0C1F41;            /* navy hondo — lienzo principal */
-  --surface:      #0B2249;            /* navy — tarjetas elevadas */
-  --surface-warm: #133C6F;           /* navy medio — sidebar, paneles */
+  --bg:           #0E1219;            /* grafito frío — lienzo principal (el navy es marca, no lienzo) */
+  --surface:      #151B24;            /* tarjetas elevadas */
+  --surface-warm: #1C2430;            /* sidebar, paneles secundarios */
 
-  /* ─── Texto ─────────────────────────────────────────────────── */
-  --fg:   #F7F5EE;                    /* arena-50 — titulares */
-  --fg-2: #E3DBCB;                    /* arena-200 — cuerpo */
-  --muted: #C5B69F;                   /* arena-400 — 7.89:1 sobre navy ✓ */
-  --meta:  #5985BD;                   /* acero claro — SOLO gráfico 24px+ */
+  --fg:   #F2F1EC;                    /* arena casi blanca — titulares; 15.3:1 sobre surface */
+  --fg-2: #DCD9D0;                    /* cuerpo; 12.3:1 */
+  --muted: #AEB4BE;                   /* texto secundario; 8.3:1 sobre surface, 7.5:1 sobre surface-warm */
+  --meta:  #8B93A1;                   /* timestamps, contadores; 5.6:1 — apto para texto pequeño */
 
-  /* ─── Bordes ────────────────────────────────────────────────── */
-  --border:      rgba(247, 245, 238, 0.12);   /* arena semi-transparente */
-  --border-soft: rgba(247, 245, 238, 0.07);   /* sutil */
+  --border:      rgba(242, 241, 236, 0.14);
+  --border-soft: rgba(242, 241, 236, 0.08);
 
-  /* ─── Acento ────────────────────────────────────────────────── */
-  --accent:        #7488FF;          /* azul claro — brilla sobre navy */
-  --accent-on:     #0C1F41;          /* navy hondo sobre acento */
-  --accent-hover:  #3A54CC;          /* azul base como hover */
-  --accent-active: #2C40A0;
-  --accent-soft:   rgba(58, 84, 204, 0.15);
+  --accent:        #7488FF;          /* azul claro — 5.5:1 sobre surface */
+  --accent-on:     #0E1219;          /* grafito sobre acento; 6.0:1 */
+  --accent-hover:  #9DAAFF;          /* más claro en hover (en oscuro se sube, no se baja) */
+  --accent-active: #5C74F2;
+  --accent-soft:   rgba(116, 136, 255, 0.16);
+  --link:          #9DAAFF;          /* azul de TEXTO; 7.9:1 sobre surface, 7.2:1 sobre surface-warm */
 
-  /* ─── Marca ─────────────────────────────────────────────────── */
-  /* En dark, el navy es el lienzo. Los acentos de marca se
-     expresan con acero y arena. */
-  --brand-on: #F7F5EE;
+  --brand-on: #F2F1EC;
 
-  /* ─── Semántico ─────────────────────────────────────────────── */
-  --success:      #67C58A;          /* verde mineral — 7.41:1 sobre navy */
-  --success-soft: rgba(20, 122, 70, 0.2);
-  --danger:       #F0808E;          /* coral mineral — 6.11:1 sobre navy */
-  --danger-soft:  rgba(190, 51, 70, 0.2);
-  --warn:         #E4B95F;          /* ámbar arena luminoso — 8.51:1 sobre navy */
-  --warn-soft:    rgba(228, 185, 95, 0.15);
+  --success:      #67C58A;          /* 8.2:1 sobre surface */
+  --success-soft: rgba(103, 197, 138, 0.18);
+  --danger:       #F0808E;          /* 6.7:1 */
+  --danger-soft:  rgba(240, 128, 142, 0.18);
+  --warn:         #E4B95F;          /* 9.4:1 */
+  --warn-soft:    rgba(228, 185, 95, 0.16);
 
-  /* ─── Elevación ─────────────────────────────────────────────── */
   --elev-raised:
     0 1px 2px rgba(0, 0, 0, 0.2),
     0 12px 32px -16px rgba(0, 0, 0, 0.5);
@@ -242,41 +236,34 @@
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]):not(.light) {
     /* ─── Superficies ───────────────────────────────────────────── */
-    --bg:           #0C1F41;            /* navy hondo — lienzo principal */
-    --surface:      #0B2249;            /* navy — tarjetas elevadas */
-    --surface-warm: #133C6F;           /* navy medio — sidebar, paneles */
+    --bg:           #0E1219;            /* grafito frío — lienzo principal (el navy es marca, no lienzo) */
+    --surface:      #151B24;            /* tarjetas elevadas */
+    --surface-warm: #1C2430;            /* sidebar, paneles secundarios */
 
-    /* ─── Texto ─────────────────────────────────────────────────── */
-    --fg:   #F7F5EE;                    /* arena-50 — titulares */
-    --fg-2: #E3DBCB;                    /* arena-200 — cuerpo */
-    --muted: #C5B69F;                   /* arena-400 — 7.89:1 sobre navy ✓ */
-    --meta:  #5985BD;                   /* acero claro — SOLO gráfico 24px+ */
+    --fg:   #F2F1EC;                    /* arena casi blanca — titulares; 15.3:1 sobre surface */
+    --fg-2: #DCD9D0;                    /* cuerpo; 12.3:1 */
+    --muted: #AEB4BE;                   /* texto secundario; 8.3:1 sobre surface, 7.5:1 sobre surface-warm */
+    --meta:  #8B93A1;                   /* timestamps, contadores; 5.6:1 — apto para texto pequeño */
 
-    /* ─── Bordes ────────────────────────────────────────────────── */
-    --border:      rgba(247, 245, 238, 0.12);   /* arena semi-transparente */
-    --border-soft: rgba(247, 245, 238, 0.07);   /* sutil */
+    --border:      rgba(242, 241, 236, 0.14);
+    --border-soft: rgba(242, 241, 236, 0.08);
 
-    /* ─── Acento ────────────────────────────────────────────────── */
-    --accent:        #7488FF;          /* azul claro — brilla sobre navy */
-    --accent-on:     #0C1F41;          /* navy hondo sobre acento */
-    --accent-hover:  #3A54CC;          /* azul base como hover */
-    --accent-active: #2C40A0;
-    --accent-soft:   rgba(58, 84, 204, 0.15);
+    --accent:        #7488FF;          /* azul claro — 5.5:1 sobre surface */
+    --accent-on:     #0E1219;          /* grafito sobre acento; 6.0:1 */
+    --accent-hover:  #9DAAFF;          /* más claro en hover (en oscuro se sube, no se baja) */
+    --accent-active: #5C74F2;
+    --accent-soft:   rgba(116, 136, 255, 0.16);
+    --link:          #9DAAFF;          /* azul de TEXTO; 7.9:1 sobre surface, 7.2:1 sobre surface-warm */
 
-    /* ─── Marca ─────────────────────────────────────────────────── */
-    /* En dark, el navy es el lienzo. Los acentos de marca se
-       expresan con acero y arena. */
-    --brand-on: #F7F5EE;
+    --brand-on: #F2F1EC;
 
-    /* ─── Semántico ─────────────────────────────────────────────── */
-    --success:      #67C58A;          /* verde mineral — 7.41:1 sobre navy */
-    --success-soft: rgba(20, 122, 70, 0.2);
-    --danger:       #F0808E;          /* coral mineral — 6.11:1 sobre navy */
-    --danger-soft:  rgba(190, 51, 70, 0.2);
-    --warn:         #E4B95F;          /* ámbar arena luminoso — 8.51:1 sobre navy */
-    --warn-soft:    rgba(228, 185, 95, 0.15);
+    --success:      #67C58A;          /* 8.2:1 sobre surface */
+    --success-soft: rgba(103, 197, 138, 0.18);
+    --danger:       #F0808E;          /* 6.7:1 */
+    --danger-soft:  rgba(240, 128, 142, 0.18);
+    --warn:         #E4B95F;          /* 9.4:1 */
+    --warn-soft:    rgba(228, 185, 95, 0.16);
 
-    /* ─── Elevación ─────────────────────────────────────────────── */
     --elev-raised:
       0 1px 2px rgba(0, 0, 0, 0.2),
       0 12px 32px -16px rgba(0, 0, 0, 0.5);

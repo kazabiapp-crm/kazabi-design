@@ -182,6 +182,18 @@
       "sourceName": "--accent-active"
     },
     {
+      "name": "--link",
+      "value": "#2C40A0",
+      "type": "color",
+      "layer": "A2",
+      "confidence": "high",
+      "reason": "Bundled tokens.css declares --link.",
+      "sources": [
+        "tokens.css:53"
+      ],
+      "sourceName": "--link"
+    },
+    {
       "name": "--accent-soft",
       "value": "#E7EAF9",
       "type": "color",
