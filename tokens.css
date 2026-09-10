@@ -181,10 +181,66 @@
  *  El azul de acción sube a #7488FF para mantener contraste.
  * ═══════════════════════════════════════════════════════════════════ */
 
+/* 🔴 Este bloque estaba escrito como:
+ *     [data-theme="dark"], .dark, @media (prefers-color-scheme: dark) { :root { ... } }
+ *   Un @media NO puede ir dentro de una lista de selectores: la regla entera es
+ *   invalida y el navegador la descarta, asi que el tema oscuro no se aplicaba nunca.
+ *   lightningcss —el parser que usa el build— directamente falla con "Invalid empty
+ *   selector". Comprobado con postcss y con lightningcss el 2026-09-09.
+ *
+ *   Van separados, y el de sistema lleva la guarda :not([data-theme="light"]): sin ella,
+ *   alguien que elige claro a mano en un sistema oscuro igual veria oscuro. */
+
 [data-theme="dark"],
-.dark,
+.dark {
+  /* ─── Superficies ───────────────────────────────────────────── */
+  --bg:           #0C1F41;            /* navy hondo — lienzo principal */
+  --surface:      #0B2249;            /* navy — tarjetas elevadas */
+  --surface-warm: #133C6F;           /* navy medio — sidebar, paneles */
+
+  /* ─── Texto ─────────────────────────────────────────────────── */
+  --fg:   #F7F5EE;                    /* arena-50 — titulares */
+  --fg-2: #E3DBCB;                    /* arena-200 — cuerpo */
+  --muted: #C5B69F;                   /* arena-400 — 7.89:1 sobre navy ✓ */
+  --meta:  #5985BD;                   /* acero claro — SOLO gráfico 24px+ */
+
+  /* ─── Bordes ────────────────────────────────────────────────── */
+  --border:      rgba(247, 245, 238, 0.12);   /* arena semi-transparente */
+  --border-soft: rgba(247, 245, 238, 0.07);   /* sutil */
+
+  /* ─── Acento ────────────────────────────────────────────────── */
+  --accent:        #7488FF;          /* azul claro — brilla sobre navy */
+  --accent-on:     #0C1F41;          /* navy hondo sobre acento */
+  --accent-hover:  #3A54CC;          /* azul base como hover */
+  --accent-active: #2C40A0;
+  --accent-soft:   rgba(58, 84, 204, 0.15);
+
+  /* ─── Marca ─────────────────────────────────────────────────── */
+  /* En dark, el navy es el lienzo. Los acentos de marca se
+     expresan con acero y arena. */
+  --brand-on: #F7F5EE;
+
+  /* ─── Semántico ─────────────────────────────────────────────── */
+  --success:      #67C58A;          /* verde mineral — 7.41:1 sobre navy */
+  --success-soft: rgba(20, 122, 70, 0.2);
+  --danger:       #F0808E;          /* coral mineral — 6.11:1 sobre navy */
+  --danger-soft:  rgba(190, 51, 70, 0.2);
+  --warn:         #E4B95F;          /* ámbar arena luminoso — 8.51:1 sobre navy */
+  --warn-soft:    rgba(228, 185, 95, 0.15);
+
+  /* ─── Elevación ─────────────────────────────────────────────── */
+  --elev-raised:
+    0 1px 2px rgba(0, 0, 0, 0.2),
+    0 12px 32px -16px rgba(0, 0, 0, 0.5);
+
+  /* ─── Foco ──────────────────────────────────────────────────── */
+  --focus-ring:
+    0 0 0 2px var(--bg),
+    0 0 0 4px var(--accent);
+}
+
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme="light"]):not(.light) {
     /* ─── Superficies ───────────────────────────────────────────── */
     --bg:           #0C1F41;            /* navy hondo — lienzo principal */
     --surface:      #0B2249;            /* navy — tarjetas elevadas */
