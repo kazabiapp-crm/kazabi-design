@@ -75,9 +75,10 @@
    * familia en todas las plataformas, AUTOALOJADA: sin eso cae a Helvetica/Arial
    * y la marca se ve distinta según el equipo. Variable 100–900, así que los
    * pesos 520/620/650 existen de verdad. Mono de la misma familia. */
-  --font-display: "Geist", "Helvetica Neue", Arial, sans-serif;
-  --font-body:    "Geist", "Helvetica Neue", Arial, sans-serif;
-  --font-mono:    "Geist Mono", ui-monospace, Menlo, Consolas, monospace;
+  /* "Geist Variable" es el nombre con que la registra @fontsource-variable/geist. */
+  --font-display: "Geist Variable", "Geist", "Helvetica Neue", Arial, sans-serif;
+  --font-body:    "Geist Variable", "Geist", "Helvetica Neue", Arial, sans-serif;
+  --font-mono:    "Geist Mono Variable", "Geist Mono", ui-monospace, Menlo, Consolas, monospace;
 
   /* Escala — 10 pasos. El cuerpo por defecto es 17px (decisión 2026-09-11). */
   --text-2xs:  11px;   /* eyebrow, cabecera de lista, chip de estado */
