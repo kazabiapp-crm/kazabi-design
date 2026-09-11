@@ -1,0 +1,1351 @@
+<!doctype html>
+<!-- kazabi-design/signal/referencias/landing.html
+     Generada desde Open Design kazabi-signal-landing/index.html con tokens.css corregido (2026-09-11). -->
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f4f6f8">
+  <meta name="description" content="Kazabi, el CRM inmobiliario para agentes en Ecuador. Contactos, propiedades, visitas y mensajes ordenados por urgencia.">
+  <title>Kazabi — Se te acabó el desorden</title>
+  <style>
+    /* OD-LAYOUT-PRIMITIVES v1 — structure only: display, flex/grid, overflow, wrapping, ratio.
+       Put this @layer first; product CSS outside the layer always wins. */
+    @layer od-layout {
+      :where(.od-stack,.od-row,.od-row-top,.od-cluster,.od-grid,.od-field,.od-stat,.od-cell,.od-tile) > :where(*) { min-width: 0; }
+      .od-stack   { display: flex; flex-direction: column; gap:var(--od-gap, var(--sp-2)); }
+      .od-row     { display: flex; align-items: center; gap:var(--od-gap, var(--sp-2)); }
+      .od-row-top { display: flex; align-items: flex-start; gap:var(--od-gap, var(--sp-2)); }
+      .od-cluster { display: flex; flex-wrap: wrap; align-items: center; gap:var(--od-gap, var(--sp-2)); }
+      .od-fill    { flex: 1 1 0; min-width: 0; }
+      .od-fixed   { flex: none; }
+      .od-grid    { display: grid; gap:var(--od-gap, var(--sp-3)); grid-template-columns: repeat(var(--od-cols, 3), minmax(0, 1fr)); }
+      .od-stat, .od-field, .od-cell { display: grid; gap:var(--od-gap, var(--sp-0.5)); }
+      :where(.od-stat,.od-field,.od-cell) > :where(*) { display: block; }
+      .od-tile { display: grid; grid-template-rows: auto 1fr; }
+      :where(.od-tile) > :where(*) { display: block; }
+      .od-media { display: block; width: 100%; height: auto; aspect-ratio: var(--od-ratio, auto); }
+      .od-media-cover { object-fit: cover; }
+      .od-truncate { display: block; max-width: 100%; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+      .od-clamp-2, .od-clamp-3 { display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden; overflow-wrap: anywhere; }
+      .od-clamp-2 { -webkit-line-clamp: 2; }
+      .od-clamp-3 { -webkit-line-clamp: 3; }
+      .od-lines-2 { min-height: calc(2 * 1.4em); }
+      .od-nowrap  { white-space: nowrap; }
+      .od-keep    { word-break: keep-all; overflow-wrap: anywhere; }
+      .od-screen { display: grid; grid-template-rows: auto minmax(0, 1fr) auto; height: 100%; }
+      .od-scroll { overflow-y: auto; overscroll-behavior: contain; min-height: 0; }
+      .od-rail { display: flex; gap:var(--od-gap, var(--sp-2)); overflow-x: auto; scroll-snap-type: x proximity; scrollbar-width: none;
+                 padding-inline:var(--od-rail-pad, var(--sp-4)); scroll-padding-inline:var(--od-rail-pad, var(--sp-4)); }
+      .od-rail::-webkit-scrollbar { display: none; }
+      :where(.od-rail) > :where(*) { flex: none; scroll-snap-align: start; }
+      :where(.od-rail) > :where(:last-child) { margin-inline-end: var(--od-rail-pad, 16px); }
+      .od-spacer { flex: none; visibility: hidden; pointer-events: none; }
+      .od-touch  { min-width: 44px; min-height: 44px; }
+    }
+    /* /OD-LAYOUT-PRIMITIVES v1 */
+
+/* ─────────────────────────────────────────────────────────────────────────
+ * kazabi-design/signal/tokens.css
+ *
+ * Kazabi Signal — dirección visual APROBADA por Matías el 2026-09-11.
+ * 🔴 SIN APLICAR: la app y el sitio siguen leyendo ../tokens.css hasta que
+ *    se ejecute la migración (ver signal/README.md).
+ *
+ * Identidad en tres frases:
+ *   1. Navy (#0b2249) es la MARCA: logotipo, capítulos institucionales y
+ *      lienzo del tema oscuro. Nunca es un botón.
+ *   2. Azul (#0071e3) es la ACCIÓN: botón primario, foco y selección.
+ *      Nunca es un fondo decorativo.
+ *   3. La profundidad sale de líneas y cambios de superficie. La sombra
+ *      solo existe en lo que flota (modal, toast, sheet).
+ *
+ * Nombres: los del contrato de Kazabi (--bg, --surface, --fg, --sp-*...).
+ * Los nombres de Open Design (--canvas, --panel, --ink, --space-*...) existen
+ * solo como ALIAS al final, sin valores propios.
+ *
+ * Cambios respecto al paquete exportado de Open Design (todos medidos):
+ *   --accent-hover   #0077ed → #0066cc   blanco encima: 4.32 → 5.57
+ *   --accent-active  #0066cc → #005bb8   6.59
+ *   --cyan           #147d92 → #0f6e80   chip Contactado: 4.29 → 5.27
+ *   --warn           #9a6700 → #8f6000   chip Seguimiento: 4.48 → 5.04
+ *   --border-control  nuevo  #858f9e     borde de campo ≥3:1 (antes 1.48)
+ *                     oscuro #6380ad     ≥3.53 (antes 1.99)
+ *   --focus-ring     halo al 35% → anillo sólido 2px + 2px de accent (4.70 / 3.34)
+ *   --radius-xs 6 y --radius-icon 10 entran a la tabla (la referencia ya los usaba)
+ *   El oscuro se aplica con data-theme, .dark, .theme-dark y prefers-color-scheme.
+ * ─────────────────────────────────────────────────────────────────────── */
+
+:root {
+  /* ─── Superficies ─────────────────────────────────────────────── */
+  --bg:             #f4f6f8;   /* lienzo de página (gris frío) */
+  --surface:        #ffffff;   /* paneles, tarjetas, mesa */
+  --surface-subtle: #f8f9fb;   /* fila seleccionada, dossier, búsqueda */
+
+  /* ─── Texto ───────────────────────────────────────────────────── */
+  --fg:    #10213d;   /* titulares y texto primario — 14.83:1 sobre --bg */
+  --fg-2:  #35435a;   /* texto de apoyo — 9.99:1 sobre --surface */
+  --muted: #6e6e73;   /* descripciones y TODO texto secundario — 4.68:1 sobre --bg */
+  --meta:  #86868b;   /* SOLO iconos y marcas no textuales — 3.62:1, no apto para texto */
+
+  /* ─── Líneas ──────────────────────────────────────────────────── */
+  --border:         #e3e7ed;   /* separador principal (decorativo) */
+  --border-strong:  #cfd5df;   /* borde de botón secundario, guía de línea de tiempo */
+  --border-control: #858f9e;   /* borde de input/select — 3.02 sobre --bg, 3.11 sobre --surface-subtle */
+
+  /* ─── Acción ──────────────────────────────────────────────────── */
+  --accent:        #0071e3;   /* fondo de botón primario — blanco encima 4.70:1 */
+  --accent-on:     #ffffff;
+  --accent-hover:  #0066cc;   /* 5.57:1 */
+  --accent-active: #005bb8;   /* 6.59:1 */
+  --accent-soft:   #eaf3ff;   /* fondo de icono, chip Nuevo, avatar */
+  --link:          #0066cc;   /* azul de TEXTO — 5.57:1 sobre blanco */
+
+  /* ─── Marca ───────────────────────────────────────────────────── */
+  --brand:             #0b2249;   /* navy — blanco encima 15.68:1 */
+  --brand-deep:        #071a39;
+  --brand-mid:         #133c6f;
+  --brand-steel:       #2c5c93;
+  --brand-steel-light: #5985bd;   /* solo gráfico */
+  --brand-on:          #ffffff;
+
+  /* ─── Estados de relación (texto sobre su -soft, siempre con punto + palabra) ── */
+  --success:      #157f3d;  --success-soft: #e9f7ef;   /* Visita agendada — 4.60 */
+  --cyan:         #0f6e80;  --cyan-soft:    #e6f5f8;   /* Contactado — 5.27 */
+  --warn:         #8f6000;  --warn-soft:    #fff5dc;   /* Seguimiento — 5.04 */
+  --orange:       #a84b17;  --orange-soft:  #fff0e7;   /* Negociación — 5.12 */
+  --danger:       #c9272c;  --danger-soft:  #ffedef;   /* No responde — 4.88 */
+  /* Nuevo = --link sobre --accent-soft — 4.97 */
+
+  /* ─── Tipografía ──────────────────────────────────────────────── */
+  /* 🟡 PENDIENTE: fuente definitiva. SF Pro solo existe en Apple (su licencia
+   * no permite servirla como webfont); fuera de Apple cae a lo que siga. */
+  --font-display: "SF Pro Display", -apple-system, BlinkMacSystemFont, "Inter", "Helvetica Neue", Arial, sans-serif;
+  --font-body:    "SF Pro Text", -apple-system, BlinkMacSystemFont, "Inter", "Helvetica Neue", Arial, sans-serif;
+  --font-mono:    "SF Mono", ui-monospace, "JetBrains Mono", Menlo, Consolas, monospace;
+
+  /* Escala — 10 pasos. El cuerpo por defecto es 17px (decisión 2026-09-11). */
+  --text-2xs:  11px;   /* eyebrow, cabecera de lista, chip de estado */
+  --text-xs:   12px;   /* descripción de fila, label de campo */
+  --text-sm:   13px;   /* próxima acción, texto de tabla */
+  --text-ui:   14px;   /* botón, nombre en lista, nav, input */
+  --text-base: 17px;   /* cuerpo de lectura */
+  --text-lg:   20px;   /* panel, dossier, lead en móvil */
+  --text-xl:   24px;   /* modal, capítulo, contador de atención */
+  --text-2xl:  32px;   /* titular de página (mínimo) */
+  --text-3xl:  48px;   /* titular de página y sección (máximo) */
+  --text-4xl:  80px;   /* hero de marketing */
+
+  --leading-display: 1.02;
+  --leading-tight:   1.06;
+  --leading-snug:    1.35;
+  --leading-body:    1.47;
+
+  --tracking-display: -0.045em;
+  --tracking-title:   -0.042em;
+  --tracking-panel:   -0.025em;
+  --tracking-ui:      -0.012em;
+  --tracking-body:    -0.018em;
+  --tracking-label:    0.055em;   /* uppercase de 11–12px */
+
+  --weight-regular:  400;
+  --weight-medium:   520;
+  --weight-semibold: 600;
+  --weight-title:    620;
+  --weight-strong:   650;
+
+  /* ─── Espaciado (base 4) — escala única --sp-* ────────────────── */
+  --sp-0\.5:  2px;
+  --sp-1:     4px;
+  --sp-1\.5:  6px;
+  --sp-2:     8px;
+  --sp-3:    12px;
+  --sp-4:    16px;
+  --sp-5:    20px;
+  --sp-6:    24px;
+  --sp-8:    32px;
+  --sp-10:   40px;
+  --sp-12:   48px;
+  --sp-16:   64px;
+
+  --section-y-desktop: 100px;
+  --section-y-tablet:   64px;
+  --section-y-phone:    48px;
+
+  /* ─── Radios — no hay otros ───────────────────────────────────── */
+  --radius-xs:     6px;   /* kbd, marca de 24px */
+  --radius-sm:     8px;   /* nav item */
+  --radius-icon:  10px;   /* cuadrado de icono de 32–34px */
+  --radius-md:    12px;   /* campos, búsqueda, select, toast, paso siguiente */
+  --radius-lg:    18px;   /* tarjeta, mesa, modal */
+  --radius-sheet: 22px;   /* bottom sheet móvil */
+  --radius-pill: 980px;   /* botones y chips */
+
+  /* ─── Elevación ───────────────────────────────────────────────── */
+  --elev-flat:   none;
+  --elev-raised: 0 12px 32px rgba(11, 34, 73, 0.08);
+  --shadow:      0 18px 54px rgba(11, 34, 73, 0.12);   /* solo lo que flota */
+  --scrim:       rgba(7, 26, 57, 0.42);
+
+  /* ─── Movimiento ──────────────────────────────────────────────── */
+  --motion-fast:   150ms;
+  --motion-base:   220ms;
+  --ease-standard: cubic-bezier(0.28, 0, 0.22, 1);
+
+  /* ─── Layout ──────────────────────────────────────────────────── */
+  --container-max:            1440px;
+  --container-text:           1200px;
+  --container-gutter-desktop:   32px;
+  --container-gutter-tablet:    20px;
+  --container-gutter-phone:     16px;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+ *  TEMA OSCURO — lienzo navy (decisión 2026-09-11, reemplaza al grafito)
+ *
+ *  Van separados: un @media no puede ir dentro de una lista de selectores
+ *  (el bug que dejó el oscuro sin aplicar hasta 0fe3c30).
+ * ═══════════════════════════════════════════════════════════════════ */
+[data-theme="dark"],
+.dark,
+.theme-dark {
+  --bg:             #07172f;
+  --surface:        #0b2249;
+  --surface-subtle: #102a54;
+
+  --fg:    #f5f8ff;   /* 16.85:1 sobre --bg */
+  --fg-2:  #d2dbeb;
+  --muted: #a9b6cc;   /* 7.65:1 sobre --surface, 6.92 sobre --surface-subtle */
+  --meta:  #8c9bb4;   /* 5.57:1 — en oscuro sí sirve para texto pequeño */
+
+  --border:         #243c65;
+  --border-strong:  #36527f;
+  --border-control: #6380ad;   /* 3.53 sobre --surface-subtle, 4.45 sobre --bg */
+
+  --accent-soft: #102f60;
+  --link:        #69b1ff;   /* 6.97:1 sobre --surface, 6.30 sobre --surface-subtle */
+  --brand-on:    #f5f8ff;
+
+  --success: #67c58a;  --success-soft: #143c33;   /* 5.76 */
+  --cyan:    #67c7d4;  --cyan-soft:    #143b47;   /* 6.13 */
+  --warn:    #e4b95f;  --warn-soft:    #42351d;   /* 6.48 */
+  --orange:  #f2a36e;  --orange-soft:  #4b3024;   /* 5.86 */
+  --danger:  #f0808e;  --danger-soft:  #472735;   /* 5.08 */
+
+  --elev-raised: 0 12px 32px rgba(0, 0, 0, 0.28);
+  --shadow:      0 24px 64px rgba(0, 0, 0, 0.36);
+  --scrim:       rgba(0, 0, 0, 0.64);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]):not(.light) {
+    --bg:             #07172f;
+    --surface:        #0b2249;
+    --surface-subtle: #102a54;
+
+    --fg:    #f5f8ff;
+    --fg-2:  #d2dbeb;
+    --muted: #a9b6cc;
+    --meta:  #8c9bb4;
+
+    --border:         #243c65;
+    --border-strong:  #36527f;
+    --border-control: #6380ad;
+
+    --accent-soft: #102f60;
+    --link:        #69b1ff;
+    --brand-on:    #f5f8ff;
+
+    --success: #67c58a;  --success-soft: #143c33;
+    --cyan:    #67c7d4;  --cyan-soft:    #143b47;
+    --warn:    #e4b95f;  --warn-soft:    #42351d;
+    --orange:  #f2a36e;  --orange-soft:  #4b3024;
+    --danger:  #f0808e;  --danger-soft:  #472735;
+
+    --elev-raised: 0 12px 32px rgba(0, 0, 0, 0.28);
+    --shadow:      0 24px 64px rgba(0, 0, 0, 0.36);
+    --scrim:       rgba(0, 0, 0, 0.64);
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+ *  TOKENS DERIVADOS Y ALIAS — sin valores propios
+ *
+ *  🔴 Se declaran en la misma lista de selectores que el tema oscuro, no
+ *  solo en :root. Una variable que apunta a otra se resuelve DONDE se
+ *  declara: si solo viviera en :root y el tema oscuro se pusiera con una
+ *  clase en <body>, --canvas quedaría con el lienzo claro para siempre.
+ *
+ *  Los alias --canvas/--panel/--ink/--space-* existen para que las
+ *  referencias y los componentes de Open Design sigan pintando. Código
+ *  nuevo de Kazabi usa los nombres de arriba.
+ * ═══════════════════════════════════════════════════════════════════ */
+:root,
+[data-theme],
+.dark,
+.theme-dark {
+  --elev-ring:  0 0 0 1px var(--border);
+  --focus-ring: 0 0 0 2px var(--surface), 0 0 0 4px var(--accent);
+
+  --canvas:       var(--bg);
+  --panel:        var(--surface);
+  --panel-subtle: var(--surface-subtle);
+  --ink:          var(--fg);
+  --ink-2:        var(--fg-2);
+  --line:         var(--border);
+  --line-strong:  var(--border-strong);
+  --navy:         var(--brand);
+  --navy-2:       var(--brand-deep);
+  --accent-text:  var(--link);
+  --blue-soft:    var(--accent-soft);
+  --space-1:  var(--sp-1);
+  --space-2:  var(--sp-2);
+  --space-3:  var(--sp-3);
+  --space-4:  var(--sp-4);
+  --space-5:  var(--sp-5);
+  --space-6:  var(--sp-6);
+  --space-8:  var(--sp-8);
+  --space-12: var(--sp-12);
+  --space-16: var(--sp-16);
+}
+
+    /* landing */
+    :root { --on-navy: #ffffff; --content-max: var(--container-text); --header-h: 64px; }
+
+    /* ─── Base ───────────────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; }
+    html { color-scheme: light; scroll-padding-top: calc(var(--header-h) + var(--space-4)); -webkit-text-size-adjust: 100%; }
+    html:has(body.theme-dark) { color-scheme: dark; }
+    @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+    body {
+      margin:0; background: var(--canvas); color: var(--ink);
+      font-family: var(--font-body); font-size: var(--text-base); line-height: var(--leading-body);
+      letter-spacing: -0.018em; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+      transition: background-color var(--motion-base) var(--ease-standard);
+    }
+    h1, h2, h3, p, dl, dd { margin:0; }
+    a { color: inherit; }
+    button, input, select { font: inherit; letter-spacing: inherit; color: inherit; }
+    button { cursor: pointer; }
+    button:disabled { cursor: not-allowed; opacity: 0.64; }
+    svg { display: block; }
+    [hidden] { display: none !important; }
+    :focus-visible { outline: none; box-shadow: var(--focus-ring); }
+    .visually-hidden { position: absolute !important; width: 1px !important; height: 1px !important; padding:0 !important; margin:-1px !important; overflow: hidden !important; clip: rect(0 0 0 0) !important; white-space: nowrap !important; border: 0 !important; }
+    .skip-link { position: absolute; left: var(--space-4); top: -100px; z-index: 200; padding: var(--space-3) var(--space-4); border-radius: var(--radius-sm); background: var(--panel); color: var(--ink); font-size: var(--text-ui); font-weight: 600; text-decoration: none; box-shadow: var(--shadow); }
+    .skip-link:focus-visible { top: var(--space-4); }
+    .container { max-width: var(--content-max); margin-inline: auto; padding-inline: var(--container-gutter-desktop); }
+
+    .eyebrow { display: block; margin-bottom: var(--space-4); color: var(--accent-text); font-size: var(--text-xs); font-weight: 650; line-height: 1.2; letter-spacing: 0.06em; text-transform: uppercase; }
+
+    /* ─── Botones ────────────────────────────────────────────────────── */
+    .primary-button, .secondary-button {
+      min-height: 44px; display: inline-flex; align-items: center; justify-content: center; gap: var(--space-2);
+      padding:var(--sp-3) var(--sp-5); border-radius: var(--radius-pill); font-size: var(--text-ui); font-weight: 600; line-height: 1.2;
+      text-decoration: none; white-space: nowrap;
+      transition: background-color var(--motion-fast) var(--ease-standard), border-color var(--motion-fast) var(--ease-standard), transform var(--motion-fast) var(--ease-standard);
+    }
+    .primary-button { border: 1px solid var(--accent); background: var(--accent); color: var(--accent-on); }
+    .secondary-button { border: 1px solid var(--line-strong); background: var(--panel); color: var(--ink); }
+    .primary-button svg, .secondary-button svg { width: 17px; height: 17px; flex: none; }
+    .primary-button:active, .secondary-button:active, .icon-button:active { transform: scale(0.97); }
+    .button-lg { min-height: 52px; padding:var(--sp-4) var(--sp-6); font-size: var(--text-base); }
+    .icon-button { width: 44px; height: 44px; display: grid; place-items: center; padding:0; border: 0; border-radius: 50%; background: transparent; color: var(--ink-2); transition: background-color var(--motion-fast) var(--ease-standard), transform var(--motion-fast) var(--ease-standard); }
+    .icon-button svg { width: 20px; height: 20px; }
+
+    /* ─── Header ─────────────────────────────────────────────────────── */
+    .site-header {
+      position: sticky; top: 0; z-index: 50;
+      border-bottom: 1px solid var(--line);
+      background: color-mix(in srgb, var(--canvas) 90%, transparent);
+      -webkit-backdrop-filter: saturate(180%) blur(18px); backdrop-filter: saturate(180%) blur(18px);
+    }
+    .header-inner { height: var(--header-h); display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: var(--space-6); }
+    .brand { display: inline-flex; align-items: center; gap:var(--sp-3); width: max-content; min-height: 44px; color: var(--navy); font-family: var(--font-display); font-size: 18px; font-weight: 650; letter-spacing: -0.03em; text-decoration: none; }
+    .theme-dark .brand { color: var(--ink); }
+    .brand-mark { width: 26px; height: 26px; display: grid; place-items: center; flex: none; border-radius: var(--radius-xs); background: var(--navy); color: var(--on-navy); }
+    .brand-mark svg { width: 14px; height: 14px; }
+    .theme-dark .brand-mark { background: var(--ink); color: var(--navy); }
+    .primary-nav { display: flex; align-items: center; gap: var(--space-1); }
+    .nav-item { min-height: 36px; display: inline-flex; align-items: center; padding:var(--sp-2) var(--sp-3); border-radius: var(--radius-sm); color: var(--muted); font-size: var(--text-ui); font-weight: 520; text-decoration: none; transition: background-color var(--motion-fast) var(--ease-standard), color var(--motion-fast) var(--ease-standard); }
+    .nav-item[aria-current="true"] { background: var(--panel); color: var(--ink); box-shadow: 0 0 0 1px var(--line); }
+    .header-actions { justify-self: end; display: flex; align-items: center; gap: var(--space-2); }
+    .menu-toggle { display: none; }
+    .mobile-menu { position: absolute; top: 100%; left: 0; right: 0; padding: var(--space-2) var(--container-gutter-phone) var(--space-5); border-bottom: 1px solid var(--line); background: var(--panel); box-shadow: var(--shadow); animation: menu-in var(--motion-base) var(--ease-standard); }
+    .menu-link { display: flex; align-items: center; justify-content: space-between; min-height: 52px; border-bottom: 1px solid var(--line); color: var(--ink); font-size: var(--text-base); font-weight: 560; text-decoration: none; }
+    .menu-link svg { width: 18px; height: 18px; color: var(--muted); }
+    .menu-link[aria-current="true"] { color: var(--accent-text); }
+    .mobile-menu .primary-button { width: 100%; margin-top: var(--space-5); }
+    @keyframes menu-in { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: none; } }
+
+    /* ─── Hero ───────────────────────────────────────────────────────── */
+    .hero { padding-top:88px; }
+    .hero-top { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: var(--space-12); align-items: end; }
+    .hero h1 { max-width: 11ch; font-family: var(--font-display); font-size: clamp(44px, 6.4vw, 80px); font-weight: 620; line-height: 1.02; letter-spacing: -0.045em; color: var(--ink); }
+    .lead { max-width: 42ch; color: var(--ink-2); font-size: var(--text-lg); line-height: 1.45; letter-spacing: -0.011em; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: var(--space-3); margin-top: var(--space-8); }
+
+    .product-stage { margin-top: var(--space-16); padding-bottom: var(--section-y-desktop); }
+    .product-window { border: 1px solid var(--line); border-radius: var(--radius-lg); background: var(--panel); box-shadow: var(--shadow); overflow: hidden; }
+    .window-bar { height: 56px; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: var(--space-4); padding: 0 var(--space-5); border-bottom: 1px solid var(--line); background: var(--panel-subtle); }
+    .window-brand { display: inline-flex; align-items: center; gap: var(--space-2); color: var(--navy); font-family: var(--font-display); font-size: var(--text-base); font-weight: 650; letter-spacing: -0.03em; }
+    .theme-dark .window-brand { color: var(--ink); }
+    .window-brand .brand-mark { width: 22px; height: 22px; border-radius: var(--radius-xs); }
+    .window-brand .brand-mark svg { width: 12px; height: 12px; }
+    .app-nav { display: flex; gap: var(--space-1); }
+    .app-nav span { padding:var(--sp-1.5) var(--sp-3); border-radius: var(--radius-sm); color: var(--muted); font-size: var(--text-sm); font-weight: 520; }
+    .app-nav .is-current { background: var(--panel); color: var(--ink); box-shadow: 0 0 0 1px var(--line); }
+    .window-avatar { justify-self: end; width: 32px; height: 32px; display: grid; place-items: center; border-radius: 50%; background: var(--navy); color: var(--on-navy); font-size: var(--text-2xs); font-weight: 700; letter-spacing: 0; }
+    .theme-dark .window-avatar { background: var(--ink); color: var(--navy); }
+    .window-body { padding: var(--space-6); }
+    .window-title { display: flex; align-items: flex-end; justify-content: space-between; gap: var(--space-4); margin-bottom: var(--space-5); }
+    .window-title .eyebrow { margin-bottom:var(--sp-1.5); font-size: var(--text-2xs); }
+    .window-heading { display: block; font-family: var(--font-display); font-size: clamp(24px, 2.6vw, 32px); font-weight: 610; line-height: 1.05; letter-spacing: -0.04em; color: var(--ink); }
+    .result-count { color: var(--muted); font-size: var(--text-sm); white-space: nowrap; }
+    .window-caption { margin-top: var(--space-4); color: var(--muted); font-size: var(--text-ui); text-align: center; }
+
+    .attention-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin-bottom: var(--space-4); border: 1px solid var(--line); border-radius: var(--radius-md); background: var(--panel); overflow: hidden; }
+    .attention-card { position: relative; display: block; min-height: 128px; padding:var(--sp-5); border: 0; border-right: 1px solid var(--line); background: transparent; color: var(--ink); text-align: left; transition: background-color var(--motion-fast) var(--ease-standard); }
+    .attention-card:last-child { border-right: 0; }
+    .attention-card[aria-pressed="true"] { background: var(--panel-subtle); }
+    .attention-top { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--space-3); }
+    .attention-icon { width: 34px; height: 34px; display: grid; place-items: center; flex: none; border-radius: var(--radius-icon); }
+    .attention-icon svg { width: 17px; height: 17px; }
+    .attention-icon.blue { color: var(--accent-text); background: var(--blue-soft); }
+    .attention-icon.green { color: var(--success); background: var(--success-soft); }
+    .attention-icon.amber { color: var(--warn); background: var(--warn-soft); }
+    .attention-icon.red { color: var(--danger); background: var(--danger-soft); }
+    .attention-count { display: block; font-family: var(--font-display); font-size: var(--text-xl); font-weight: 620; line-height: 1; }
+    .attention-card strong { display: block; margin-top: var(--space-4); font-size: var(--text-ui); font-weight: 620; line-height: 1.3; }
+    .attention-card small { display: block; margin-top:var(--sp-1); color: var(--muted); font-size: var(--text-xs); line-height: 1.35; }
+    .attention-mark { position: absolute; right: 18px; bottom: 18px; width: 20px; height: 2px; border-radius: 4px; background: var(--accent); opacity: 0; transition: opacity var(--motion-fast) var(--ease-standard); }
+    .attention-card[aria-pressed="true"] .attention-mark { opacity: 1; }
+
+    .desk { display: grid; grid-template-columns: minmax(0, 1fr) 340px; border: 1px solid var(--line); border-radius: var(--radius-md); background: var(--panel); overflow: hidden; }
+    .list-head, .contact-row { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr) auto; grid-template-areas: "person next status"; gap: var(--space-4); align-items: center; }
+    .list-head { min-height: 38px; padding:0 var(--sp-5); border-bottom: 1px solid var(--line); color: var(--muted); font-size: var(--text-2xs); font-weight: 600; letter-spacing: 0.045em; text-transform: uppercase; }
+    .list-head span:last-child { min-width: 112px; }
+    .contact-list { margin:0; padding:0; list-style: none; }
+    .contact-list li { border-bottom: 1px solid var(--line); }
+    .contact-list li:last-child { border-bottom: 0; }
+    .contact-row { position: relative; width: 100%; min-height: 72px; padding:var(--sp-3) var(--sp-5); border: 0; background: transparent; color: var(--ink); text-align: left; transition: background-color var(--motion-fast) var(--ease-standard); }
+    .contact-row.is-selected { background: var(--panel-subtle); }
+    .contact-row.is-selected::before { content: ""; position: absolute; left: 0; top: 14px; bottom: 14px; width: 3px; border-radius: 0 4px 4px 0; background: var(--accent); }
+    .person { grid-area: person; display: flex; align-items: center; gap:var(--sp-3); min-width: 0; }
+    .avatar { width: 38px; height: 38px; flex: none; display: grid; place-items: center; border-radius: 50%; background: var(--blue-soft); color: var(--navy); font-size: var(--text-2xs); font-weight: 720; letter-spacing: 0; }
+    .theme-dark .avatar { color: var(--ink); }
+    .data { display: grid; gap:var(--sp-0.5); min-width: 0; }
+    .data strong, .data span, .next-copy strong, .next-copy span { display: block; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+    .data strong { font-size: var(--text-ui); font-weight: 620; }
+    .data span { color: var(--muted); font-size: var(--text-xs); }
+    .next-action { grid-area: next; display: flex; align-items: center; gap:var(--sp-2); min-width: 0; }
+    .next-dot { width: 8px; height: 8px; flex: none; border: 2px solid currentColor; border-radius: 50%; color: var(--accent); }
+    .next-action[data-tone="visits"] .next-dot { color: var(--success); }
+    .next-action[data-tone="follow"] .next-dot { color: var(--warn); }
+    .next-action[data-tone="silent"] .next-dot { color: var(--danger); }
+    .next-copy { display: grid; gap:1px; min-width: 0; }
+    .next-copy strong { font-size: var(--text-sm); font-weight: 580; }
+    .next-copy span { color: var(--muted); font-size: var(--text-xs); }
+    .status { grid-area: status; width: max-content; min-width: 112px; justify-self: start; display: inline-flex; align-items: center; gap:var(--sp-2); padding:var(--sp-1.5) var(--sp-2); border-radius: var(--radius-pill); font-size: var(--text-2xs); font-weight: 620; line-height: 1.3; white-space: nowrap; }
+    .status::before { content: ""; width: 6px; height: 6px; flex: none; border-radius: 50%; background: currentColor; }
+    .s-new { color: var(--accent-text); background: var(--blue-soft); }
+    .s-contacted { color: var(--cyan); background: var(--cyan-soft); }
+    .s-visit { color: var(--success); background: var(--success-soft); }
+    .s-follow { color: var(--warn); background: var(--warn-soft); }
+    .s-negotiation { color: var(--orange); background: var(--orange-soft); }
+    .s-silent { color: var(--danger); background: var(--danger-soft); }
+
+    .dossier { padding: var(--space-5); border-left: 1px solid var(--line); background: var(--panel-subtle); }
+    .contact-profile { display: flex; align-items: center; gap:var(--sp-3); }
+    .contact-profile .avatar { width: 48px; height: 48px; font-size: var(--text-sm); }
+    .profile-name { display: block; font-family: var(--font-display); font-size: 19px; font-weight: 630; line-height: 1.2; letter-spacing: -0.025em; }
+    .profile-phone { display: block; margin-top:var(--sp-0.5); color: var(--muted); font-size: var(--text-xs); }
+    .dossier-section { margin-top:var(--sp-5); padding-top:var(--sp-5); border-top: 1px solid var(--line); }
+    .dossier-label { display: block; margin-bottom: var(--space-3); color: var(--muted); font-size: var(--text-2xs); font-weight: 650; letter-spacing: 0.055em; text-transform: uppercase; }
+    .next-step { display: grid; grid-template-columns: auto minmax(0, 1fr); gap:var(--sp-3); align-items: flex-start; padding:var(--sp-3); border: 1px solid var(--line); border-radius: var(--radius-md); background: var(--panel); }
+    .next-step-icon { width: 32px; height: 32px; display: grid; place-items: center; border-radius: var(--radius-icon); background: var(--blue-soft); color: var(--accent-text); }
+    .next-step-icon svg { width: 16px; height: 16px; }
+    .next-step strong, .next-step span { display: block; }
+    .next-step strong { font-size: var(--text-sm); font-weight: 620; }
+    .next-step span { margin-top:var(--sp-0.5); color: var(--muted); font-size: var(--text-xs); }
+    .detail-list div { display: grid; grid-template-columns: 92px minmax(0, 1fr); gap: var(--space-3); padding:var(--sp-1.5) 0; }
+    .detail-list dt { color: var(--muted); font-size: var(--text-xs); }
+    .detail-list dd { color: var(--ink-2); font-size: var(--text-xs); font-weight: 560; }
+
+    /* ─── Secciones ──────────────────────────────────────────────────── */
+    .section { padding-block: var(--section-y-desktop); }
+    .band-panel { background: var(--panel); border-block: 1px solid var(--line); }
+    .section-head { max-width: 720px; margin-bottom: var(--space-12); }
+    .section-head h2, .chapter h2, .faq-head h2, .access-copy h2 { font-family: var(--font-display); font-size: clamp(32px, 4vw, 48px); font-weight: 620; line-height: 1.06; letter-spacing: -0.038em; color: var(--ink); }
+    .section-head p, .faq-head p, .access-copy p { max-width: 60ch; margin-top: var(--space-4); color: var(--muted); }
+
+    .compare { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-4); }
+    .compare-card { padding: var(--space-8); border: 1px solid var(--line); border-radius: var(--radius-lg); background: var(--canvas); }
+    .compare-card h3 { margin-bottom: var(--space-5); font-family: var(--font-display); font-size: var(--text-lg); font-weight: 620; line-height: 1.2; letter-spacing: -0.025em; }
+    .compare-list { margin:0; padding:0; list-style: none; }
+    .compare-list li { display: grid; grid-template-columns: 28px minmax(0, 1fr); gap: var(--space-3); align-items: start; padding:var(--sp-4) 0; border-top: 1px solid var(--line); color: var(--ink-2); font-size: var(--text-base); line-height: 1.5; }
+    .mark { width: 28px; height: 28px; display: grid; place-items: center; border-radius: 50%; }
+    .mark svg { width: 14px; height: 14px; }
+    .mark.no { color: var(--danger); background: var(--danger-soft); }
+    .mark.yes { color: var(--success); background: var(--success-soft); }
+
+    .modules { display: grid; grid-template-columns: minmax(0, 340px) minmax(0, 1fr); gap: var(--space-6); align-items: start; }
+    .tab-list { display: grid; gap: var(--space-2); }
+    .tab { width: 100%; display: grid; grid-template-columns: 40px minmax(0, 1fr); gap:var(--sp-4); align-items: start; padding: var(--space-4); border: 1px solid transparent; border-radius: var(--radius-lg); background: transparent; color: var(--ink); text-align: left; transition: background-color var(--motion-fast) var(--ease-standard), border-color var(--motion-fast) var(--ease-standard); }
+    .tab[aria-selected="true"] { border-color: var(--line); background: var(--panel); }
+    .tab-icon { width: 40px; height: 40px; display: grid; place-items: center; border-radius: var(--radius-icon); background: var(--blue-soft); color: var(--accent-text); }
+    .tab-icon svg { width: 19px; height: 19px; }
+    .tab-copy { display: grid; gap:var(--sp-0.5); min-width: 0; }
+    .tab-title { display: block; font-size: var(--text-base); font-weight: 620; line-height: 1.35; letter-spacing: -0.015em; }
+    .tab-desc { display: block; color: var(--muted); font-size: var(--text-ui); line-height: 1.4; }
+    .tab-panel { min-height: 440px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: var(--space-8); align-items: center; padding: var(--space-8); border: 1px solid var(--line); border-radius: var(--radius-lg); background: var(--panel); animation: panel-in var(--motion-base) var(--ease-standard); }
+    @keyframes panel-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+    .panel-copy h3 { font-family: var(--font-display); font-size: var(--text-xl); font-weight: 620; line-height: 1.1; letter-spacing: -0.03em; }
+    .panel-copy p { margin-top: var(--space-3); color: var(--muted); }
+    .checks { display: grid; gap:var(--sp-3); margin: var(--space-5) 0 0; padding:0; list-style: none; }
+    .checks li { display: grid; grid-template-columns: 20px minmax(0, 1fr); gap:var(--sp-3); color: var(--ink-2); font-size: var(--text-base); line-height: 1.45; }
+    .checks svg { width: 18px; height: 18px; margin-top:var(--sp-0.5); color: var(--success); }
+    .mock { display: grid; gap:var(--sp-3); padding: var(--space-4); border: 1px solid var(--line); border-radius: var(--radius-md); background: var(--panel-subtle); }
+    .mock-row { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: var(--space-3); align-items: center; padding: var(--space-3); border: 1px solid var(--line); border-radius: var(--radius-md); background: var(--panel); }
+    .mock-row .status { min-width: 0; }
+    .mock-search { min-height: 44px; display: flex; align-items: center; gap:var(--sp-3); padding:0 var(--sp-3); border: 1px solid var(--line); border-radius: var(--radius-md); background: var(--panel); color: var(--muted); font-size: var(--text-ui); }
+    .mock-search svg { width: 17px; height: 17px; flex: none; color: var(--muted); }
+    .mock-search span { flex: 1 1 0; }
+    kbd { padding:var(--sp-0.5) var(--sp-1.5); border: 1px solid var(--line-strong); border-radius: var(--radius-xs); background: var(--panel); color: var(--muted); font: 500 var(--text-2xs) var(--font-mono); }
+    .prop-icon { width: 40px; height: 40px; display: grid; place-items: center; border-radius: var(--radius-icon); background: var(--blue-soft); color: var(--accent-text); }
+    .prop-icon svg { width: 19px; height: 19px; }
+    .price { font-family: var(--font-display); font-size: var(--text-base); font-weight: 620; letter-spacing: -0.01em; white-space: nowrap; }
+    .timeline { display: grid; padding: var(--space-4); border: 1px solid var(--line); border-radius: var(--radius-md); background: var(--panel); }
+    .timeline-item { position: relative; display: grid; grid-template-columns: 16px minmax(0, 1fr); gap:var(--sp-3); padding-bottom: var(--space-4); }
+    .timeline-item:last-child { padding-bottom:0; }
+    .timeline-item::before { content: ""; position: absolute; left: 5px; top: 14px; bottom: 0; width: 1px; background: var(--line-strong); }
+    .timeline-item:last-child::before { display: none; }
+    .timeline-dot { width: 11px; height: 11px; margin-top:var(--sp-1); border-radius: 50%; background: var(--accent); }
+    .timeline-copy strong, .timeline-copy span { display: block; }
+    .timeline-copy strong { font-size: var(--text-sm); font-weight: 620; }
+    .timeline-copy span { margin-top:var(--sp-0.5); color: var(--ink-2); font-size: var(--text-ui); line-height: 1.4; }
+    .date-strip { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: var(--space-2); }
+    .date-cell { display: grid; gap:var(--sp-0.5); justify-items: center; padding:var(--sp-3) var(--sp-1); border: 1px solid var(--line); border-radius: var(--radius-md); background: var(--panel); text-align: center; }
+    .date-cell > span { display: block; }
+    .date-cell .dw { color: var(--muted); font-size: var(--text-2xs); font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; }
+    .date-cell .dd { font-family: var(--font-display); font-size: var(--text-lg); font-weight: 620; line-height: 1.1; }
+    .date-cell .da { color: var(--muted); font-size: var(--text-2xs); white-space: nowrap; }
+    .date-cell.is-active { border-color: var(--accent); background: var(--blue-soft); }
+    .date-cell.is-active .da { color: var(--accent-text); font-weight: 600; }
+
+    .steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-4); margin:0; padding:0; list-style: none; }
+    .step { display: grid; grid-template-rows: auto auto 1fr; padding: var(--space-6); border: 1px solid var(--line); border-radius: var(--radius-lg); background: var(--canvas); }
+    .step-visual { min-height: 112px; display: grid; align-content: center; gap: var(--space-2); padding: var(--space-4); border: 1px solid var(--line); border-radius: var(--radius-md); background: var(--panel); }
+    .step-num { display: block; margin-top: var(--space-6); color: var(--accent-text); font: 500 13px/1 var(--font-mono); letter-spacing: 0; }
+    .step h3 { margin-top: var(--space-3); font-family: var(--font-display); font-size: var(--text-lg); font-weight: 620; line-height: 1.2; letter-spacing: -0.025em; }
+    .step p { margin-top: var(--space-2); color: var(--muted); font-size: var(--text-base); line-height: 1.5; }
+    .mini-field { display: grid; gap:var(--sp-1); }
+    .mini-field > span { display: block; }
+    .mini-label { color: var(--ink); font-size: var(--text-xs); font-weight: 620; }
+    .mini-control { min-height: 40px; display: flex !important; align-items: center; padding:0 var(--sp-3); border: 1px solid var(--accent); border-radius: var(--radius-sm); box-shadow: var(--focus-ring); color: var(--ink); font-size: var(--text-ui); }
+    .mini-attention { display: flex; align-items: center; gap: var(--space-3); }
+    .mini-attention .attention-count { font-size: 22px; }
+    .mini-attention strong { display: block; font-size: var(--text-ui); font-weight: 620; }
+    .mini-attention small { display: block; color: var(--muted); font-size: var(--text-xs); }
+
+    .chapter { padding-block: var(--section-y-desktop); background: var(--panel); color: var(--ink); border-block: 1px solid var(--line); }
+    .chapter-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: var(--space-16); align-items: center; }
+    .chapter p.chapter-lead { max-width: 44ch; margin-top: var(--space-4); color: var(--ink-2); font-size: var(--text-lg); line-height: 1.45; letter-spacing: -0.011em; }
+    .urgency { margin:0; padding:0; list-style: none; border: 1px solid var(--line); border-radius: var(--radius-lg); background: var(--canvas); overflow: hidden; }
+    .urgency li { display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: var(--space-4); align-items: start; padding: var(--space-5) var(--space-6); border-top: 1px solid var(--line); }
+    .urgency li:first-child { border-top: 0; }
+    .urgency strong { display: block; font-size: var(--text-base); font-weight: 620; line-height: 1.35; }
+    .urgency span.u-desc { display: block; margin-top:var(--sp-0.5); color: var(--ink-2); font-size: var(--text-base); line-height: 1.45; }
+
+    .faq-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); gap: var(--space-16); align-items: start; }
+    .faq { border-top: 1px solid var(--line); }
+    .faq details { border-bottom: 1px solid var(--line); }
+    .faq summary { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); min-height: 68px; padding: var(--space-4) 0; border-radius: var(--radius-sm); color: var(--ink); font-size: var(--text-base); font-weight: 600; line-height: 1.35; cursor: pointer; list-style: none; }
+    .faq summary::-webkit-details-marker { display: none; }
+    .faq-icon { width: 32px; height: 32px; flex: none; display: grid; place-items: center; border: 1px solid var(--line-strong); border-radius: 50%; color: var(--ink-2); transition: transform var(--motion-base) var(--ease-standard), background-color var(--motion-fast) var(--ease-standard); }
+    .faq-icon svg { width: 15px; height: 15px; }
+    .faq details[open] .faq-icon { transform: rotate(45deg); }
+    .faq-answer { max-width: 62ch; padding:0 48px var(--space-6) 0; color: var(--muted); }
+
+    .access-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 480px); gap: var(--space-16); align-items: start; }
+    .access-copy .checks { margin-top: var(--space-8); }
+    .form-card { padding: var(--space-8); border: 1px solid var(--line); border-radius: var(--radius-lg); background: var(--canvas); }
+    .form-card-title { display: block; font-family: var(--font-display); font-size: var(--text-lg); font-weight: 620; line-height: 1.2; letter-spacing: -0.025em; }
+    .form-card-sub { display: block; margin-top: var(--space-1); margin-bottom: var(--space-6); color: var(--muted); font-size: var(--text-ui); }
+    .error-summary { margin-bottom: var(--space-5); padding: var(--space-3) var(--space-4); border-radius: var(--radius-md); background: var(--danger-soft); color: var(--danger); font-size: var(--text-ui); }
+    .error-summary strong { display: block; font-weight: 620; }
+    .error-summary ul { margin: var(--space-2) 0 0; padding-left:var(--sp-5); }
+    .error-summary a { color: inherit; text-underline-offset: 3px; }
+    .form { display: grid; gap: var(--space-4); }
+    .form-field { display: grid; gap:var(--sp-1.5); }
+    .form-field label { color: var(--ink); font-size: var(--text-ui); font-weight: 620; }
+    .form-field label .req { color: var(--danger); }
+    .form-field label .optional { color: var(--muted); font-weight: 400; }
+    .form-control { width: 100%; height: 48px; padding:0 var(--sp-4); border: 1px solid var(--line-strong); border-radius: var(--radius-sm); background: var(--panel); color: var(--ink); font-size: var(--text-base); letter-spacing: -0.01em; outline: 0; appearance: none; transition: border-color var(--motion-fast) var(--ease-standard), box-shadow var(--motion-fast) var(--ease-standard); }
+    .form-control::placeholder { color: var(--muted); }
+    .form-control:focus { border-color: var(--accent); box-shadow: var(--focus-ring); }
+    .form-control[aria-invalid="true"] { border-color: var(--danger); }
+    .select-wrap { position: relative; }
+    .select-wrap .form-control { padding-right:40px; }
+    .select-wrap svg { position: absolute; top: 16px; right: 14px; width: 16px; height: 16px; color: var(--muted); pointer-events: none; }
+    .field-error { display: block; min-height: 18px; color: var(--danger); font-size: var(--text-sm); line-height: 1.35; }
+    .form .primary-button { width: 100%; margin-top: var(--space-1); }
+    .form-note { color: var(--muted); font-size: var(--text-ui); text-align: center; }
+    .spinner { width: 16px; height: 16px; flex: none; border: 2px solid color-mix(in srgb, var(--accent-on) 40%, transparent); border-top-color: var(--accent-on); border-radius: 50%; animation: spin 0.8s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .form-success { display: grid; gap: var(--space-3); justify-items: start; animation: panel-in var(--motion-base) var(--ease-standard); }
+    .success-icon { width: 48px; height: 48px; display: grid; place-items: center; border-radius: 50%; background: var(--success-soft); color: var(--success); }
+    .success-icon svg { width: 22px; height: 22px; }
+    .form-success h3 { font-family: var(--font-display); font-size: var(--text-xl); font-weight: 620; line-height: 1.15; letter-spacing: -0.03em; }
+    .form-success h3:focus { box-shadow: none; }
+    .form-success p { color: var(--muted); overflow-wrap: anywhere; }
+    .form-success .secondary-button { margin-top: var(--space-2); }
+
+    .site-footer { padding-block: var(--space-12); border-top: 1px solid var(--line); }
+    .footer-inner { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-6); }
+    .footer-brand { display: grid; gap: var(--space-1); }
+    .footer-brand p { color: var(--muted); font-size: var(--text-ui); }
+    .footer-links { display: flex; flex-wrap: wrap; gap: var(--space-1); }
+    .footer-links .nav-item { min-height: 44px; }
+    .copyright { width: 100%; padding-top: var(--space-6); border-top: 1px solid var(--line); color: var(--muted); font-size: var(--text-ui); }
+
+    /* ─── Hover (solo punteros) ─────────────────────────────────────── */
+    @media (hover: hover) {
+      .nav-item:hover { background: var(--panel); color: var(--ink); }
+      .icon-button:hover { background: var(--panel); color: var(--ink); }
+      .primary-button:hover { border-color: var(--accent-hover); background: var(--accent-hover); }
+      .secondary-button:hover { border-color: var(--border-control); background: var(--panel-subtle); }
+      .attention-card:hover, .contact-row:hover { background: var(--panel-subtle); }
+      .tab:hover { background: var(--panel); }
+      .faq summary:hover .faq-icon { background: var(--panel); }
+      .menu-link:hover { color: var(--accent-text); }
+    }
+
+    /* ─── Responsive ─────────────────────────────────────────────────── */
+    @media (max-width: 1024px) {
+      .container { padding-inline: var(--container-gutter-tablet); }
+      .section, .chapter { padding-block: var(--section-y-tablet); }
+      .product-stage { padding-bottom: var(--section-y-tablet); }
+      .attention-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .attention-card:nth-child(2) { border-right: 0; }
+      .attention-card:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
+      .desk { grid-template-columns: minmax(0, 1fr) 300px; }
+      .list-head, .contact-row { grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "person status" "next status"; row-gap: var(--space-2); }
+      .list-head { grid-template-areas: "person status"; }
+      .list-head span:nth-child(2) { display: none; }
+      .modules { grid-template-columns: minmax(0, 300px) minmax(0, 1fr); }
+      .tab-panel { grid-template-columns: minmax(0, 1fr); min-height: 0; }
+      .chapter-grid, .faq-grid, .access-grid { gap: var(--space-12); }
+    }
+    @media (max-width: 820px) {
+      .header-inner { grid-template-columns: 1fr auto; }
+      .primary-nav, .header-cta { display: none; }
+      .menu-toggle { display: grid; }
+      .hero { padding-top: var(--space-12); }
+      .hero-top { grid-template-columns: minmax(0, 1fr); gap: var(--space-6); }
+      .product-stage { margin-top: var(--space-12); }
+      .window-bar { grid-template-columns: 1fr auto; }
+      .app-nav { display: none; }
+      .desk { grid-template-columns: minmax(0, 1fr); }
+      .dossier { border-left: 0; border-top: 1px solid var(--line); }
+      .modules { grid-template-columns: minmax(0, 1fr); }
+      .tab-list { display: flex; gap: var(--space-2); margin-inline: calc(var(--container-gutter-tablet) * -1); padding-inline: var(--container-gutter-tablet); overflow-x: auto; scroll-snap-type: x proximity; scrollbar-width: none; }
+      .tab-list::-webkit-scrollbar { display: none; }
+      .tab { width: auto; flex: none; grid-template-columns: 28px auto; align-items: center; gap:var(--sp-3); padding:var(--sp-2) var(--sp-4) var(--sp-2) var(--sp-2); border-color: var(--line); border-radius: var(--radius-pill); background: var(--panel); scroll-snap-align: start; }
+      .tab:last-child { margin-inline-end: var(--container-gutter-tablet); }
+      .tab[aria-selected="true"] { border-color: var(--accent); background: var(--blue-soft); }
+      .tab-icon { width: 28px; height: 28px; border-radius: 50%; }
+      .tab-icon svg { width: 15px; height: 15px; }
+      .tab-desc { display: none; }
+      .tab-title { font-size: var(--text-ui); white-space: nowrap; }
+      .chapter-grid, .faq-grid, .access-grid { grid-template-columns: minmax(0, 1fr); gap: var(--space-8); }
+    }
+    @media (min-width: 821px) { .mobile-menu { display: none !important; } }
+    @media (max-width: 640px) {
+      .container { padding-inline: var(--container-gutter-phone); }
+      .section, .chapter { padding-block: var(--section-y-phone); }
+      .product-stage { padding-bottom: var(--section-y-phone); }
+      .lead, .chapter p.chapter-lead { font-size: 18px; }
+      .hero-actions .primary-button, .hero-actions .secondary-button { flex: 1 1 100%; }
+      .product-stage .container { padding-inline: var(--space-3); }
+      .window-bar { padding: 0 var(--space-4); }
+      .window-body { padding: var(--space-4); }
+      .window-title .result-count { display: none; }
+      .attention-card { min-height: 112px; padding:var(--sp-4); }
+      .attention-count { font-size: 22px; }
+      .attention-mark { right: 14px; bottom: 14px; }
+      .list-head { display: none; }
+      .contact-row { padding:var(--sp-3) var(--sp-4); }
+      .status { min-width: 0; }
+      .dossier { padding: var(--space-4); }
+      .section-head { margin-bottom: var(--space-8); }
+      .compare { grid-template-columns: minmax(0, 1fr); }
+      .compare-card { padding: var(--space-5); }
+      .tab-list { margin-inline: calc(var(--container-gutter-phone) * -1); padding-inline: var(--container-gutter-phone); }
+      .tab:last-child { margin-inline-end: var(--container-gutter-phone); }
+      .tab-panel { padding: var(--space-5); gap: var(--space-6); }
+      .date-strip { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+      .date-cell:nth-child(5) { display: none; }
+      .steps { grid-template-columns: minmax(0, 1fr); }
+      .urgency li { padding: var(--space-4); }
+      .faq-answer { padding-right:0; }
+      .form-card { padding: var(--space-5); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+    }
+  </style>
+</head>
+<body>
+  <script>
+    (function(){var d=false;try{var s=localStorage.getItem("kazabi-signal-theme");d=s?s==="dark":window.matchMedia("(prefers-color-scheme: dark)").matches}catch(e){}if(d)document.body.classList.add("theme-dark")})();
+  </script>
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#inicio" aria-label="Kazabi, ir al inicio">
+        <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 5h6v6H5zM13 5h6v6h-6zM5 13h6v6H5zM13 13h6v6h-6z"/></svg></span>
+        <span>Kazabi</span>
+      </a>
+      <nav class="primary-nav" aria-label="Principal">
+        <a class="nav-item" href="#producto">Producto</a>
+        <a class="nav-item" href="#modulos">Módulos</a>
+        <a class="nav-item" href="#como-funciona">Cómo funciona</a>
+        <a class="nav-item" href="#preguntas">Preguntas</a>
+      </nav>
+      <div class="header-actions">
+        <button class="icon-button" type="button" data-theme-toggle aria-pressed="false" aria-label="Activar tema oscuro">
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 15.4A8.7 8.7 0 0 1 8.6 3.5 8.7 8.7 0 1 0 20.5 15.4Z"/></svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true" hidden><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        </button>
+        <a class="secondary-button header-cta" href="#acceso">Pedir acceso</a>
+        <button class="icon-button menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Abrir menú">
+          <svg class="icon-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 8h16M4 16h16"/></svg>
+          <svg class="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true" hidden><path d="m6 6 12 12M18 6 6 18"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="mobile-menu" id="mobile-menu" hidden>
+      <nav aria-label="Menú móvil">
+        <a class="menu-link" href="#producto">Producto<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a>
+        <a class="menu-link" href="#modulos">Módulos<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a>
+        <a class="menu-link" href="#como-funciona">Cómo funciona<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a>
+        <a class="menu-link" href="#preguntas">Preguntas<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a>
+        <a class="primary-button button-lg" href="#acceso">Pedir acceso anticipado</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenido">
+    <!-- HERO -->
+    <section class="hero" id="inicio" aria-labelledby="hero-title">
+      <div class="container hero-top">
+        <div>
+          <p class="eyebrow">CRM inmobiliario para agentes en Ecuador</p>
+          <h1 id="hero-title">Se te acabó el desorden.</h1>
+        </div>
+        <div>
+          <p class="lead">Contactos, propiedades, visitas y mensajes en un solo lugar. Kazabi ordena tu cartera por urgencia: sabes a quién escribir hoy y llegas a cada conversación con todo el contexto.</p>
+          <div class="hero-actions">
+            <a class="primary-button button-lg" href="#acceso">Pedir acceso anticipado
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+            <a class="secondary-button button-lg" href="#como-funciona">Ver cómo funciona</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-stage" id="producto" data-nav-section>
+        <div class="container">
+          <div class="product-window" role="region" aria-label="Vista interactiva del producto Kazabi">
+            <div class="window-bar" aria-hidden="true">
+              <span class="window-brand"><span class="brand-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 5h6v6H5zM13 5h6v6h-6zM5 13h6v6H5zM13 13h6v6h-6z"/></svg></span>Kazabi</span>
+              <span class="app-nav"><span>Inicio</span><span class="is-current">Contactos</span><span>Propiedades</span><span>Mensajes</span></span>
+              <span class="window-avatar">MV</span>
+            </div>
+            <div class="window-body">
+              <div class="window-title">
+                <div>
+                  <span class="eyebrow">Jueves · 10 de septiembre</span>
+                  <span class="window-heading">Tu cartera, en movimiento.</span>
+                </div>
+                <span class="result-count" data-demo-count aria-live="polite">5 contactos</span>
+              </div>
+
+              <div class="attention-grid" role="group" aria-label="Atención hoy, filtra la lista">
+                <button class="attention-card" type="button" data-priority="today" aria-pressed="false">
+                  <span class="attention-top"><span class="attention-icon blue" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><span class="attention-count">2</span></span>
+                  <strong>Próximas acciones</strong><small>Una contraoferta y una llamada</small><span class="attention-mark" aria-hidden="true"></span>
+                </button>
+                <button class="attention-card" type="button" data-priority="visits" aria-pressed="false">
+                  <span class="attention-top"><span class="attention-icon green" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M8 2v3M16 2v3M4 9h16M5 4h14a1 1 0 0 1 1 1v15H4V5a1 1 0 0 1 1-1Z"/><path d="m9 15 2 2 4-4"/></svg></span><span class="attention-count">1</span></span>
+                  <strong>Visitas confirmadas</strong><small>La Carolina, mañana</small><span class="attention-mark" aria-hidden="true"></span>
+                </button>
+                <button class="attention-card" type="button" data-priority="follow" aria-pressed="false">
+                  <span class="attention-top"><span class="attention-icon amber" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M4 12a8 8 0 1 0 3-6.2L4 9"/><path d="M4 4v5h5M12 8v5l3 2"/></svg></span><span class="attention-count">1</span></span>
+                  <strong>Seguimiento pendiente</strong><small>Comparables por enviar</small><span class="attention-mark" aria-hidden="true"></span>
+                </button>
+                <button class="attention-card" type="button" data-priority="silent" aria-pressed="false">
+                  <span class="attention-top"><span class="attention-icon red" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4v8Z"/><path d="m9 9 6 6M15 9l-6 6"/></svg></span><span class="attention-count">1</span></span>
+                  <strong>Conversación fría</strong><small>Requiere último intento</small><span class="attention-mark" aria-hidden="true"></span>
+                </button>
+              </div>
+
+              <div class="desk">
+                <div>
+                  <div class="list-head" aria-hidden="true"><span>Contacto</span><span>Próxima acción</span><span>Estado</span></div>
+                  <ul class="contact-list" data-demo-list aria-label="Relaciones activas"></ul>
+                </div>
+                <aside class="dossier" aria-label="Ficha del contacto seleccionado">
+                  <div class="contact-profile">
+                    <span class="avatar" data-d="initials" aria-hidden="true"></span>
+                    <div><span class="profile-name" data-d="name"></span><span class="profile-phone" data-d="phone"></span></div>
+                  </div>
+                  <div class="dossier-section">
+                    <span class="dossier-label">Próxima acción</span>
+                    <div class="next-step">
+                      <span class="next-step-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+                      <div><strong data-d="next"></strong><span data-d="due"></span></div>
+                    </div>
+                  </div>
+                  <div class="dossier-section">
+                    <span class="dossier-label">Perfil de interés</span>
+                    <dl class="detail-list">
+                      <div><dt>Propiedad</dt><dd data-d="property"></dd></div>
+                      <div><dt>Sector</dt><dd data-d="place"></dd></div>
+                      <div><dt>Presupuesto</dt><dd data-d="budget"></dd></div>
+                      <div><dt>Origen</dt><dd data-d="channel"></dd></div>
+                    </dl>
+                  </div>
+                </aside>
+              </div>
+            </div>
+          </div>
+          <p class="window-caption">Vista interactiva: toca una tarjeta de atención para filtrar o un contacto para ver su ficha.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROBLEMA -->
+    <section class="section band-panel" id="problema" aria-labelledby="problema-title">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">El problema</p>
+          <h2 id="problema-title">Tu cartera vive en cinco lugares a la vez.</h2>
+          <p>Chats, una hoja de cálculo, notas en el celular y lo que recuerdas del día. Cuando todo está disperso, las oportunidades se enfrían sin que lo notes.</p>
+        </div>
+        <div class="compare">
+          <div class="compare-card">
+            <h3>Sin un sistema</h3>
+            <ul class="compare-list">
+              <li><span class="mark no" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="m7 7 10 10M17 7 7 17"/></svg></span><span>Buscas el último mensaje antes de cada llamada.</span></li>
+              <li><span class="mark no" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="m7 7 10 10M17 7 7 17"/></svg></span><span>Las visitas se confirman de memoria.</span></li>
+              <li><span class="mark no" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="m7 7 10 10M17 7 7 17"/></svg></span><span>Nadie sabe qué contacto lleva días sin respuesta.</span></li>
+            </ul>
+          </div>
+          <div class="compare-card">
+            <h3>Con Kazabi</h3>
+            <ul class="compare-list">
+              <li><span class="mark yes" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg></span><span>Cada relación muestra su próximo paso y su fecha.</span></li>
+              <li><span class="mark yes" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg></span><span>Las visitas confirmadas aparecen primero.</span></li>
+              <li><span class="mark yes" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg></span><span>Las conversaciones frías se marcan antes de perderse.</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MÓDULOS -->
+    <section class="section" id="modulos" data-nav-section aria-labelledby="modulos-title">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">Módulos</p>
+          <h2 id="modulos-title">Todo lo que mueve una venta, conectado.</h2>
+          <p>Cuatro espacios que comparten la misma información. Lo que registras en un contacto aparece en su propiedad, su visita y su historial.</p>
+        </div>
+        <div class="modules">
+          <div class="tab-list" role="tablist" aria-label="Módulos de Kazabi" aria-orientation="vertical">
+            <button class="tab" type="button" role="tab" id="tab-contactos" aria-controls="panel-contactos" aria-selected="true">
+              <span class="tab-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><circle cx="9" cy="7" r="4"/><path d="M2 21v-2a5 5 0 0 1 5-5h4a5 5 0 0 1 5 5v2M17 8h5M19.5 5.5v5"/></svg></span>
+              <span class="tab-copy"><span class="tab-title">Contactos</span><span class="tab-desc">Cada persona con su próximo paso</span></span>
+            </button>
+            <button class="tab" type="button" role="tab" id="tab-propiedades" aria-controls="panel-propiedades" aria-selected="false" tabindex="-1">
+              <span class="tab-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="m3 11 9-8 9 8M5 10v11h14V10M9 21v-6h6v6"/></svg></span>
+              <span class="tab-copy"><span class="tab-title">Propiedades</span><span class="tab-desc">Fichas vinculadas a interesados</span></span>
+            </button>
+            <button class="tab" type="button" role="tab" id="tab-mensajes" aria-controls="panel-mensajes" aria-selected="false" tabindex="-1">
+              <span class="tab-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round"><path d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4v8Z"/></svg></span>
+              <span class="tab-copy"><span class="tab-title">Mensajes</span><span class="tab-desc">El historial dentro de la ficha</span></span>
+            </button>
+            <button class="tab" type="button" role="tab" id="tab-visitas" aria-controls="panel-visitas" aria-selected="false" tabindex="-1">
+              <span class="tab-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M8 2v3M16 2v3M4 9h16M5 4h14a1 1 0 0 1 1 1v15H4V5a1 1 0 0 1 1-1Z"/></svg></span>
+              <span class="tab-copy"><span class="tab-title">Visitas</span><span class="tab-desc">Agenda y preparación en un paso</span></span>
+            </button>
+          </div>
+
+          <div class="tab-panel" role="tabpanel" id="panel-contactos" aria-labelledby="tab-contactos" tabindex="0">
+            <div class="panel-copy">
+              <h3>Contactos</h3>
+              <p>Cada persona con su interés, presupuesto, canal de origen y próxima acción. Encuentra a cualquiera por nombre, propiedad o sector.</p>
+              <ul class="checks">
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg><span>Estados claros: de nuevo a negociación</span></li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg><span>Filtros por estado y canal</span></li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg><span>Nuevo contacto con lo esencial</span></li>
+              </ul>
+            </div>
+            <div class="mock" aria-hidden="true">
+              <div class="mock-search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg><span>Buscar persona, propiedad o sector</span><kbd>⌘ K</kbd></div>
+              <div class="mock-row"><span class="avatar">MR</span><span class="data"><strong>María Fernanda Ruiz</strong><span>Departamento 2 hab. · La Carolina</span></span><span class="status s-visit">Visita</span></div>
+              <div class="mock-row"><span class="avatar">CM</span><span class="data"><strong>Carlos Andrés Muñoz</strong><span>Casa 4 hab. · Cumbayá</span></span><span class="status s-negotiation">Negociación</span></div>
+              <div class="mock-row"><span class="avatar">AP</span><span class="data"><strong>Ana Lucía Paredes</strong><span>Oficina 82 m² · Av. República</span></span><span class="status s-new">Nuevo</span></div>
+            </div>
+          </div>
+
+          <div class="tab-panel" role="tabpanel" id="panel-propiedades" aria-labelledby="tab-propiedades" tabindex="0" hidden>
+            <div class="panel-copy">
+              <h3>Propiedades</h3>
+              <p>Fichas con precio, sector y características, vinculadas a las personas que preguntaron por cada una.</p>
+              <ul class="checks">
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg><span>Interesados visibles en cada ficha</span></li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg><span>Precio y sector siempre a mano</span></li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg><span>Comparables listos para enviar</span></li>
+              </ul>
+            </div>
+            <div class="mock" aria-hidden="true">
+              <div class="mock-row"><span class="prop-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="m3 11 9-8 9 8M5 10v11h14V10M9 21v-6h6v6"/></svg></span><span class="data"><strong>Casa 4 hab. · Cumbayá</strong><span>1 contacto en negociación</span></span><span class="price">$395.000</span></div>
+              <div class="mock-row"><span class="prop-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21V5a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v16M14 9h5a1 1 0 0 1 1 1v11M3 21h18M8 8h2M8 12h2M8 16h2"/></svg></span><span class="data"><strong>Departamento 2 hab. · La Carolina</strong><span>Visita confirmada mañana</span></span><span class="price">$148.000</span></div>
+              <div class="mock-row"><span class="prop-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21V5a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v16M14 9h5a1 1 0 0 1 1 1v11M3 21h18M8 8h2M8 12h2M8 16h2"/></svg></span><span class="data"><strong>Suite 1 hab. · González Suárez</strong><span>Comparables por enviar</span></span><span class="price">$98.000</span></div>
+            </div>
+          </div>
+
+          <div class="tab-panel" role="tabpanel" id="panel-mensajes" aria-labelledby="tab-mensajes" tabindex="0" hidden>
+            <div class="panel-copy">
+              <h3>Mensajes</h3>
+              <p>Registra cada conversación en la ficha del contacto y retoma cualquier hilo sin buscar en tu celular.</p>
+              <ul class="checks">
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg><span>Actividad reciente en orden</span></li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg><span>Canal de origen de cada contacto</span></li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg><span>Contexto antes de cada llamada</span></li>
+              </ul>
+            </div>
+            <div class="timeline" aria-hidden="true">
+              <div class="timeline-item"><span class="timeline-dot"></span><span class="timeline-copy"><strong>Hoy · 10:45</strong><span>María Fernanda confirmó que asistirá con su pareja.</span></span></div>
+              <div class="timeline-item"><span class="timeline-dot"></span><span class="timeline-copy"><strong>Ayer · 16:20</strong><span>Se enviaron ubicación y ficha técnica.</span></span></div>
+              <div class="timeline-item"><span class="timeline-dot"></span><span class="timeline-copy"><strong>8 sep · 11:10</strong><span>Solicitó una segunda visita.</span></span></div>
+            </div>
+          </div>
+
+          <div class="tab-panel" role="tabpanel" id="panel-visitas" aria-labelledby="tab-visitas" tabindex="0" hidden>
+            <div class="panel-copy">
+              <h3>Visitas</h3>
+              <p>Agenda, confirma y prepara cada visita con la información del cliente a la vista.</p>
+              <ul class="checks">
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg><span>Semana de visitas de un vistazo</span></li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg><span>Confirmaciones marcadas</span></li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg><span>Presupuesto e interés del cliente</span></li>
+              </ul>
+            </div>
+            <div class="mock" aria-hidden="true">
+              <div class="date-strip">
+                <span class="date-cell"><span class="dw">Jue</span><span class="dd">10</span><span class="da">Libre</span></span>
+                <span class="date-cell is-active"><span class="dw">Vie</span><span class="dd">11</span><span class="da">1 visita</span></span>
+                <span class="date-cell is-active"><span class="dw">Sáb</span><span class="dd">12</span><span class="da">1 visita</span></span>
+                <span class="date-cell"><span class="dw">Dom</span><span class="dd">13</span><span class="da">Libre</span></span>
+                <span class="date-cell"><span class="dw">Lun</span><span class="dd">14</span><span class="da">Libre</span></span>
+              </div>
+              <div class="next-step"><span class="next-step-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M8 2v3M16 2v3M4 9h16M5 4h14a1 1 0 0 1 1 1v15H4V5a1 1 0 0 1 1-1Z"/><path d="m9 15 2 2 4-4"/></svg></span><div><strong>Confirmar visita · La Carolina</strong><span>María Fernanda Ruiz · Viernes 16:30</span></div></div>
+              <div class="next-step"><span class="next-step-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M8 2v3M16 2v3M4 9h16M5 4h14a1 1 0 0 1 1 1v15H4V5a1 1 0 0 1 1-1Z"/><path d="m9 15 2 2 4-4"/></svg></span><div><strong>Preparar visita · Nayón</strong><span>Sofía Cárdenas · Sábado 10:00</span></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CÓMO FUNCIONA -->
+    <section class="section band-panel" id="como-funciona" data-nav-section aria-labelledby="como-title">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">Cómo funciona</p>
+          <h2 id="como-title">Tres hábitos, una cartera en orden.</h2>
+          <p>Kazabi no te pide cambiar tu forma de vender. Te pide anotar el siguiente paso.</p>
+        </div>
+        <ol class="steps">
+          <li class="step">
+            <div class="step-visual" aria-hidden="true">
+              <span class="mini-field"><span class="mini-label">Nombre completo</span><span class="mini-control">Sofía Cárdenas</span></span>
+            </div>
+            <span class="step-num">01</span>
+            <h3>Registra a cada contacto</h3>
+            <p>Nombre, propiedad de interés y canal de origen. Lo esencial entra en segundos; el resto puede esperar.</p>
+          </li>
+          <li class="step">
+            <div class="step-visual" aria-hidden="true">
+              <span class="next-action" data-tone="follow"><span class="next-dot"></span><span class="next-copy"><strong>Enviar comparables</strong><span>Hoy · pendiente</span></span></span>
+              <span class="next-action" data-tone="visits"><span class="next-dot"></span><span class="next-copy"><strong>Preparar visita</strong><span>Sábado · 10:00</span></span></span>
+            </div>
+            <span class="step-num">02</span>
+            <h3>Define el próximo paso</h3>
+            <p>Cada relación lleva una acción y una fecha: llamar, enviar comparables, confirmar una visita.</p>
+          </li>
+          <li class="step">
+            <div class="step-visual" aria-hidden="true">
+              <span class="mini-attention"><span class="attention-icon red"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4v8Z"/><path d="m9 9 6 6M15 9l-6 6"/></svg></span><span class="attention-count">1</span><span><strong>Conversación fría</strong><small>Requiere último intento</small></span></span>
+            </div>
+            <span class="step-num">03</span>
+            <h3>Atiende lo urgente primero</h3>
+            <p>La vista Atención hoy agrupa lo que no puede esperar y te lleva directo a la ficha del contacto.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- CAPÍTULO NAVY -->
+    <section class="chapter theme-dark" id="urgencia" aria-labelledby="urgencia-title">
+      <div class="container chapter-grid">
+        <div>
+          <p class="eyebrow">Atención hoy</p>
+          <h2 id="urgencia-title">Tu día, ordenado por urgencia.</h2>
+          <p class="chapter-lead">Abres Kazabi y lo primero que ves es lo que no puede esperar. Sin revisar chat por chat, sin adivinar a quién le debías una respuesta.</p>
+        </div>
+        <ul class="urgency">
+          <li><span class="attention-icon blue" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><span><strong>Próximas acciones</strong><span class="u-desc">Llamadas y envíos con fecha de hoy.</span></span></li>
+          <li><span class="attention-icon green" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M8 2v3M16 2v3M4 9h16M5 4h14a1 1 0 0 1 1 1v15H4V5a1 1 0 0 1 1-1Z"/><path d="m9 15 2 2 4-4"/></svg></span><span><strong>Visitas confirmadas</strong><span class="u-desc">Quién viene, a qué propiedad y a qué hora.</span></span></li>
+          <li><span class="attention-icon amber" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M4 12a8 8 0 1 0 3-6.2L4 9"/><path d="M4 4v5h5M12 8v5l3 2"/></svg></span><span><strong>Seguimiento pendiente</strong><span class="u-desc">Lo que prometiste enviar y sigue sin salir.</span></span></li>
+          <li><span class="attention-icon red" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4v8Z"/><path d="m9 9 6 6M15 9l-6 6"/></svg></span><span><strong>Conversación fría</strong><span class="u-desc">Contactos que dejaron de responder, antes de perderlos.</span></span></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section" id="preguntas" data-nav-section aria-labelledby="faq-title">
+      <div class="container faq-grid">
+        <div class="faq-head">
+          <p class="eyebrow">Preguntas</p>
+          <h2 id="faq-title">Lo que suelen preguntar antes de empezar.</h2>
+          <p>¿No encuentras tu duda? Déjanos tu correo en el formulario y te respondemos.</p>
+        </div>
+        <div class="faq">
+          <details>
+            <summary>¿Para quién es Kazabi?<span class="faq-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+            <p class="faq-answer">Para agentes y corredores inmobiliarios en Ecuador que hoy llevan su cartera entre chats, llamadas y hojas de cálculo, y quieren un solo lugar para darle seguimiento.</p>
+          </details>
+          <details>
+            <summary>¿Funciona en el celular?<span class="faq-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+            <p class="faq-answer">Sí. En pantallas pequeñas la navegación pasa a una barra inferior y la ficha del contacto se abre como un panel que sube desde abajo.</p>
+          </details>
+          <details>
+            <summary>¿Cuánto cuesta?<span class="faq-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+            <p class="faq-answer">Los planes todavía no están publicados. Si pides acceso anticipado, te escribimos cuando estén listos.</p>
+          </details>
+          <details>
+            <summary>¿Qué necesito para empezar?<span class="faq-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+            <p class="faq-answer">Tu lista de contactos y las propiedades que estás moviendo. Puedes registrarlos uno a uno con el formulario de nuevo contacto, que pide solo lo esencial.</p>
+          </details>
+          <details>
+            <summary>¿Tiene tema oscuro?<span class="faq-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+            <p class="faq-answer">Sí. Kazabi sigue la preferencia de tu dispositivo y puedes cambiarla con el botón de la luna, arriba a la derecha.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ACCESO -->
+    <section class="section band-panel" id="acceso" aria-labelledby="acceso-title">
+      <div class="container access-grid">
+        <div class="access-copy">
+          <p class="eyebrow">Acceso anticipado</p>
+          <h2 id="acceso-title">Ordena tu cartera antes de la próxima visita.</h2>
+          <p>Déjanos tus datos y te avisamos cuando tu cuenta esté lista.</p>
+          <ul class="checks">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg><span>Contactos, propiedades, mensajes y visitas en un lugar</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg><span>Vista de atención diaria ordenada por urgencia</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg><span>Pensado para escritorio y celular</span></li>
+          </ul>
+        </div>
+
+        <div class="form-card">
+          <div data-form-view>
+            <span class="form-card-title">Pedir acceso</span>
+            <span class="form-card-sub">Toma menos de un minuto.</span>
+            <div class="error-summary" role="alert" tabindex="-1" data-error-summary hidden>
+              <strong>Revisa estos campos antes de enviar:</strong>
+              <ul data-error-list></ul>
+            </div>
+            <form class="form" novalidate data-access-form>
+              <div class="form-field">
+                <label for="f-name">Nombre completo <span class="req" aria-hidden="true">*</span></label>
+                <input class="form-control" id="f-name" name="name" type="text" autocomplete="name" required aria-required="true" aria-describedby="f-name-error">
+                <span class="field-error" id="f-name-error"></span>
+              </div>
+              <div class="form-field">
+                <label for="f-email">Correo electrónico <span class="req" aria-hidden="true">*</span></label>
+                <input class="form-control" id="f-email" name="email" type="email" inputmode="email" autocomplete="email" required aria-required="true" aria-describedby="f-email-error">
+                <span class="field-error" id="f-email-error"></span>
+              </div>
+              <div class="form-field">
+                <label for="f-phone">Celular <span class="optional">(opcional)</span></label>
+                <input class="form-control" id="f-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" aria-describedby="f-phone-error">
+                <span class="field-error" id="f-phone-error"></span>
+              </div>
+              <div class="form-field">
+                <label for="f-role">¿Cómo trabajas?</label>
+                <div class="select-wrap">
+                  <select class="form-control" id="f-role" name="role">
+                    <option>Agente independiente</option>
+                    <option>Parte de una inmobiliaria</option>
+                    <option>Dirijo un equipo de agentes</option>
+                  </select>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m7 10 5 5 5-5"/></svg>
+                </div>
+              </div>
+              <button class="primary-button button-lg" type="submit" data-submit><span>Pedir acceso</span></button>
+              <p class="form-note">Solo usaremos tus datos para escribirte sobre Kazabi.</p>
+            </form>
+          </div>
+
+          <div class="form-success" data-success-view role="status" hidden>
+            <span class="success-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg></span>
+            <h3 tabindex="-1" data-success-title>Solicitud recibida</h3>
+            <p data-success-text></p>
+            <button class="secondary-button" type="button" data-reset-form>Enviar otra solicitud</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <a class="brand" href="#inicio" aria-label="Kazabi, volver al inicio">
+          <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 5h6v6H5zM13 5h6v6h-6zM5 13h6v6H5zM13 13h6v6h-6z"/></svg></span>
+          <span>Kazabi</span>
+        </a>
+        <p>CRM inmobiliario para agentes en Ecuador.</p>
+      </div>
+      <nav class="footer-links" aria-label="Pie de página">
+        <a class="nav-item" href="#producto">Producto</a>
+        <a class="nav-item" href="#modulos">Módulos</a>
+        <a class="nav-item" href="#como-funciona">Cómo funciona</a>
+        <a class="nav-item" href="#preguntas">Preguntas</a>
+        <a class="nav-item" href="#acceso">Acceso</a>
+      </nav>
+      <p class="copyright">© 2026 Kazabi. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var body = document.body;
+
+      /* ─── Tema ─── */
+      var themeBtn = document.querySelector("[data-theme-toggle]");
+      var themeMeta = document.querySelector('meta[name="theme-color"]');
+      function applyTheme(dark, persist) {
+        body.classList.toggle("theme-dark", dark);
+        themeBtn.setAttribute("aria-pressed", String(dark));
+        themeBtn.setAttribute("aria-label", dark ? "Activar tema claro" : "Activar tema oscuro");
+        themeBtn.querySelector(".icon-moon").hidden = dark;
+        themeBtn.querySelector(".icon-sun").hidden = !dark;
+        themeMeta.content = dark ? "#07172f" : "#f4f6f8";
+        if (persist) { try { localStorage.setItem("kazabi-signal-theme", dark ? "dark" : "light"); } catch (e) {} }
+      }
+      applyTheme(body.classList.contains("theme-dark"), false);
+      themeBtn.addEventListener("click", function () { applyTheme(!body.classList.contains("theme-dark"), true); });
+
+      /* ─── Menú móvil ─── */
+      var menuBtn = document.querySelector(".menu-toggle");
+      var menu = document.getElementById("mobile-menu");
+      function setMenu(open, returnFocus) {
+        menu.hidden = !open;
+        menuBtn.setAttribute("aria-expanded", String(open));
+        menuBtn.setAttribute("aria-label", open ? "Cerrar menú" : "Abrir menú");
+        menuBtn.querySelector(".icon-menu").hidden = open;
+        menuBtn.querySelector(".icon-close").hidden = !open;
+        if (open) { menu.querySelector("a").focus(); }
+        else if (returnFocus) { menuBtn.focus(); }
+      }
+      menuBtn.addEventListener("click", function () { setMenu(menu.hidden, true); });
+      menu.querySelectorAll("a").forEach(function (a) { a.addEventListener("click", function () { setMenu(false, false); }); });
+      document.addEventListener("click", function (e) {
+        if (!menu.hidden && !menu.contains(e.target) && !menuBtn.contains(e.target)) setMenu(false, false);
+      });
+      window.addEventListener("resize", function () { if (window.innerWidth > 820 && !menu.hidden) setMenu(false, false); });
+
+      /* ─── Sección activa en navegación ─── */
+      var navLinks = document.querySelectorAll(".primary-nav a, .menu-link");
+      if ("IntersectionObserver" in window) {
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (!entry.isIntersecting) return;
+            var id = "#" + entry.target.id;
+            navLinks.forEach(function (l) {
+              if (l.getAttribute("href") === id) l.setAttribute("aria-current", "true");
+              else l.removeAttribute("aria-current");
+            });
+          });
+        }, { rootMargin: "-45% 0px -50% 0px" });
+        document.querySelectorAll("[data-nav-section]").forEach(function (s) { io.observe(s); });
+      }
+
+      /* ─── Demo del producto ─── */
+      var contacts = [
+        { id: 1, initials: "CM", name: "Carlos Andrés Muñoz", phone: "098 773 2041", property: "Casa 4 hab. · $395.000", short: "Casa 4 hab.", place: "Cumbayá", budget: "$380k–$410k", status: "Negociación", cls: "s-negotiation", channel: "Llamada", next: "Revisar contraoferta", due: "Hoy · 15:00", priority: "today" },
+        { id: 2, initials: "AP", name: "Ana Lucía Paredes", phone: "096 531 8904", property: "Oficina 82 m² · $112.000", short: "Oficina 82 m²", place: "Av. República", budget: "$100k–$120k", status: "Nuevo", cls: "s-new", channel: "Correo", next: "Primera llamada", due: "Hoy · antes de 17:00", priority: "today" },
+        { id: 3, initials: "MR", name: "María Fernanda Ruiz", phone: "099 842 6173", property: "Departamento 2 hab. · $148.000", short: "Departamento 2 hab.", place: "La Carolina", budget: "$140k–$160k", status: "Visita agendada", cls: "s-visit", channel: "WhatsApp", next: "Confirmar visita", due: "Mañana · 16:30", priority: "visits" },
+        { id: 4, initials: "RE", name: "Roberto Espinosa", phone: "099 260 4837", property: "Suite 1 hab. · $98.000", short: "Suite 1 hab.", place: "González Suárez", budget: "$90k–$105k", status: "Seguimiento", cls: "s-follow", channel: "WhatsApp", next: "Enviar comparables", due: "Hoy · pendiente", priority: "follow" },
+        { id: 5, initials: "JV", name: "Jorge Villacís", phone: "099 715 3340", property: "Departamento 3 hab. · $172.000", short: "Departamento 3 hab.", place: "El Batán", budget: "$160k–$180k", status: "No responde", cls: "s-silent", channel: "Llamada", next: "Último intento", due: "Hoy · 17:30", priority: "silent" }
+      ];
+      var demo = { priority: "", selected: 1 };
+      var list = document.querySelector("[data-demo-list]");
+      var countEl = document.querySelector("[data-demo-count]");
+      var cards = document.querySelectorAll(".attention-card");
+      function esc(v) { return String(v).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
+      function toneFor(p) { return p === "visits" || p === "follow" || p === "silent" ? p : "today"; }
+      function renderDemo() {
+        var items = contacts.filter(function (c) { return !demo.priority || c.priority === demo.priority; });
+        if (!items.some(function (c) { return c.id === demo.selected; }) && items.length) demo.selected = items[0].id;
+        list.innerHTML = items.map(function (c) {
+          var sel = c.id === demo.selected;
+          return '<li><button class="contact-row' + (sel ? " is-selected" : "") + '" type="button" data-id="' + c.id + '"' + (sel ? ' aria-current="true"' : "") + '>' +
+            '<span class="person"><span class="avatar" aria-hidden="true">' + esc(c.initials) + '</span><span class="data"><strong>' + esc(c.name) + '</strong><span>' + esc(c.short) + " · " + esc(c.place) + '</span></span></span>' +
+            '<span class="next-action" data-tone="' + toneFor(c.priority) + '"><span class="next-dot" aria-hidden="true"></span><span class="next-copy"><strong>' + esc(c.next) + '</strong><span>' + esc(c.due) + '</span></span></span>' +
+            '<span class="status ' + c.cls + '">' + esc(c.status) + '</span></button></li>';
+        }).join("");
+        countEl.textContent = items.length + (items.length === 1 ? " contacto" : " contactos");
+        cards.forEach(function (b) { b.setAttribute("aria-pressed", String(b.dataset.priority === demo.priority)); });
+        var c = contacts.filter(function (x) { return x.id === demo.selected; })[0] || contacts[0];
+        ["initials", "name", "phone", "next", "due", "property", "place", "budget", "channel"].forEach(function (k) {
+          document.querySelector('[data-d="' + k + '"]').textContent = c[k];
+        });
+      }
+      list.addEventListener("click", function (e) {
+        var row = e.target.closest(".contact-row");
+        if (!row) return;
+        demo.selected = Number(row.dataset.id);
+        renderDemo();
+        var again = list.querySelector('[data-id="' + demo.selected + '"]');
+        if (again) again.focus();
+      });
+      cards.forEach(function (b) {
+        b.addEventListener("click", function () {
+          demo.priority = demo.priority === b.dataset.priority ? "" : b.dataset.priority;
+          renderDemo();
+        });
+      });
+      renderDemo();
+
+      /* ─── Pestañas de módulos ─── */
+      var tabs = Array.prototype.slice.call(document.querySelectorAll('[role="tab"]'));
+      var tabList = document.querySelector('[role="tablist"]');
+      function syncOrientation() { tabList.setAttribute("aria-orientation", window.innerWidth <= 820 ? "horizontal" : "vertical"); }
+      syncOrientation();
+      window.addEventListener("resize", syncOrientation);
+      function activateTab(tab, focus) {
+        tabs.forEach(function (t) {
+          var on = t === tab;
+          t.setAttribute("aria-selected", String(on));
+          t.tabIndex = on ? 0 : -1;
+          document.getElementById(t.getAttribute("aria-controls")).hidden = !on;
+        });
+        if (focus) tab.focus();
+        if (window.innerWidth <= 820) tab.scrollIntoView({ block: "nearest", inline: "nearest" });
+      }
+      tabs.forEach(function (t, i) {
+        t.addEventListener("click", function () { activateTab(t, false); });
+        t.addEventListener("keydown", function (e) {
+          var idx = null;
+          if (e.key === "ArrowDown" || e.key === "ArrowRight") idx = (i + 1) % tabs.length;
+          if (e.key === "ArrowUp" || e.key === "ArrowLeft") idx = (i - 1 + tabs.length) % tabs.length;
+          if (e.key === "Home") idx = 0;
+          if (e.key === "End") idx = tabs.length - 1;
+          if (idx !== null) { e.preventDefault(); activateTab(tabs[idx], true); }
+        });
+      });
+
+      /* ─── Formulario de acceso ─── */
+      var form = document.querySelector("[data-access-form]");
+      var formView = document.querySelector("[data-form-view]");
+      var successView = document.querySelector("[data-success-view]");
+      var summary = document.querySelector("[data-error-summary]");
+      var summaryList = document.querySelector("[data-error-list]");
+      var submitBtn = document.querySelector("[data-submit]");
+      var rules = {
+        name: function (v) { return v.trim().length < 3 ? "Escribe tu nombre completo." : ""; },
+        email: function (v) {
+          if (!v.trim()) return "Escribe tu correo electrónico.";
+          return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim()) ? "" : "Revisa el correo: debe verse como nombre@dominio.com.";
+        },
+        phone: function (v) {
+          var digits = v.replace(/\D/g, "");
+          if (!digits) return "";
+          return digits.length >= 9 && digits.length <= 12 ? "" : "Escribe un número de 9 a 10 dígitos, por ejemplo 099 842 6173.";
+        }
+      };
+      function validateField(input) {
+        var rule = rules[input.name];
+        if (!rule) return "";
+        var msg = rule(input.value);
+        document.getElementById(input.id + "-error").textContent = msg;
+        if (msg) input.setAttribute("aria-invalid", "true"); else input.removeAttribute("aria-invalid");
+        return msg;
+      }
+      ["name", "email", "phone"].forEach(function (n) {
+        var input = form.elements[n];
+        input.addEventListener("blur", function () { if (input.value || input.hasAttribute("aria-invalid")) validateField(input); });
+        input.addEventListener("input", function () { if (input.hasAttribute("aria-invalid")) validateField(input); });
+      });
+      summaryList.addEventListener("click", function (e) {
+        var link = e.target.closest("a");
+        if (!link) return;
+        e.preventDefault();
+        var target = document.getElementById(link.getAttribute("href").slice(1));
+        if (target) target.focus();
+      });
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        var errors = [];
+        ["name", "email", "phone"].forEach(function (n) {
+          var input = form.elements[n];
+          var msg = validateField(input);
+          if (msg) errors.push('<li><a href="#' + input.id + '">' + esc(msg) + "</a></li>");
+        });
+        if (errors.length) {
+          summaryList.innerHTML = errors.join("");
+          summary.hidden = false;
+          summary.focus();
+          return;
+        }
+        summary.hidden = true;
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<span class="spinner" aria-hidden="true"></span><span>Enviando</span>';
+        setTimeout(function () {
+          var first = form.elements.name.value.trim().split(/\s+/)[0];
+          document.querySelector("[data-success-title]").textContent = "Listo, " + first + ".";
+          document.querySelector("[data-success-text]").textContent = "Recibimos tu solicitud. Te escribiremos a " + form.elements.email.value.trim() + " cuando tu acceso esté listo.";
+          formView.hidden = true;
+          successView.hidden = false;
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = "<span>Pedir acceso</span>";
+          document.querySelector("[data-success-title]").focus();
+        }, 800);
+      });
+      document.querySelector("[data-reset-form]").addEventListener("click", function () {
+        form.reset();
+        form.querySelectorAll(".field-error").forEach(function (el) { el.textContent = ""; });
+        form.querySelectorAll("[aria-invalid]").forEach(function (el) { el.removeAttribute("aria-invalid"); });
+        summary.hidden = true;
+        successView.hidden = true;
+        formView.hidden = false;
+        form.elements.name.focus();
+      });
+
+      /* ─── Escape global ─── */
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape" && !menu.hidden) setMenu(false, true);
+      });
+    })();
+  </script>
+</body>
+</html>

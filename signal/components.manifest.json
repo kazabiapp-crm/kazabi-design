@@ -1,0 +1,113 @@
+{
+  "schemaVersion": 1,
+  "brandId": "kazabi-signal",
+  "source": {
+    "referenceApplication": "referencias/app.html",
+    "referenceLanding": "referencias/landing.html",
+    "tokensCss": "tokens.css"
+  },
+  "fixture": {
+    "title": "Kazabi Signal — componentes de referencia",
+    "description": "Inventario derivado de la pantalla de Contactos de Signal. Navy = marca, azul = acción, lienzo gris frío con paneles blancos y líneas finas. Cuerpo 17px, cápsulas 980px, tema oscuro navy. Nombres del contrato de Kazabi; los de OpenDesign son alias."
+  },
+  "tokens": {
+    "declared": [
+      "--bg", "--surface", "--surface-subtle",
+      "--fg", "--fg-2", "--muted", "--meta",
+      "--border", "--border-strong", "--border-control",
+      "--accent", "--accent-on", "--accent-hover", "--accent-active", "--accent-soft", "--link",
+      "--brand", "--brand-deep", "--brand-mid", "--brand-steel", "--brand-steel-light", "--brand-on",
+      "--success", "--success-soft", "--cyan", "--cyan-soft", "--warn", "--warn-soft", "--orange", "--orange-soft", "--danger", "--danger-soft",
+      "--font-display", "--font-body", "--font-mono",
+      "--text-2xs", "--text-xs", "--text-sm", "--text-ui", "--text-base", "--text-lg", "--text-xl", "--text-2xl", "--text-3xl", "--text-4xl",
+      "--leading-display", "--leading-tight", "--leading-snug", "--leading-body",
+      "--tracking-display", "--tracking-title", "--tracking-panel", "--tracking-ui", "--tracking-body", "--tracking-label",
+      "--weight-regular", "--weight-medium", "--weight-semibold", "--weight-title", "--weight-strong",
+      "--sp-0.5", "--sp-1", "--sp-1.5", "--sp-2", "--sp-3", "--sp-4", "--sp-5", "--sp-6", "--sp-8", "--sp-10", "--sp-12", "--sp-16",
+      "--section-y-desktop", "--section-y-tablet", "--section-y-phone",
+      "--radius-xs", "--radius-sm", "--radius-icon", "--radius-md", "--radius-lg", "--radius-sheet", "--radius-pill",
+      "--elev-flat", "--elev-ring", "--elev-raised", "--shadow", "--scrim", "--focus-ring",
+      "--motion-fast", "--motion-base", "--ease-standard",
+      "--container-max", "--container-text", "--container-gutter-desktop", "--container-gutter-tablet", "--container-gutter-phone"
+    ],
+    "aliases": {
+      "--canvas": "--bg", "--panel": "--surface", "--panel-subtle": "--surface-subtle",
+      "--ink": "--fg", "--ink-2": "--fg-2", "--line": "--border", "--line-strong": "--border-strong",
+      "--navy": "--brand", "--navy-2": "--brand-deep", "--accent-text": "--link", "--blue-soft": "--accent-soft",
+      "--space-*": "--sp-*"
+    },
+    "themes": {
+      "light": ":root",
+      "dark": "[data-theme=\"dark\"], .dark, .theme-dark, @media (prefers-color-scheme: dark)"
+    }
+  },
+  "groups": [
+    {
+      "id": "buttons",
+      "title": "Botones y llamadas a la acción",
+      "selectors": [".primary-button", ".secondary-button", ".icon-button", ".primary-button:active", ".secondary-button:active"],
+      "tokens": ["--accent", "--accent-hover", "--accent-active", "--accent-on", "--surface", "--surface-subtle", "--border-strong", "--border-control", "--fg", "--fg-2", "--radius-pill", "--focus-ring", "--motion-fast", "--text-ui"]
+    },
+    {
+      "id": "navigation",
+      "title": "Navegación",
+      "selectors": [".app-header", ".header-inner", ".brand", ".brand-mark", ".primary-nav", ".nav-item", ".nav-item[aria-current=page]", ".header-actions", ".avatar-me", ".mobile-nav"],
+      "tokens": ["--bg", "--border", "--brand", "--brand-on", "--muted", "--fg", "--surface", "--radius-xs", "--radius-sm", "--link", "--elev-ring"]
+    },
+    {
+      "id": "page-title",
+      "title": "Encabezado de página",
+      "selectors": [".page-titlebar", ".eyebrow", ".page-titlebar h1", ".section-label"],
+      "tokens": ["--font-display", "--link", "--muted", "--text-2xl", "--text-3xl", "--tracking-title", "--tracking-label"]
+    },
+    {
+      "id": "attention",
+      "title": "Tarjetas de atención",
+      "selectors": [".attention-grid", ".attention-card", ".attention-card[aria-pressed=true]", ".attention-top", ".attention-icon", ".attention-icon.blue", ".attention-icon.green", ".attention-icon.amber", ".attention-icon.red", ".attention-count", ".attention-mark"],
+      "tokens": ["--surface", "--surface-subtle", "--border", "--radius-lg", "--radius-icon", "--accent-soft", "--success-soft", "--warn-soft", "--danger-soft", "--link", "--success", "--warn", "--danger", "--text-xl"]
+    },
+    {
+      "id": "desk",
+      "title": "Mesa, lista y filas",
+      "selectors": [".desk", ".portfolio-head", ".list-head", ".contact-row", ".contact-row.is-selected", ".person", ".avatar", ".data", ".next-action", ".next-dot", ".row-chevron", ".empty"],
+      "tokens": ["--surface", "--surface-subtle", "--border", "--muted", "--meta", "--fg", "--accent", "--accent-soft", "--brand", "--radius-lg", "--text-2xs", "--text-sm", "--text-ui"]
+    },
+    {
+      "id": "status",
+      "title": "Chips de estado",
+      "selectors": [".status", ".s-new", ".s-contacted", ".s-visit", ".s-follow", ".s-negotiation", ".s-silent"],
+      "tokens": ["--link", "--accent-soft", "--cyan", "--cyan-soft", "--success", "--success-soft", "--warn", "--warn-soft", "--orange", "--orange-soft", "--danger", "--danger-soft", "--radius-pill", "--text-2xs"]
+    },
+    {
+      "id": "dossier",
+      "title": "Dossier lateral y línea de tiempo",
+      "selectors": [".dossier", ".contact-profile", ".dossier-actions", ".dossier-section", ".next-step", ".next-step-icon", ".detail-list", ".timeline", ".timeline-item", ".timeline-dot"],
+      "tokens": ["--surface-subtle", "--surface", "--border", "--border-strong", "--muted", "--fg-2", "--accent", "--accent-soft", "--link", "--radius-md", "--radius-icon", "--radius-sheet"]
+    },
+    {
+      "id": "search",
+      "title": "Búsqueda y filtros",
+      "selectors": [".command", ".search-shell", ".search-shell:focus-within", "kbd", ".filter-group", ".select-shell", ".select-shell select"],
+      "tokens": ["--border-control", "--surface-subtle", "--surface", "--meta", "--muted", "--fg-2", "--radius-md", "--radius-xs", "--accent", "--focus-ring", "--font-mono"]
+    },
+    {
+      "id": "forms",
+      "title": "Formularios y feedback",
+      "selectors": [".form-field", ".form-field label", ".form-control", ".form-control:focus", ".form-control[aria-invalid=true]", ".field-error", ".error-summary", ".spinner"],
+      "tokens": ["--border-control", "--surface", "--fg", "--accent", "--focus-ring", "--danger", "--danger-soft", "--radius-md", "--radius-sm", "--accent-on", "--text-xs", "--text-2xs"]
+    },
+    {
+      "id": "overlays",
+      "title": "Modal, sheet y toast",
+      "selectors": [".modal-root", ".modal-scrim", ".modal", ".modal-head", ".modal-actions", ".mobile-scrim", ".toast-region", ".toast", ".toast-dot"],
+      "tokens": ["--scrim", "--surface", "--border", "--radius-lg", "--radius-md", "--radius-sheet", "--shadow", "--success", "--motion-base", "--ease-standard"]
+    },
+    {
+      "id": "icons",
+      "title": "Iconografía",
+      "selectors": ["svg[stroke=currentColor]"],
+      "tokens": ["--meta", "--fg-2"],
+      "notes": "SVG de trazo 1.75, extremos redondeados, sin rellenos."
+    }
+  ]
+}

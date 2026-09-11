@@ -1,0 +1,29 @@
+{
+  "schemaVersion": "od-design-system-project/v1",
+  "id": "kazabi-signal",
+  "name": "Kazabi Signal",
+  "category": "Productivity & SaaS",
+  "status": "aprobado-sin-aplicar",
+  "approvedAt": "2026-09-11",
+  "description": "Dirección Signal para Kazabi, CRM inmobiliario en Ecuador. Calma editorial de estilo Apple con marca navy: lienzo gris frío, paneles blancos con líneas finas, un solo azul de acción, botones en cápsula y tema oscuro sobre navy. Contrastes medidos.",
+  "source": {
+    "type": "project",
+    "origin": "Derivado de signal/index.html del proyecto OpenDesign 0144ebf5 y corregido en kazabi-design/signal"
+  },
+  "files": {
+    "design": "DESIGN.md",
+    "tokens": "tokens.css"
+  },
+  "usage": "USAGE.md",
+  "componentsManifest": "components.manifest.json",
+  "importMode": "normalized",
+  "craft": {
+    "applies": ["color", "accessibility-baseline"],
+    "suggested": [],
+    "exemptions": []
+  },
+  "reference": {
+    "application": "referencias/app.html",
+    "landing": "referencias/landing.html"
+  }
+}

@@ -1,0 +1,263 @@
+/* ─────────────────────────────────────────────────────────────────────────
+ * kazabi-design/signal/tokens.css
+ *
+ * Kazabi Signal — dirección visual APROBADA por Matías el 2026-09-11.
+ * 🔴 SIN APLICAR: la app y el sitio siguen leyendo ../tokens.css hasta que
+ *    se ejecute la migración (ver signal/README.md).
+ *
+ * Identidad en tres frases:
+ *   1. Navy (#0b2249) es la MARCA: logotipo, capítulos institucionales y
+ *      lienzo del tema oscuro. Nunca es un botón.
+ *   2. Azul (#0071e3) es la ACCIÓN: botón primario, foco y selección.
+ *      Nunca es un fondo decorativo.
+ *   3. La profundidad sale de líneas y cambios de superficie. La sombra
+ *      solo existe en lo que flota (modal, toast, sheet).
+ *
+ * Nombres: los del contrato de Kazabi (--bg, --surface, --fg, --sp-*...).
+ * Los nombres de Open Design (--canvas, --panel, --ink, --space-*...) existen
+ * solo como ALIAS al final, sin valores propios.
+ *
+ * Cambios respecto al paquete exportado de Open Design (todos medidos):
+ *   --accent-hover   #0077ed → #0066cc   blanco encima: 4.32 → 5.57
+ *   --accent-active  #0066cc → #005bb8   6.59
+ *   --cyan           #147d92 → #0f6e80   chip Contactado: 4.29 → 5.27
+ *   --warn           #9a6700 → #8f6000   chip Seguimiento: 4.48 → 5.04
+ *   --border-control  nuevo  #858f9e     borde de campo ≥3:1 (antes 1.48)
+ *                     oscuro #6380ad     ≥3.53 (antes 1.99)
+ *   --focus-ring     halo al 35% → anillo sólido 2px + 2px de accent (4.70 / 3.34)
+ *   --radius-xs 6 y --radius-icon 10 entran a la tabla (la referencia ya los usaba)
+ *   El oscuro se aplica con data-theme, .dark, .theme-dark y prefers-color-scheme.
+ * ─────────────────────────────────────────────────────────────────────── */
+
+:root {
+  /* ─── Superficies ─────────────────────────────────────────────── */
+  --bg:             #f4f6f8;   /* lienzo de página (gris frío) */
+  --surface:        #ffffff;   /* paneles, tarjetas, mesa */
+  --surface-subtle: #f8f9fb;   /* fila seleccionada, dossier, búsqueda */
+
+  /* ─── Texto ───────────────────────────────────────────────────── */
+  --fg:    #10213d;   /* titulares y texto primario — 14.83:1 sobre --bg */
+  --fg-2:  #35435a;   /* texto de apoyo — 9.99:1 sobre --surface */
+  --muted: #6e6e73;   /* descripciones y TODO texto secundario — 4.68:1 sobre --bg */
+  --meta:  #86868b;   /* SOLO iconos y marcas no textuales — 3.62:1, no apto para texto */
+
+  /* ─── Líneas ──────────────────────────────────────────────────── */
+  --border:         #e3e7ed;   /* separador principal (decorativo) */
+  --border-strong:  #cfd5df;   /* borde de botón secundario, guía de línea de tiempo */
+  --border-control: #858f9e;   /* borde de input/select — 3.02 sobre --bg, 3.11 sobre --surface-subtle */
+
+  /* ─── Acción ──────────────────────────────────────────────────── */
+  --accent:        #0071e3;   /* fondo de botón primario — blanco encima 4.70:1 */
+  --accent-on:     #ffffff;
+  --accent-hover:  #0066cc;   /* 5.57:1 */
+  --accent-active: #005bb8;   /* 6.59:1 */
+  --accent-soft:   #eaf3ff;   /* fondo de icono, chip Nuevo, avatar */
+  --link:          #0066cc;   /* azul de TEXTO — 5.57:1 sobre blanco */
+
+  /* ─── Marca ───────────────────────────────────────────────────── */
+  --brand:             #0b2249;   /* navy — blanco encima 15.68:1 */
+  --brand-deep:        #071a39;
+  --brand-mid:         #133c6f;
+  --brand-steel:       #2c5c93;
+  --brand-steel-light: #5985bd;   /* solo gráfico */
+  --brand-on:          #ffffff;
+
+  /* ─── Estados de relación (texto sobre su -soft, siempre con punto + palabra) ── */
+  --success:      #157f3d;  --success-soft: #e9f7ef;   /* Visita agendada — 4.60 */
+  --cyan:         #0f6e80;  --cyan-soft:    #e6f5f8;   /* Contactado — 5.27 */
+  --warn:         #8f6000;  --warn-soft:    #fff5dc;   /* Seguimiento — 5.04 */
+  --orange:       #a84b17;  --orange-soft:  #fff0e7;   /* Negociación — 5.12 */
+  --danger:       #c9272c;  --danger-soft:  #ffedef;   /* No responde — 4.88 */
+  /* Nuevo = --link sobre --accent-soft — 4.97 */
+
+  /* ─── Tipografía ──────────────────────────────────────────────── */
+  /* 🟡 PENDIENTE: fuente definitiva. SF Pro solo existe en Apple (su licencia
+   * no permite servirla como webfont); fuera de Apple cae a lo que siga. */
+  --font-display: "SF Pro Display", -apple-system, BlinkMacSystemFont, "Inter", "Helvetica Neue", Arial, sans-serif;
+  --font-body:    "SF Pro Text", -apple-system, BlinkMacSystemFont, "Inter", "Helvetica Neue", Arial, sans-serif;
+  --font-mono:    "SF Mono", ui-monospace, "JetBrains Mono", Menlo, Consolas, monospace;
+
+  /* Escala — 10 pasos. El cuerpo por defecto es 17px (decisión 2026-09-11). */
+  --text-2xs:  11px;   /* eyebrow, cabecera de lista, chip de estado */
+  --text-xs:   12px;   /* descripción de fila, label de campo */
+  --text-sm:   13px;   /* próxima acción, texto de tabla */
+  --text-ui:   14px;   /* botón, nombre en lista, nav, input */
+  --text-base: 17px;   /* cuerpo de lectura */
+  --text-lg:   20px;   /* panel, dossier, lead en móvil */
+  --text-xl:   24px;   /* modal, capítulo, contador de atención */
+  --text-2xl:  32px;   /* titular de página (mínimo) */
+  --text-3xl:  48px;   /* titular de página y sección (máximo) */
+  --text-4xl:  80px;   /* hero de marketing */
+
+  --leading-display: 1.02;
+  --leading-tight:   1.06;
+  --leading-snug:    1.35;
+  --leading-body:    1.47;
+
+  --tracking-display: -0.045em;
+  --tracking-title:   -0.042em;
+  --tracking-panel:   -0.025em;
+  --tracking-ui:      -0.012em;
+  --tracking-body:    -0.018em;
+  --tracking-label:    0.055em;   /* uppercase de 11–12px */
+
+  --weight-regular:  400;
+  --weight-medium:   520;
+  --weight-semibold: 600;
+  --weight-title:    620;
+  --weight-strong:   650;
+
+  /* ─── Espaciado (base 4) — escala única --sp-* ────────────────── */
+  --sp-0\.5:  2px;
+  --sp-1:     4px;
+  --sp-1\.5:  6px;
+  --sp-2:     8px;
+  --sp-3:    12px;
+  --sp-4:    16px;
+  --sp-5:    20px;
+  --sp-6:    24px;
+  --sp-8:    32px;
+  --sp-10:   40px;
+  --sp-12:   48px;
+  --sp-16:   64px;
+
+  --section-y-desktop: 100px;
+  --section-y-tablet:   64px;
+  --section-y-phone:    48px;
+
+  /* ─── Radios — no hay otros ───────────────────────────────────── */
+  --radius-xs:     6px;   /* kbd, marca de 24px */
+  --radius-sm:     8px;   /* nav item */
+  --radius-icon:  10px;   /* cuadrado de icono de 32–34px */
+  --radius-md:    12px;   /* campos, búsqueda, select, toast, paso siguiente */
+  --radius-lg:    18px;   /* tarjeta, mesa, modal */
+  --radius-sheet: 22px;   /* bottom sheet móvil */
+  --radius-pill: 980px;   /* botones y chips */
+
+  /* ─── Elevación ───────────────────────────────────────────────── */
+  --elev-flat:   none;
+  --elev-raised: 0 12px 32px rgba(11, 34, 73, 0.08);
+  --shadow:      0 18px 54px rgba(11, 34, 73, 0.12);   /* solo lo que flota */
+  --scrim:       rgba(7, 26, 57, 0.42);
+
+  /* ─── Movimiento ──────────────────────────────────────────────── */
+  --motion-fast:   150ms;
+  --motion-base:   220ms;
+  --ease-standard: cubic-bezier(0.28, 0, 0.22, 1);
+
+  /* ─── Layout ──────────────────────────────────────────────────── */
+  --container-max:            1440px;
+  --container-text:           1200px;
+  --container-gutter-desktop:   32px;
+  --container-gutter-tablet:    20px;
+  --container-gutter-phone:     16px;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+ *  TEMA OSCURO — lienzo navy (decisión 2026-09-11, reemplaza al grafito)
+ *
+ *  Van separados: un @media no puede ir dentro de una lista de selectores
+ *  (el bug que dejó el oscuro sin aplicar hasta 0fe3c30).
+ * ═══════════════════════════════════════════════════════════════════ */
+[data-theme="dark"],
+.dark,
+.theme-dark {
+  --bg:             #07172f;
+  --surface:        #0b2249;
+  --surface-subtle: #102a54;
+
+  --fg:    #f5f8ff;   /* 16.85:1 sobre --bg */
+  --fg-2:  #d2dbeb;
+  --muted: #a9b6cc;   /* 7.65:1 sobre --surface, 6.92 sobre --surface-subtle */
+  --meta:  #8c9bb4;   /* 5.57:1 — en oscuro sí sirve para texto pequeño */
+
+  --border:         #243c65;
+  --border-strong:  #36527f;
+  --border-control: #6380ad;   /* 3.53 sobre --surface-subtle, 4.45 sobre --bg */
+
+  --accent-soft: #102f60;
+  --link:        #69b1ff;   /* 6.97:1 sobre --surface, 6.30 sobre --surface-subtle */
+  --brand-on:    #f5f8ff;
+
+  --success: #67c58a;  --success-soft: #143c33;   /* 5.76 */
+  --cyan:    #67c7d4;  --cyan-soft:    #143b47;   /* 6.13 */
+  --warn:    #e4b95f;  --warn-soft:    #42351d;   /* 6.48 */
+  --orange:  #f2a36e;  --orange-soft:  #4b3024;   /* 5.86 */
+  --danger:  #f0808e;  --danger-soft:  #472735;   /* 5.08 */
+
+  --elev-raised: 0 12px 32px rgba(0, 0, 0, 0.28);
+  --shadow:      0 24px 64px rgba(0, 0, 0, 0.36);
+  --scrim:       rgba(0, 0, 0, 0.64);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]):not(.light) {
+    --bg:             #07172f;
+    --surface:        #0b2249;
+    --surface-subtle: #102a54;
+
+    --fg:    #f5f8ff;
+    --fg-2:  #d2dbeb;
+    --muted: #a9b6cc;
+    --meta:  #8c9bb4;
+
+    --border:         #243c65;
+    --border-strong:  #36527f;
+    --border-control: #6380ad;
+
+    --accent-soft: #102f60;
+    --link:        #69b1ff;
+    --brand-on:    #f5f8ff;
+
+    --success: #67c58a;  --success-soft: #143c33;
+    --cyan:    #67c7d4;  --cyan-soft:    #143b47;
+    --warn:    #e4b95f;  --warn-soft:    #42351d;
+    --orange:  #f2a36e;  --orange-soft:  #4b3024;
+    --danger:  #f0808e;  --danger-soft:  #472735;
+
+    --elev-raised: 0 12px 32px rgba(0, 0, 0, 0.28);
+    --shadow:      0 24px 64px rgba(0, 0, 0, 0.36);
+    --scrim:       rgba(0, 0, 0, 0.64);
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+ *  TOKENS DERIVADOS Y ALIAS — sin valores propios
+ *
+ *  🔴 Se declaran en la misma lista de selectores que el tema oscuro, no
+ *  solo en :root. Una variable que apunta a otra se resuelve DONDE se
+ *  declara: si solo viviera en :root y el tema oscuro se pusiera con una
+ *  clase en <body>, --canvas quedaría con el lienzo claro para siempre.
+ *
+ *  Los alias --canvas/--panel/--ink/--space-* existen para que las
+ *  referencias y los componentes de Open Design sigan pintando. Código
+ *  nuevo de Kazabi usa los nombres de arriba.
+ * ═══════════════════════════════════════════════════════════════════ */
+:root,
+[data-theme],
+.dark,
+.theme-dark {
+  --elev-ring:  0 0 0 1px var(--border);
+  --focus-ring: 0 0 0 2px var(--surface), 0 0 0 4px var(--accent);
+
+  --canvas:       var(--bg);
+  --panel:        var(--surface);
+  --panel-subtle: var(--surface-subtle);
+  --ink:          var(--fg);
+  --ink-2:        var(--fg-2);
+  --line:         var(--border);
+  --line-strong:  var(--border-strong);
+  --navy:         var(--brand);
+  --navy-2:       var(--brand-deep);
+  --accent-text:  var(--link);
+  --blue-soft:    var(--accent-soft);
+  --space-1:  var(--sp-1);
+  --space-2:  var(--sp-2);
+  --space-3:  var(--sp-3);
+  --space-4:  var(--sp-4);
+  --space-5:  var(--sp-5);
+  --space-6:  var(--sp-6);
+  --space-8:  var(--sp-8);
+  --space-12: var(--sp-12);
+  --space-16: var(--sp-16);
+}

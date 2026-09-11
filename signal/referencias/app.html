@@ -1,0 +1,421 @@
+<!doctype html>
+<!-- kazabi-design/signal/referencias/app.html
+     Generada desde Open Design signal/index.html con tokens.css corregido (2026-09-11).
+     No editar a mano: se regenera con el script de parche de la sesión. -->
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f5f7">
+  <title>Kazabi Signal — Contactos (referencia corregida)</title>
+  <style>
+    /* OD-LAYOUT-PRIMITIVES v1 — structure only */
+    @layer od-layout {
+      :where(.od-stack,.od-row,.od-row-top,.od-cluster,.od-grid,.od-field,.od-stat,.od-cell,.od-tile)>:where(*){min-width:0}
+      .od-stack{display:flex;flex-direction:column;gap:var(--od-gap,8px)}.od-row{display:flex;align-items:center;gap:var(--od-gap,8px)}.od-row-top{display:flex;align-items:flex-start;gap:var(--od-gap,8px)}.od-cluster{display:flex;flex-wrap:wrap;align-items:center;gap:var(--od-gap,8px)}.od-fill{flex:1 1 0;min-width:0}.od-fixed{flex:none}.od-grid{display:grid;gap:var(--od-gap,12px);grid-template-columns:repeat(var(--od-cols,3),minmax(0,1fr))}
+      .od-stat,.od-field,.od-cell{display:grid;gap:var(--od-gap,2px)}:where(.od-stat,.od-field,.od-cell)>:where(*){display:block}.od-tile{display:grid;grid-template-rows:auto 1fr}:where(.od-tile)>:where(*){display:block}
+      .od-media{display:block;width:100%;height:auto;aspect-ratio:var(--od-ratio,auto)}.od-media-cover{object-fit:cover}.od-truncate{display:block;max-width:100%;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}.od-clamp-2,.od-clamp-3{display:-webkit-box;-webkit-box-orient:vertical;overflow:hidden;overflow-wrap:anywhere}.od-clamp-2{-webkit-line-clamp:2}.od-clamp-3{-webkit-line-clamp:3}.od-lines-2{min-height:calc(2 * 1.4em)}.od-nowrap{white-space:nowrap}.od-keep{word-break:keep-all;overflow-wrap:anywhere}
+      .od-screen{display:grid;grid-template-rows:auto minmax(0,1fr) auto;height:100%}.od-scroll{overflow-y:auto;overscroll-behavior:contain;min-height:0}.od-rail{display:flex;gap:var(--od-gap,8px);overflow-x:auto;scroll-snap-type:x proximity;scrollbar-width:none;padding-inline:var(--od-rail-pad,16px);scroll-padding-inline:var(--od-rail-pad,16px)}.od-rail::-webkit-scrollbar{display:none}:where(.od-rail)>:where(*){flex:none;scroll-snap-align:start}:where(.od-rail)>:where(:last-child){margin-inline-end:var(--od-rail-pad,16px)}.od-spacer{flex:none;visibility:hidden;pointer-events:none}.od-touch{min-width:44px;min-height:44px}
+    }
+    /* /OD-LAYOUT-PRIMITIVES v1 */
+/* ─────────────────────────────────────────────────────────────────────────
+ * kazabi-design/signal/tokens.css
+ *
+ * Kazabi Signal — dirección visual APROBADA por Matías el 2026-09-11.
+ * 🔴 SIN APLICAR: la app y el sitio siguen leyendo ../tokens.css hasta que
+ *    se ejecute la migración (ver signal/README.md).
+ *
+ * Identidad en tres frases:
+ *   1. Navy (#0b2249) es la MARCA: logotipo, capítulos institucionales y
+ *      lienzo del tema oscuro. Nunca es un botón.
+ *   2. Azul (#0071e3) es la ACCIÓN: botón primario, foco y selección.
+ *      Nunca es un fondo decorativo.
+ *   3. La profundidad sale de líneas y cambios de superficie. La sombra
+ *      solo existe en lo que flota (modal, toast, sheet).
+ *
+ * Nombres: los del contrato de Kazabi (--bg, --surface, --fg, --sp-*...).
+ * Los nombres de Open Design (--canvas, --panel, --ink, --space-*...) existen
+ * solo como ALIAS al final, sin valores propios.
+ *
+ * Cambios respecto al paquete exportado de Open Design (todos medidos):
+ *   --accent-hover   #0077ed → #0066cc   blanco encima: 4.32 → 5.57
+ *   --accent-active  #0066cc → #005bb8   6.59
+ *   --cyan           #147d92 → #0f6e80   chip Contactado: 4.29 → 5.27
+ *   --warn           #9a6700 → #8f6000   chip Seguimiento: 4.48 → 5.04
+ *   --border-control  nuevo  #858f9e     borde de campo ≥3:1 (antes 1.48)
+ *                     oscuro #6380ad     ≥3.53 (antes 1.99)
+ *   --focus-ring     halo al 35% → anillo sólido 2px + 2px de accent (4.70 / 3.34)
+ *   --radius-xs 6 y --radius-icon 10 entran a la tabla (la referencia ya los usaba)
+ *   El oscuro se aplica con data-theme, .dark, .theme-dark y prefers-color-scheme.
+ * ─────────────────────────────────────────────────────────────────────── */
+
+:root {
+  /* ─── Superficies ─────────────────────────────────────────────── */
+  --bg:             #f4f6f8;   /* lienzo de página (gris frío) */
+  --surface:        #ffffff;   /* paneles, tarjetas, mesa */
+  --surface-subtle: #f8f9fb;   /* fila seleccionada, dossier, búsqueda */
+
+  /* ─── Texto ───────────────────────────────────────────────────── */
+  --fg:    #10213d;   /* titulares y texto primario — 14.83:1 sobre --bg */
+  --fg-2:  #35435a;   /* texto de apoyo — 9.99:1 sobre --surface */
+  --muted: #6e6e73;   /* descripciones y TODO texto secundario — 4.68:1 sobre --bg */
+  --meta:  #86868b;   /* SOLO iconos y marcas no textuales — 3.62:1, no apto para texto */
+
+  /* ─── Líneas ──────────────────────────────────────────────────── */
+  --border:         #e3e7ed;   /* separador principal (decorativo) */
+  --border-strong:  #cfd5df;   /* borde de botón secundario, guía de línea de tiempo */
+  --border-control: #858f9e;   /* borde de input/select — 3.02 sobre --bg, 3.11 sobre --surface-subtle */
+
+  /* ─── Acción ──────────────────────────────────────────────────── */
+  --accent:        #0071e3;   /* fondo de botón primario — blanco encima 4.70:1 */
+  --accent-on:     #ffffff;
+  --accent-hover:  #0066cc;   /* 5.57:1 */
+  --accent-active: #005bb8;   /* 6.59:1 */
+  --accent-soft:   #eaf3ff;   /* fondo de icono, chip Nuevo, avatar */
+  --link:          #0066cc;   /* azul de TEXTO — 5.57:1 sobre blanco */
+
+  /* ─── Marca ───────────────────────────────────────────────────── */
+  --brand:             #0b2249;   /* navy — blanco encima 15.68:1 */
+  --brand-deep:        #071a39;
+  --brand-mid:         #133c6f;
+  --brand-steel:       #2c5c93;
+  --brand-steel-light: #5985bd;   /* solo gráfico */
+  --brand-on:          #ffffff;
+
+  /* ─── Estados de relación (texto sobre su -soft, siempre con punto + palabra) ── */
+  --success:      #157f3d;  --success-soft: #e9f7ef;   /* Visita agendada — 4.60 */
+  --cyan:         #0f6e80;  --cyan-soft:    #e6f5f8;   /* Contactado — 5.27 */
+  --warn:         #8f6000;  --warn-soft:    #fff5dc;   /* Seguimiento — 5.04 */
+  --orange:       #a84b17;  --orange-soft:  #fff0e7;   /* Negociación — 5.12 */
+  --danger:       #c9272c;  --danger-soft:  #ffedef;   /* No responde — 4.88 */
+  /* Nuevo = --link sobre --accent-soft — 4.97 */
+
+  /* ─── Tipografía ──────────────────────────────────────────────── */
+  /* 🟡 PENDIENTE: fuente definitiva. SF Pro solo existe en Apple (su licencia
+   * no permite servirla como webfont); fuera de Apple cae a lo que siga. */
+  --font-display: "SF Pro Display", -apple-system, BlinkMacSystemFont, "Inter", "Helvetica Neue", Arial, sans-serif;
+  --font-body:    "SF Pro Text", -apple-system, BlinkMacSystemFont, "Inter", "Helvetica Neue", Arial, sans-serif;
+  --font-mono:    "SF Mono", ui-monospace, "JetBrains Mono", Menlo, Consolas, monospace;
+
+  /* Escala — 10 pasos. El cuerpo por defecto es 17px (decisión 2026-09-11). */
+  --text-2xs:  11px;   /* eyebrow, cabecera de lista, chip de estado */
+  --text-xs:   12px;   /* descripción de fila, label de campo */
+  --text-sm:   13px;   /* próxima acción, texto de tabla */
+  --text-ui:   14px;   /* botón, nombre en lista, nav, input */
+  --text-base: 17px;   /* cuerpo de lectura */
+  --text-lg:   20px;   /* panel, dossier, lead en móvil */
+  --text-xl:   24px;   /* modal, capítulo, contador de atención */
+  --text-2xl:  32px;   /* titular de página (mínimo) */
+  --text-3xl:  48px;   /* titular de página y sección (máximo) */
+  --text-4xl:  80px;   /* hero de marketing */
+
+  --leading-display: 1.02;
+  --leading-tight:   1.06;
+  --leading-snug:    1.35;
+  --leading-body:    1.47;
+
+  --tracking-display: -0.045em;
+  --tracking-title:   -0.042em;
+  --tracking-panel:   -0.025em;
+  --tracking-ui:      -0.012em;
+  --tracking-body:    -0.018em;
+  --tracking-label:    0.055em;   /* uppercase de 11–12px */
+
+  --weight-regular:  400;
+  --weight-medium:   520;
+  --weight-semibold: 600;
+  --weight-title:    620;
+  --weight-strong:   650;
+
+  /* ─── Espaciado (base 4) — escala única --sp-* ────────────────── */
+  --sp-0\.5:  2px;
+  --sp-1:     4px;
+  --sp-1\.5:  6px;
+  --sp-2:     8px;
+  --sp-3:    12px;
+  --sp-4:    16px;
+  --sp-5:    20px;
+  --sp-6:    24px;
+  --sp-8:    32px;
+  --sp-10:   40px;
+  --sp-12:   48px;
+  --sp-16:   64px;
+
+  --section-y-desktop: 100px;
+  --section-y-tablet:   64px;
+  --section-y-phone:    48px;
+
+  /* ─── Radios — no hay otros ───────────────────────────────────── */
+  --radius-xs:     6px;   /* kbd, marca de 24px */
+  --radius-sm:     8px;   /* nav item */
+  --radius-icon:  10px;   /* cuadrado de icono de 32–34px */
+  --radius-md:    12px;   /* campos, búsqueda, select, toast, paso siguiente */
+  --radius-lg:    18px;   /* tarjeta, mesa, modal */
+  --radius-sheet: 22px;   /* bottom sheet móvil */
+  --radius-pill: 980px;   /* botones y chips */
+
+  /* ─── Elevación ───────────────────────────────────────────────── */
+  --elev-flat:   none;
+  --elev-raised: 0 12px 32px rgba(11, 34, 73, 0.08);
+  --shadow:      0 18px 54px rgba(11, 34, 73, 0.12);   /* solo lo que flota */
+  --scrim:       rgba(7, 26, 57, 0.42);
+
+  /* ─── Movimiento ──────────────────────────────────────────────── */
+  --motion-fast:   150ms;
+  --motion-base:   220ms;
+  --ease-standard: cubic-bezier(0.28, 0, 0.22, 1);
+
+  /* ─── Layout ──────────────────────────────────────────────────── */
+  --container-max:            1440px;
+  --container-text:           1200px;
+  --container-gutter-desktop:   32px;
+  --container-gutter-tablet:    20px;
+  --container-gutter-phone:     16px;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+ *  TEMA OSCURO — lienzo navy (decisión 2026-09-11, reemplaza al grafito)
+ *
+ *  Van separados: un @media no puede ir dentro de una lista de selectores
+ *  (el bug que dejó el oscuro sin aplicar hasta 0fe3c30).
+ * ═══════════════════════════════════════════════════════════════════ */
+[data-theme="dark"],
+.dark,
+.theme-dark {
+  --bg:             #07172f;
+  --surface:        #0b2249;
+  --surface-subtle: #102a54;
+
+  --fg:    #f5f8ff;   /* 16.85:1 sobre --bg */
+  --fg-2:  #d2dbeb;
+  --muted: #a9b6cc;   /* 7.65:1 sobre --surface, 6.92 sobre --surface-subtle */
+  --meta:  #8c9bb4;   /* 5.57:1 — en oscuro sí sirve para texto pequeño */
+
+  --border:         #243c65;
+  --border-strong:  #36527f;
+  --border-control: #6380ad;   /* 3.53 sobre --surface-subtle, 4.45 sobre --bg */
+
+  --accent-soft: #102f60;
+  --link:        #69b1ff;   /* 6.97:1 sobre --surface, 6.30 sobre --surface-subtle */
+  --brand-on:    #f5f8ff;
+
+  --success: #67c58a;  --success-soft: #143c33;   /* 5.76 */
+  --cyan:    #67c7d4;  --cyan-soft:    #143b47;   /* 6.13 */
+  --warn:    #e4b95f;  --warn-soft:    #42351d;   /* 6.48 */
+  --orange:  #f2a36e;  --orange-soft:  #4b3024;   /* 5.86 */
+  --danger:  #f0808e;  --danger-soft:  #472735;   /* 5.08 */
+
+  --elev-raised: 0 12px 32px rgba(0, 0, 0, 0.28);
+  --shadow:      0 24px 64px rgba(0, 0, 0, 0.36);
+  --scrim:       rgba(0, 0, 0, 0.64);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]):not(.light) {
+    --bg:             #07172f;
+    --surface:        #0b2249;
+    --surface-subtle: #102a54;
+
+    --fg:    #f5f8ff;
+    --fg-2:  #d2dbeb;
+    --muted: #a9b6cc;
+    --meta:  #8c9bb4;
+
+    --border:         #243c65;
+    --border-strong:  #36527f;
+    --border-control: #6380ad;
+
+    --accent-soft: #102f60;
+    --link:        #69b1ff;
+    --brand-on:    #f5f8ff;
+
+    --success: #67c58a;  --success-soft: #143c33;
+    --cyan:    #67c7d4;  --cyan-soft:    #143b47;
+    --warn:    #e4b95f;  --warn-soft:    #42351d;
+    --orange:  #f2a36e;  --orange-soft:  #4b3024;
+    --danger:  #f0808e;  --danger-soft:  #472735;
+
+    --elev-raised: 0 12px 32px rgba(0, 0, 0, 0.28);
+    --shadow:      0 24px 64px rgba(0, 0, 0, 0.36);
+    --scrim:       rgba(0, 0, 0, 0.64);
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+ *  TOKENS DERIVADOS Y ALIAS — sin valores propios
+ *
+ *  🔴 Se declaran en la misma lista de selectores que el tema oscuro, no
+ *  solo en :root. Una variable que apunta a otra se resuelve DONDE se
+ *  declara: si solo viviera en :root y el tema oscuro se pusiera con una
+ *  clase en <body>, --canvas quedaría con el lienzo claro para siempre.
+ *
+ *  Los alias --canvas/--panel/--ink/--space-* existen para que las
+ *  referencias y los componentes de Open Design sigan pintando. Código
+ *  nuevo de Kazabi usa los nombres de arriba.
+ * ═══════════════════════════════════════════════════════════════════ */
+:root,
+[data-theme],
+.dark,
+.theme-dark {
+  --elev-ring:  0 0 0 1px var(--border);
+  --focus-ring: 0 0 0 2px var(--surface), 0 0 0 4px var(--accent);
+
+  --canvas:       var(--bg);
+  --panel:        var(--surface);
+  --panel-subtle: var(--surface-subtle);
+  --ink:          var(--fg);
+  --ink-2:        var(--fg-2);
+  --line:         var(--border);
+  --line-strong:  var(--border-strong);
+  --navy:         var(--brand);
+  --navy-2:       var(--brand-deep);
+  --accent-text:  var(--link);
+  --blue-soft:    var(--accent-soft);
+  --space-1:  var(--sp-1);
+  --space-2:  var(--sp-2);
+  --space-3:  var(--sp-3);
+  --space-4:  var(--sp-4);
+  --space-5:  var(--sp-5);
+  --space-6:  var(--sp-6);
+  --space-8:  var(--sp-8);
+  --space-12: var(--sp-12);
+  --space-16: var(--sp-16);
+}
+
+    *,*::before,*::after{box-sizing:border-box}html{color-scheme:light}body.theme-dark{color-scheme:dark}html,body{margin:0;min-height:100%}body{background:var(--canvas);color:var(--ink);font-family:var(--font-body);font-size:var(--text-base);line-height:var(--leading-body);letter-spacing:-.018em;-webkit-font-smoothing:antialiased}button,input,select{font:inherit}button{cursor:pointer}button:disabled{cursor:not-allowed;opacity:.58}svg{display:block}a{color:inherit}.visually-hidden{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}[hidden]{display:none!important}
+    :focus-visible{outline:none;box-shadow:var(--focus-ring)}
+    .app-header{position:sticky;top:0;z-index:50;height:56px;border-bottom:1px solid color-mix(in srgb,var(--line) 86%,transparent);background:color-mix(in srgb,var(--canvas) 92%,transparent);-webkit-backdrop-filter:saturate(180%) blur(18px);backdrop-filter:saturate(180%) blur(18px)}
+    .header-inner{height:100%;max-width:var(--container-max);margin:auto;padding:0 var(--container-gutter-desktop);display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:var(--space-6)}
+    .brand{display:inline-flex;align-items:center;gap:var(--sp-3);width:max-content;color:var(--navy);font-family:var(--font-display);font-size: var(--text-base);font-weight:650;letter-spacing:-.03em}.theme-dark .brand{color:#f5f8ff}.brand-mark{width:24px;height:24px;display:grid;place-items:center;border-radius: var(--radius-xs);background:var(--navy);color:#fff}.theme-dark .brand-mark{background:#f5f8ff;color:var(--navy)}.brand-mark svg{width:14px;height:14px}
+    .primary-nav{display:flex;align-items:center;gap:var(--sp-1)}.nav-item{min-height:36px;padding:var(--sp-2) var(--sp-3);border:0;border-radius:var(--radius-sm);background:transparent;color:var(--muted);font-size:var(--text-ui);font-weight:520}.nav-item[aria-current=page]{background:var(--panel);color:var(--ink);box-shadow:0 0 0 1px var(--line)}
+    .header-actions{justify-self:end;display:flex;align-items:center;gap:var(--sp-2)}.icon-button{width:40px;height:40px;display:grid;place-items:center;padding:0;border:1px solid transparent;border-radius:50%;background:transparent;color:var(--ink-2);transition:background var(--motion-fast),border-color var(--motion-fast),transform var(--motion-fast)}.icon-button svg{width:19px;height:19px}.avatar-me{width:34px;height:34px;display:grid;place-items:center;border-radius:50%;background:var(--navy);color:#fff;font-size: var(--text-2xs);font-weight:700}.theme-dark .avatar-me{background:#f5f8ff;color:var(--navy)}
+    .page{max-width:var(--container-max);margin:auto;padding:var(--space-8) var(--container-gutter-desktop) var(--space-12)}
+    .page-titlebar{display:flex;align-items:flex-end;justify-content:space-between;gap:var(--space-8);margin-bottom:var(--space-8)}.eyebrow{margin:0 0 var(--sp-1.5);color:var(--link);font-size:var(--text-xs);font-weight:650;letter-spacing:.06em;text-transform:uppercase}.page-titlebar h1{margin:0;font-family:var(--font-display);font-size:clamp(32px,3.3vw,48px);font-weight:610;line-height:1.03;letter-spacing:-.042em}.page-titlebar p{max-width:45ch;margin:var(--sp-3) 0 0;color:var(--muted);font-size: var(--text-base)}.primary-button,.secondary-button{min-height:44px;display:inline-flex;align-items:center;justify-content:center;gap:var(--sp-2);padding:var(--sp-3) var(--sp-4);border-radius:var(--radius-pill);font-size:var(--text-ui);font-weight:600;transition:background var(--motion-fast),border-color var(--motion-fast),transform var(--motion-fast),color var(--motion-fast)}.primary-button{border:1px solid var(--accent);background:var(--accent);color:var(--accent-on)}.secondary-button{border:1px solid var(--line-strong);background:var(--panel);color:var(--ink)}.primary-button svg,.secondary-button svg{width:17px;height:17px}.primary-button:active,.secondary-button:active,.icon-button:active{transform:scale(.97)}
+    .attention{margin-bottom:var(--space-8)}.section-label{display:flex;align-items:center;justify-content:space-between;gap:var(--space-4);margin-bottom:var(--sp-3)}.section-label h2{margin:0;font-family:var(--font-display);font-size: var(--text-ui);font-weight:650;letter-spacing:-.012em}.section-label span{color: var(--muted);font-size: var(--text-xs)}.attention-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border:1px solid var(--line);border-radius:var(--radius-lg);background:var(--panel);overflow:hidden}.attention-card{position:relative;min-height:136px;padding:var(--sp-5);border:0;border-right:1px solid var(--line);background:transparent;color:var(--ink);text-align:left;transition:background var(--motion-fast)}.attention-card:last-child{border-right:0}.attention-card[aria-pressed=true]{background:var(--panel-subtle)}.attention-top{display:flex;align-items:flex-start;justify-content:space-between;gap:var(--sp-3)}.attention-icon{width:34px;height:34px;display:grid;place-items:center;border-radius: var(--radius-icon)}.attention-icon svg{width:17px;height:17px}.attention-icon.blue{color:var(--link);background:var(--blue-soft)}.attention-icon.green{color:var(--success);background:var(--success-soft)}.attention-icon.amber{color:var(--warn);background:var(--warn-soft)}.attention-icon.red{color:var(--danger);background:var(--danger-soft)}.attention-count{font-family:var(--font-display);font-size: var(--text-xl);font-weight:620;line-height:1}.attention-card strong{display:block;margin-top:var(--sp-4);font-size: var(--text-ui);font-weight:620}.attention-card small{display:block;margin-top:var(--sp-1);color:var(--muted);font-size: var(--text-xs);line-height:1.35}.attention-mark{position:absolute;right:18px;bottom:18px;width:20px;height:2px;border-radius:4px;background:currentColor;opacity:0}.attention-card[aria-pressed=true] .attention-mark{opacity:1}
+    .desk{display:grid;grid-template-columns:minmax(0,1fr) 380px;min-height:610px;border:1px solid var(--line);border-radius:var(--radius-lg);background:var(--panel)}.portfolio{min-width:0}.portfolio-head{padding:var(--sp-5) var(--sp-5) var(--sp-4);border-bottom:1px solid var(--line)}.portfolio-heading{display:flex;align-items:center;justify-content:space-between;gap:var(--space-4);margin-bottom:var(--sp-4)}.portfolio-heading h2{margin:0;font-family:var(--font-display);font-size: var(--text-lg);font-weight:620;letter-spacing:-.025em}.portfolio-heading p{margin:var(--sp-0.5) 0 0;color:var(--muted);font-size: var(--text-xs)}.result-count{color: var(--muted);font-size: var(--text-xs);white-space:nowrap}.command{display:grid;grid-template-columns:minmax(220px,1fr) auto;gap:var(--sp-3)}.search-shell{min-height:44px;display:flex;align-items:center;gap:var(--sp-3);padding:0 var(--sp-3);border:1px solid var(--border-control);border-radius:var(--radius-md);background:var(--panel-subtle);color: var(--muted)}.search-shell:focus-within{border-color:var(--accent);box-shadow:var(--focus-ring)}.search-shell svg{width:18px;height:18px;flex:none}.search-shell input{width:100%;border:0;outline:0;background:transparent;color:var(--ink);font-size: var(--text-ui)}.search-shell input::placeholder{color: var(--muted)}kbd{padding:var(--sp-0.5) var(--sp-1.5);border:1px solid var(--line-strong);border-radius: var(--radius-xs);background:var(--panel);color: var(--muted);font: 500 var(--text-2xs) var(--font-mono)}.filter-group{display:flex;gap:var(--sp-2)}.select-shell{position:relative}.select-shell select{height:44px;min-width:120px;padding:0 var(--sp-8) 0 var(--sp-3);border:1px solid var(--border-control);border-radius:var(--radius-md);appearance:none;background:var(--panel);color:var(--ink-2);font-size: var(--text-sm)}.select-shell svg{position:absolute;right:10px;top:14px;width:15px;height:15px;pointer-events:none;color: var(--muted)}
+    .list-head,.contact-row{display:grid;grid-template-columns:minmax(220px,1.15fr) minmax(180px,.9fr) minmax(130px,.65fr) 42px;gap:var(--sp-4);align-items:center}.list-head{min-height:38px;padding:0 var(--sp-5);border-bottom:1px solid var(--line);color: var(--muted);font-size: var(--text-2xs);font-weight:600;text-transform:uppercase;letter-spacing:.045em}.contact-list{display:block}.contact-row{position:relative;width:100%;min-height:78px;padding:var(--sp-3) var(--sp-5);border:0;border-bottom:1px solid var(--line);background:transparent;color:var(--ink);text-align:left;transition:background var(--motion-fast)}.contact-row:last-child{border-bottom:0}.contact-row.is-selected{background:var(--panel-subtle)}.contact-row.is-selected::before{content:"";position:absolute;left:-1px;top:16px;bottom:16px;width:3px;border-radius:0 4px 4px 0;background:var(--accent)}.person{display:flex;align-items:center;gap:var(--sp-3)}.avatar{width:38px;height:38px;flex:none;display:grid;place-items:center;border-radius:50%;background:var(--blue-soft);color:var(--navy);font-size: var(--text-2xs);font-weight:720}.theme-dark .avatar{color:#dce9ff}.data{display:grid;gap:var(--sp-0.5);min-width:0}.data strong,.data span{display:block;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}.data strong{font-size: var(--text-ui);font-weight:620}.data span{color:var(--muted);font-size: var(--text-xs)}.next-action{display:flex;align-items:center;gap:var(--sp-2);min-width:0}.next-dot{width:8px;height:8px;flex:none;border:2px solid currentColor;border-radius:50%}.next-action div{min-width:0}.next-action strong,.next-action span{display:block;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}.next-action strong{font-size: var(--text-sm);font-weight:580}.next-action span{color: var(--muted);font-size: var(--text-2xs)}.status{width:max-content;max-width:100%;display:inline-flex;align-items:center;gap:var(--sp-2);padding:var(--sp-1.5) var(--sp-2);border-radius:var(--radius-pill);font-size: var(--text-2xs);font-weight:620;white-space:nowrap}.status::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}.s-new{color:var(--link);background:var(--blue-soft)}.s-contacted{color:var(--cyan);background:var(--cyan-soft)}.s-visit{color:var(--success);background:var(--success-soft)}.s-follow{color:var(--warn);background:var(--warn-soft)}.s-negotiation{color:var(--orange);background:var(--orange-soft)}.s-silent{color:var(--danger);background:var(--danger-soft)}.row-chevron{justify-self:end;color: var(--muted)}.row-chevron svg{width:18px;height:18px}.empty{padding:64px var(--sp-6);text-align:center}.empty svg{width:28px;height:28px;margin:0 auto var(--sp-3);color:var(--accent)}.empty h3{margin:0;font-size: var(--text-base)}.empty p{margin:var(--sp-1.5) 0 var(--sp-4);color:var(--muted);font-size: var(--text-sm)}
+    .dossier{position:relative;border-left:1px solid var(--line);background:var(--panel-subtle);border-radius:0 var(--radius-lg) var(--radius-lg) 0}.dossier-scroll{position:sticky;top:74px;max-height:calc(100vh - 98px);overflow-y:auto;padding:var(--sp-6)}.dossier-close{display:none;position:absolute;right:18px;top:18px}.contact-profile{display:flex;align-items:center;gap:var(--sp-3);padding-right:44px}.contact-profile .avatar{width:48px;height:48px;font-size: var(--text-sm)}.contact-profile h2{margin:0;font-family:var(--font-display);font-size: var(--text-lg);font-weight:630;letter-spacing:-.025em}.contact-profile p{margin:var(--sp-0.5) 0 0;color:var(--muted);font-size: var(--text-xs)}.dossier-actions{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-2);margin:var(--sp-5) 0 var(--sp-6)}.dossier-section{padding:var(--sp-5) 0;border-top:1px solid var(--line)}.dossier-section h3{margin:0 0 var(--sp-3);color: var(--muted);font-size: var(--text-2xs);font-weight:650;text-transform:uppercase;letter-spacing:.055em}.next-step{display:grid;grid-template-columns:auto 1fr;gap:var(--sp-3);align-items:flex-start;padding:var(--sp-3);border:1px solid var(--line);border-radius:var(--radius-md);background:var(--panel)}.next-step-icon{width:32px;height:32px;display:grid;place-items:center;border-radius: var(--radius-icon);background:var(--blue-soft);color:var(--link)}.next-step-icon svg{width:16px;height:16px}.next-step strong,.next-step span{display:block}.next-step strong{font-size: var(--text-sm)}.next-step span{margin-top:var(--sp-0.5);color:var(--muted);font-size: var(--text-2xs)}.detail-list{margin:0}.detail-list div{display:grid;grid-template-columns:92px 1fr;gap:var(--sp-3);padding:var(--sp-2) 0}.detail-list dt{color: var(--muted);font-size: var(--text-xs)}.detail-list dd{margin:0;color:var(--ink-2);font-size: var(--text-xs);font-weight:520}.timeline{display:grid;gap:0}.timeline-item{position:relative;display:grid;grid-template-columns:16px 1fr;gap:var(--sp-3);padding-bottom:var(--sp-4)}.timeline-item:last-child{padding-bottom:0}.timeline-item::before{content:"";position:absolute;left:5px;top:12px;bottom:0;width:1px;background:var(--line-strong)}.timeline-item:last-child::before{display:none}.timeline-dot{width:11px;height:11px;margin-top:var(--sp-1);border:2px solid var(--panel-subtle);border-radius:50%;background:var(--accent)}.timeline-copy strong,.timeline-copy span{display:block}.timeline-copy strong{font-size: var(--text-xs)}.timeline-copy span{margin-top:var(--sp-0.5);color:var(--muted);font-size: var(--text-2xs);line-height:1.4}
+    .mobile-scrim{display:none}.modal-root{position:fixed;z-index:100;inset:0;display:grid;place-items:center;padding:var(--sp-5)}.modal-scrim{position:absolute;inset:0;border:0;background:var(--scrim);-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px)}.modal{position:relative;width:min(520px,100%);max-height:min(760px,calc(100vh - 40px));overflow-y:auto;padding:var(--sp-6);border:1px solid var(--line);border-radius:var(--radius-lg);background:var(--panel);box-shadow:var(--shadow)}.modal-head{display:flex;justify-content:space-between;gap:var(--sp-4);margin-bottom:var(--sp-5)}.modal h2{margin:0;font-family:var(--font-display);font-size: var(--text-xl);letter-spacing:-.03em}.modal-head p{margin:var(--sp-1) 0 0;color:var(--muted);font-size: var(--text-sm)}.error-summary{margin-bottom:var(--sp-4);padding:var(--sp-3) var(--sp-3);border-radius:var(--radius-sm);background:var(--danger-soft);color:var(--danger);font-size: var(--text-xs)}.modal-form{display:grid;gap:var(--sp-4)}.form-field{display:grid;gap:var(--sp-1.5)}.form-field label{font-size: var(--text-xs);font-weight:620}.form-control{width:100%;height:44px;padding:0 var(--sp-3);border:1px solid var(--border-control);border-radius:var(--radius-md);background:var(--panel);color:var(--ink);outline:0;font-size: var(--text-ui)}.form-control:focus{border-color:var(--accent);box-shadow:var(--focus-ring)}.form-control[aria-invalid=true]{border-color:var(--danger)}.field-error{min-height:15px;color:var(--danger);font-size: var(--text-2xs)}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-3)}.modal-actions{display:flex;justify-content:flex-end;gap:var(--sp-2);margin-top:var(--sp-1)}.spinner{width:14px;height:14px;border:2px solid color-mix(in srgb,var(--accent-on) 40%,transparent);border-top-color:var(--accent-on);border-radius:50%;animation:spin .8s linear infinite}.toast-region{position:fixed;z-index:120;right:24px;bottom:24px;display:grid;gap:var(--sp-2)}.toast{display:flex;align-items:center;gap:var(--sp-2);max-width:340px;padding:var(--sp-3) var(--sp-4);border:1px solid var(--line);border-radius:var(--radius-md);background:var(--panel);box-shadow:var(--shadow);color:var(--ink);font-size: var(--text-sm);animation:toast-in var(--motion-base) var(--ease-standard)}.toast-dot{width:7px;height:7px;flex:none;border-radius:50%;background:var(--success)}
+    @keyframes spin{to{transform:rotate(360deg)}}@keyframes toast-in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}@keyframes sheet-in{from{opacity:0;transform:translateY(36px)}to{opacity:1;transform:none}}
+    @media(hover:hover){.nav-item:hover,.icon-button:hover{background:var(--panel);color:var(--ink)}.primary-button:hover{background:var(--accent-hover)}.secondary-button:hover{border-color: var(--border-control);background:var(--surface)}.attention-card:hover,.contact-row:hover{background:var(--panel-subtle)}}
+    @media(max-width:1100px){.header-inner,.page{padding-left:var(--container-gutter-tablet);padding-right:var(--container-gutter-tablet)}.desk{grid-template-columns:minmax(0,1fr) 340px}.attention-grid{grid-template-columns:repeat(2,1fr)}.attention-card:nth-child(2){border-right:0}.attention-card:nth-child(-n+2){border-bottom:1px solid var(--line)}.list-head,.contact-row{grid-template-columns:minmax(200px,1fr) minmax(160px,.8fr) 42px}.list-head span:nth-child(3),.contact-row>.status{display:none}}
+    @media(max-width:820px){body{padding-bottom:72px}.header-inner{grid-template-columns:1fr auto}.primary-nav{display:none}.page{padding-top:var(--sp-6)}.page-titlebar{align-items:flex-start}.page-titlebar p{display:none}.desk{display:block}.dossier{position:fixed;z-index:90;right:0;bottom:0;left:0;max-height:88vh;border:1px solid var(--line);border-bottom:0;border-radius: var(--radius-sheet) var(--radius-sheet) 0 0;box-shadow:var(--shadow);opacity:0;pointer-events:none;transform:translateY(100%)}.dossier.is-open{opacity:1;pointer-events:auto;transform:none;animation:sheet-in var(--motion-base) var(--ease-standard)}.dossier-scroll{position:static;max-height:88vh;padding:var(--sp-6);overflow-y:auto}.dossier-close{display:grid}.mobile-scrim{position:fixed;z-index:80;inset:0;border:0;background:var(--scrim);-webkit-backdrop-filter:blur(2px);backdrop-filter:blur(2px)}.mobile-scrim:not([hidden]){display:block}.mobile-nav{position:fixed;z-index:60;right:0;bottom:0;left:0;height:72px;display:grid;grid-template-columns:repeat(4,1fr);padding:var(--sp-1.5) max(8px,env(safe-area-inset-right)) calc(5px + env(safe-area-inset-bottom)) max(8px,env(safe-area-inset-left));border-top:1px solid var(--line);background:color-mix(in srgb,var(--panel) 94%,transparent);-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px)}.mobile-nav button{display:grid;place-items:center;align-content:center;gap:var(--sp-0.5);border:0;background:transparent;color: var(--muted);font-size: var(--text-2xs)}.mobile-nav button svg{width:18px;height:18px}.mobile-nav button[aria-current=page]{color:var(--accent)}}
+    @media(min-width:821px){.mobile-nav{display:none}}
+    @media(max-width:640px){.header-inner,.page{padding-left:var(--container-gutter-phone);padding-right:var(--container-gutter-phone)}.brand span:last-child,.avatar-me{display:none}.page-titlebar{margin-bottom:var(--sp-6)}.page-titlebar h1{font-size: var(--text-2xl)}.add-button span{display:none}.add-button{width:44px;padding:0}.attention{margin-inline:calc(-1 * var(--sp-4))}.attention .section-label{padding-inline:var(--sp-4)}.attention-grid{display:flex;overflow-x:auto;border-right:0;border-left:0;border-radius:0;scroll-snap-type:x mandatory}.attention-card{min-width:210px;border-bottom:0!important;scroll-snap-align:start}.attention-card:nth-child(2){border-right:1px solid var(--line)}.desk{margin-inline:calc(-1 * var(--sp-4));border-right:0;border-left:0;border-radius:0}.portfolio-head{padding:var(--sp-4)}.command{grid-template-columns:1fr}.filter-group{display:grid;grid-template-columns:1fr 1fr}.select-shell select{width:100%}.list-head{display:none}.contact-row{grid-template-columns:1fr 28px;gap:var(--sp-3);min-height:96px;padding:var(--sp-4) var(--sp-4)}.contact-row>.person{grid-column:1}.contact-row>.next-action{grid-column:1}.contact-row>.status{display:inline-flex;position:absolute;right:48px;top:18px}.contact-row>.row-chevron{grid-column:2;grid-row:1/3}.data strong{max-width:calc(100vw - 190px)}.form-grid{grid-template-columns:1fr}.modal-root{padding:0;align-items:end}.modal{width:100%;max-height:92vh;border-radius: var(--radius-sheet) var(--radius-sheet) 0 0}.toast-region{right:12px;bottom:84px;left:12px}.toast{max-width:none}}
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+  </style>
+</head>
+<body>
+  <header class="app-header">
+    <div class="header-inner">
+      <div class="brand"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 5h6v6H5zM13 5h6v6h-6zM5 13h6v6H5zM13 13h6v6h-6z"/></svg></span><span>Kazabi Signal</span></div>
+      <nav class="primary-nav" aria-label="Principal"><button class="nav-item" type="button" data-module="Inicio">Inicio</button><button class="nav-item" type="button" aria-current="page">Contactos</button><button class="nav-item" type="button" data-module="Propiedades">Propiedades</button><button class="nav-item" type="button" data-module="Mensajes">Mensajes</button></nav>
+      <div class="header-actions"><button class="icon-button theme-toggle" type="button" aria-label="Activar tema oscuro" aria-pressed="false"><svg class="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M20.5 15.4A8.7 8.7 0 0 1 8.6 3.5 8.7 8.7 0 1 0 20.5 15.4Z"/></svg></button><button class="icon-button notification" type="button" aria-label="Ver notificaciones"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></svg></button><span class="avatar-me" aria-label="Matías Vélez">MV</span></div>
+    </div>
+  </header>
+
+  <main class="page">
+    <header class="page-titlebar">
+      <div><p class="eyebrow">Jueves · 10 de septiembre</p><h1>Tu cartera, en movimiento.</h1><p>Prioriza la próxima conversación y llega con todo el contexto.</p></div>
+      <button class="primary-button add-button" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg><span>Nuevo contacto</span></button>
+    </header>
+
+    <section class="attention" aria-labelledby="attention-title">
+      <div class="section-label"><h2 id="attention-title">Atención hoy</h2><span>Ordenado por urgencia</span></div>
+      <div class="attention-grid">
+        <button class="attention-card" type="button" data-priority="today" aria-pressed="false"><span class="attention-top"><span class="attention-icon blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><span class="attention-count" data-count="today">3</span></span><strong>Próximas acciones</strong><small>Dos llamadas y un envío pendiente</small><span class="attention-mark"></span></button>
+        <button class="attention-card" type="button" data-priority="visits" aria-pressed="false"><span class="attention-top"><span class="attention-icon green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M8 2v3M16 2v3M4 9h16M5 4h14a1 1 0 0 1 1 1v15H4V5a1 1 0 0 1 1-1Z"/><path d="m9 15 2 2 4-4"/></svg></span><span class="attention-count" data-count="visits">2</span></span><strong>Visitas confirmadas</strong><small>La Carolina y Nayón</small><span class="attention-mark"></span></button>
+        <button class="attention-card" type="button" data-priority="follow" aria-pressed="false"><span class="attention-top"><span class="attention-icon amber"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M4 12a8 8 0 1 0 3-6.2L4 9"/><path d="M4 4v5h5M12 8v5l3 2"/></svg></span><span class="attention-count" data-count="follow">1</span></span><strong>Seguimiento pendiente</strong><small>Comparables por enviar</small><span class="attention-mark"></span></button>
+        <button class="attention-card" type="button" data-priority="silent" aria-pressed="false"><span class="attention-top"><span class="attention-icon red"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4v8Z"/><path d="m9 9 6 6M15 9l-6 6"/></svg></span><span class="attention-count" data-count="silent">1</span></span><strong>Conversación fría</strong><small>Requiere último intento</small><span class="attention-mark"></span></button>
+      </div>
+    </section>
+
+    <section class="desk" aria-label="Mesa de relaciones">
+      <div class="portfolio">
+        <div class="portfolio-head">
+          <div class="portfolio-heading"><div><h2>Relaciones activas</h2><p>Ordenadas por el próximo paso</p></div><span class="result-count" data-result-count>7 contactos</span></div>
+          <div class="command">
+            <label class="search-shell"><span class="visually-hidden">Buscar contactos</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg><input class="search-input" type="search" placeholder="Buscar persona, propiedad o sector" autocomplete="off"><kbd aria-hidden="true">⌘ K</kbd></label>
+            <div class="filter-group"><label class="select-shell"><span class="visually-hidden">Estado</span><select class="status-filter"><option value="">Todos los estados</option><option>Nuevo</option><option>Contactado</option><option>Visita agendada</option><option>Seguimiento</option><option>Negociación</option><option>No responde</option></select><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m7 10 5 5 5-5"/></svg></label><label class="select-shell"><span class="visually-hidden">Canal</span><select class="channel-filter"><option value="">Todos los canales</option><option>WhatsApp</option><option>Instagram</option><option>Llamada</option><option>Correo</option><option>Referido</option></select><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m7 10 5 5 5-5"/></svg></label></div>
+          </div>
+        </div>
+        <div class="list-head" aria-hidden="true"><span>Contacto</span><span>Próxima acción</span><span>Estado</span><span></span></div>
+        <div class="contact-list" role="list" data-contact-list></div>
+        <div class="empty" hidden data-empty><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg><h3>No encontramos coincidencias</h3><p>Prueba otro nombre, sector o estado.</p><button class="secondary-button reset-filters" type="button">Limpiar filtros</button></div>
+      </div>
+
+      <aside class="dossier" aria-label="Dossier del contacto">
+        <div class="dossier-scroll">
+          <button class="icon-button dossier-close" type="button" aria-label="Cerrar dossier"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m6 6 12 12M18 6 6 18"/></svg></button>
+          <div class="contact-profile"><span class="avatar" data-detail-initials></span><div><h2 data-detail-name></h2><p data-detail-phone></p></div></div>
+          <div class="dossier-actions"><button class="secondary-button call-action" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M22 17v3a2 2 0 0 1-2 2C10 21 3 14 2 4a2 2 0 0 1 2-2h3l2 5-2 2c1.5 3 3 4.5 6 6l2-2 5 2Z"/></svg>Llamar</button><button class="primary-button message-action" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4v8Z"/></svg>Escribir</button></div>
+          <section class="dossier-section"><h3>Próxima acción</h3><div class="next-step"><span class="next-step-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span><div><strong data-detail-next></strong><span data-detail-due></span></div></div></section>
+          <section class="dossier-section"><h3>Perfil de interés</h3><dl class="detail-list"><div><dt>Propiedad</dt><dd data-detail-property></dd></div><div><dt>Sector</dt><dd data-detail-place></dd></div><div><dt>Presupuesto</dt><dd data-detail-budget></dd></div><div><dt>Estado</dt><dd data-detail-status></dd></div><div><dt>Origen</dt><dd data-detail-channel></dd></div></dl></section>
+          <section class="dossier-section"><h3>Actividad reciente</h3><div class="timeline" data-timeline></div></section>
+        </div>
+      </aside>
+    </section>
+  </main>
+
+  <button class="mobile-scrim" type="button" hidden aria-label="Cerrar dossier"></button>
+  <nav class="mobile-nav" aria-label="Navegación móvil"><button type="button" data-module="Inicio"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="m3 11 9-8 9 8M5 10v11h14V10"/></svg>Inicio</button><button type="button" aria-current="page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="9" cy="7" r="4"/><path d="M2 21v-2a5 5 0 0 1 5-5h4a5 5 0 0 1 5 5v2M17 8h5M19.5 5.5v5"/></svg>Contactos</button><button type="button" data-module="Propiedades"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="m3 11 9-8 9 8M5 10v11h14V10M9 21v-6h6v6"/></svg>Propiedades</button><button type="button" data-module="Mensajes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4v8Z"/></svg>Mensajes</button></nav>
+
+  <div class="modal-root" hidden>
+    <button class="modal-scrim" type="button" aria-label="Cerrar formulario"></button>
+    <section class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <header class="modal-head"><div><h2 id="modal-title">Nuevo contacto</h2><p>Añade lo esencial. El resto puede esperar.</p></div><button class="icon-button modal-close" type="button" aria-label="Cerrar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m6 6 12 12M18 6 6 18"/></svg></button></header>
+      <div class="error-summary" role="alert" hidden>Revisa los campos marcados antes de guardar.</div>
+      <form class="modal-form" novalidate>
+        <div class="form-field"><label for="new-name">Nombre completo *</label><input class="form-control" id="new-name" name="name" autocomplete="name" required aria-describedby="name-error"><span class="field-error" id="name-error"></span></div>
+        <div class="form-field"><label for="new-property">Propiedad o sector de interés *</label><input class="form-control" id="new-property" name="property" required aria-describedby="property-error"><span class="field-error" id="property-error"></span></div>
+        <div class="form-grid"><div class="form-field"><label for="new-phone">Teléfono</label><input class="form-control" id="new-phone" name="phone" type="tel" autocomplete="tel"><span class="field-error"></span></div><div class="form-field"><label for="new-status">Estado</label><select class="form-control" id="new-status" name="status"><option>Nuevo</option><option>Contactado</option><option>Visita agendada</option><option>Seguimiento</option><option>Negociación</option></select><span class="field-error"></span></div></div>
+        <div class="form-field"><label for="new-channel">Canal de origen</label><select class="form-control" id="new-channel" name="channel"><option>WhatsApp</option><option>Instagram</option><option>Llamada</option><option>Correo</option><option>Referido</option></select><span class="field-error"></span></div>
+        <div class="modal-actions"><button class="secondary-button cancel-modal" type="button">Cancelar</button><button class="primary-button submit-contact" type="submit"><span>Guardar contacto</span></button></div>
+      </form>
+    </section>
+  </div>
+  <div class="toast-region" aria-live="polite"></div>
+
+  <script>
+    (function(){
+      var contacts=[
+        {id:1,initials:"MR",name:"María Fernanda Ruiz",phone:"099 842 6173",property:"Departamento 2 hab.",place:"La Carolina",price:"$148.000",status:"Visita agendada",channel:"WhatsApp",next:"Confirmar visita",due:"Mañana · 16:30",priority:"visits",budget:"$140k–$160k",activity:[["Hoy · 10:45","Confirmó que asistirá con su pareja."],["Ayer · 16:20","Se enviaron ubicación y ficha técnica."],["8 sep · 11:10","Solicitó una segunda visita."]] },
+        {id:2,initials:"CM",name:"Carlos Andrés Muñoz",phone:"098 773 2041",property:"Casa 4 hab.",place:"Cumbayá",price:"$395.000",status:"Negociación",channel:"Llamada",next:"Revisar contraoferta",due:"Hoy · 15:00",priority:"today",budget:"$380k–$410k",activity:[["Ayer · 17:20","Presentó una contraoferta de $382.000."],["7 sep · 12:40","Visitó la propiedad con su familia."],["4 sep · 09:15","Recibió comparables del sector."]] },
+        {id:3,initials:"AP",name:"Ana Lucía Paredes",phone:"096 531 8904",property:"Oficina 82 m²",place:"Av. República",price:"$112.000",status:"Nuevo",channel:"Correo",next:"Primera llamada",due:"Hoy · antes de 17:00",priority:"today",budget:"$100k–$120k",activity:[["Hace 2 días","Consultó por parqueaderos y alícuota."],["Hace 2 días","Ingresó desde el portal web."]] },
+        {id:4,initials:"RE",name:"Roberto Espinosa",phone:"099 260 4837",property:"Suite 1 hab.",place:"González Suárez",price:"$98.000",status:"Seguimiento",channel:"WhatsApp",next:"Enviar comparables",due:"Hoy · pendiente",priority:"follow",budget:"$90k–$105k",activity:[["Hace 3 días","Pidió opciones con mejor vista."],["5 sep · 18:05","Descartó una suite por ruido."]] },
+        {id:5,initials:"DA",name:"Daniela Andrade",phone:"098 420 1168",property:"Terreno 820 m²",place:"Tumbaco",price:"$186.000",status:"Contactado",channel:"Instagram",next:"Confirmar disponibilidad",due:"Mañana · 09:30",priority:"later",budget:"$170k–$190k",activity:[["5 sep · 09:15","Respondió al primer mensaje."],["4 sep · 20:32","Consultó desde Instagram."]] },
+        {id:6,initials:"JV",name:"Jorge Villacís",phone:"099 715 3340",property:"Departamento 3 hab.",place:"El Batán",price:"$172.000",status:"No responde",channel:"Llamada",next:"Último intento",due:"Hoy · 17:30",priority:"silent",budget:"$160k–$180k",activity:[["2 sep · 14:30","Llamada sin respuesta."],["30 ago · 10:15","Abrió la ficha de la propiedad."]] },
+        {id:7,initials:"SC",name:"Sofía Cárdenas",phone:"096 882 5701",property:"Casa 3 hab.",place:"Nayón",price:"$268.000",status:"Visita agendada",channel:"Referido",next:"Preparar visita",due:"Sábado · 10:00",priority:"visits",budget:"$250k–$280k",activity:[["1 sep · 11:00","Visita confirmada por WhatsApp."],["31 ago · 17:45","Referida por Andrés Cárdenas."]] }
+      ];
+      var state={query:"",status:"",channel:"",priority:"",selectedId:1};
+      var body=document.body,list=document.querySelector("[data-contact-list]"),empty=document.querySelector("[data-empty]"),search=document.querySelector(".search-input"),statusFilter=document.querySelector(".status-filter"),channelFilter=document.querySelector(".channel-filter"),dossier=document.querySelector(".dossier"),scrim=document.querySelector(".mobile-scrim"),modal=document.querySelector(".modal-root"),form=document.querySelector(".modal-form"),errorSummary=document.querySelector(".error-summary"),submit=document.querySelector(".submit-contact"),opener=null;
+      function esc(v){return String(v).replace(/[&<>\"']/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'\"':"&quot;","'":"&#39;"}[c]})}
+      function norm(v){return v.normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase()}
+      function statusClass(s){return{"Nuevo":"s-new","Contactado":"s-contacted","Visita agendada":"s-visit","Seguimiento":"s-follow","Negociación":"s-negotiation","No responde":"s-silent"}[s]||"s-new"}
+      function priorityColor(p){return p==="visits"?"var(--success)":p==="follow"?"var(--warn)":p==="silent"?"var(--danger)":"var(--accent)"}
+      function visible(){var q=norm(state.query.trim());return contacts.filter(function(c){return(!q||norm(c.name+" "+c.property+" "+c.place).indexOf(q)>-1)&&(!state.status||c.status===state.status)&&(!state.channel||c.channel===state.channel)&&(!state.priority||(state.priority==="today"?c.priority==="today":c.priority===state.priority))})}
+      function row(c){return '<button class="contact-row'+(c.id===state.selectedId?' is-selected':'')+'" type="button" role="listitem" data-id="'+c.id+'" aria-label="Abrir dossier de '+esc(c.name)+'"><span class="person"><span class="avatar" aria-hidden="true">'+esc(c.initials)+'</span><span class="data"><strong>'+esc(c.name)+'</strong><span>'+esc(c.property)+' · '+esc(c.place)+'</span></span></span><span class="next-action" style="color:'+priorityColor(c.priority)+'"><span class="next-dot" aria-hidden="true"></span><span><strong>'+esc(c.next)+'</strong><span>'+esc(c.due)+'</span></span></span><span class="status '+statusClass(c.status)+'">'+esc(c.status)+'</span><span class="row-chevron" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m9 18 6-6-6-6"/></svg></span></button>'}
+      function renderDetail(){var c=contacts.find(function(x){return x.id===state.selectedId})||contacts[0];document.querySelector("[data-detail-initials]").textContent=c.initials;document.querySelector("[data-detail-name]").textContent=c.name;document.querySelector("[data-detail-phone]").textContent=c.phone;document.querySelector("[data-detail-next]").textContent=c.next;document.querySelector("[data-detail-due]").textContent=c.due;document.querySelector("[data-detail-property]").textContent=c.property+" · "+c.price;document.querySelector("[data-detail-place]").textContent=c.place;document.querySelector("[data-detail-budget]").textContent=c.budget;document.querySelector("[data-detail-status]").innerHTML='<span class="status '+statusClass(c.status)+'">'+esc(c.status)+'</span>';document.querySelector("[data-detail-channel]").textContent=c.channel;document.querySelector("[data-timeline]").innerHTML=c.activity.map(function(a){return '<div class="timeline-item"><span class="timeline-dot" aria-hidden="true"></span><span class="timeline-copy"><strong>'+esc(a[0])+'</strong><span>'+esc(a[1])+'</span></span></div>'}).join("")}
+      function render(){var items=visible();list.innerHTML=items.map(row).join("");empty.hidden=items.length!==0;document.querySelector("[data-result-count]").textContent=items.length+(items.length===1?" contacto":" contactos");document.querySelectorAll(".attention-card").forEach(function(b){b.setAttribute("aria-pressed",String(b.dataset.priority===state.priority))});renderDetail()}
+      function toast(message){var el=document.createElement("div");el.className="toast";el.innerHTML='<span class="toast-dot"></span><span>'+esc(message)+'</span>';document.querySelector(".toast-region").appendChild(el);setTimeout(function(){el.remove()},3000)}
+      function select(id,trigger){state.selectedId=id;opener=trigger;render();if(innerWidth<=820){dossier.classList.add("is-open");scrim.hidden=false;body.style.overflow="hidden";setTimeout(function(){document.querySelector(".dossier-close").focus()},0)}}
+      function closeDossier(){dossier.classList.remove("is-open");scrim.hidden=true;body.style.overflow="";if(opener&&document.contains(opener))opener.focus()}
+      function setTheme(dark){body.classList.toggle("theme-dark",dark);var button=document.querySelector(".theme-toggle");button.setAttribute("aria-pressed",String(dark));button.setAttribute("aria-label",dark?"Activar tema claro":"Activar tema oscuro");document.querySelector('meta[name="theme-color"]').content=dark?"#07172f":"#f4f6f8";try{localStorage.setItem("signal-theme",dark?"dark":"light")}catch(e){}}
+      function resetFilters(){state.query="";state.status="";state.channel="";state.priority="";search.value="";statusFilter.value="";channelFilter.value="";render();search.focus()}
+      function openModal(trigger){opener=trigger;modal.hidden=false;body.style.overflow="hidden";setTimeout(function(){document.getElementById("new-name").focus()},0)}
+      function clearErrors(){errorSummary.hidden=true;form.querySelectorAll(".field-error").forEach(function(e){e.textContent=""});form.querySelectorAll("[aria-invalid]").forEach(function(i){i.removeAttribute("aria-invalid")})}
+      function closeModal(){modal.hidden=true;body.style.overflow="";form.reset();clearErrors();if(opener&&document.contains(opener))opener.focus()}
+      function validate(input){var msg="";if(input.name==="name"&&!input.value.trim())msg="Escribe el nombre completo.";if(input.name==="property"&&!input.value.trim())msg="Indica la propiedad o sector.";var target=document.getElementById(input.name+"-error");if(target)target.textContent=msg;if(msg)input.setAttribute("aria-invalid","true");else input.removeAttribute("aria-invalid");return!msg}
+      list.addEventListener("click",function(e){var r=e.target.closest(".contact-row");if(r)select(Number(r.dataset.id),r)});
+      search.addEventListener("input",function(){state.query=search.value;render()});statusFilter.addEventListener("change",function(){state.status=statusFilter.value;render()});channelFilter.addEventListener("change",function(){state.channel=channelFilter.value;render()});document.querySelector(".reset-filters").addEventListener("click",resetFilters);
+      document.querySelectorAll(".attention-card").forEach(function(b){b.addEventListener("click",function(){state.priority=state.priority===b.dataset.priority?"":b.dataset.priority;render()})});
+      document.querySelector(".theme-toggle").addEventListener("click",function(){setTheme(!body.classList.contains("theme-dark"))});document.querySelector(".notification").addEventListener("click",function(){toast("Tienes tres acciones priorizadas para hoy.")});document.querySelectorAll("[data-module]").forEach(function(b){b.addEventListener("click",function(){toast(b.dataset.module+" estará disponible en el siguiente módulo.")})});
+      document.querySelector(".call-action").addEventListener("click",function(){var c=contacts.find(function(x){return x.id===state.selectedId});toast("Llamada preparada para "+c.name+".")});document.querySelector(".message-action").addEventListener("click",function(){var c=contacts.find(function(x){return x.id===state.selectedId});toast("Conversación abierta con "+c.name+".")});document.querySelector(".dossier-close").addEventListener("click",closeDossier);scrim.addEventListener("click",closeDossier);
+      document.querySelector(".add-button").addEventListener("click",function(e){openModal(e.currentTarget)});document.querySelector(".modal-close").addEventListener("click",closeModal);document.querySelector(".cancel-modal").addEventListener("click",closeModal);document.querySelector(".modal-scrim").addEventListener("click",closeModal);form.querySelectorAll("input[required]").forEach(function(i){i.addEventListener("blur",function(){validate(i)})});
+      form.addEventListener("submit",function(e){e.preventDefault();var n=form.elements.name,p=form.elements.property,okName=validate(n),okProperty=validate(p);errorSummary.hidden=okName&&okProperty;if(!okName||!okProperty){form.querySelector("[aria-invalid=true]").focus();return}submit.disabled=true;submit.innerHTML='<span class="spinner"></span><span>Guardando</span>';setTimeout(function(){var words=n.value.trim().split(/\s+/),id=Math.max.apply(null,contacts.map(function(c){return c.id}))+1,newContact={id:id,initials:words.slice(0,2).map(function(w){return w.charAt(0)}).join("").toUpperCase(),name:n.value.trim(),phone:form.elements.phone.value.trim()||"Teléfono pendiente",property:p.value.trim(),place:"Quito",price:"Por confirmar",status:form.elements.status.value,channel:form.elements.channel.value,next:"Completar perfil",due:"Hoy",priority:"today",budget:"Por confirmar",activity:[["Ahora","Contacto añadido a la cartera."]]};contacts.unshift(newContact);state={query:"",status:"",channel:"",priority:"",selectedId:id};search.value="";statusFilter.value="";channelFilter.value="";submit.disabled=false;submit.innerHTML="<span>Guardar contacto</span>";closeModal();render();toast("Contacto añadido a tu cartera.");if(innerWidth<=820)select(id,document.querySelector(".add-button"))},420)});
+      document.addEventListener("keydown",function(e){if(e.key==="Escape"){if(!modal.hidden)closeModal();else if(dossier.classList.contains("is-open"))closeDossier()}if((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==="k"){e.preventDefault();search.focus()}});
+      var saved="";try{saved=localStorage.getItem("signal-theme")||""}catch(e){}setTheme(saved?saved==="dark":window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches);render();
+    })();
+  </script>
+</body>
+</html>
