@@ -99,11 +99,13 @@ Nunca solo con color: el chip lleva punto + palabra.
 
 ### Familias
 
-- **Display:** titulares, contadores, nombres de panel.
-- **Texto:** cuerpo, listas, formularios, navegación.
-- **Mono:** atajos (`⌘ K`) e identificadores.
+Una sola familia: **Geist** (Vercel, SIL Open Font License 1.1), autoalojada, igual en todos los equipos.
 
-> 🟡 **Fuente pendiente.** El diseño se dibujó con SF Pro, pero su licencia no permite servirla como webfont y fuera de Apple (Windows, Android) cae a Arial. Candidatas con licencia libre (OFL) en `README.md`. Mientras tanto la cadena es `SF Pro → -apple-system → Inter → Helvetica Neue → Arial`.
+- **Display — Geist:** titulares, contadores, nombres de panel.
+- **Texto — Geist:** cuerpo, listas, formularios, navegación.
+- **Mono — Geist Mono:** atajos (`⌘ K`), identificadores y cifras que se alinean.
+
+> El diseño se dibujó con SF Pro, pero su licencia no permite servirla como webfont. Geist se eligió el 2026-09-11 frente a Inter, Instrument Sans y Hanken Grotesk: es precisa en cifras, precios y tablas. Se siente más fría que SF en textos largos, así que el cuerpo a 17px con interlineado 1.47 no se aprieta.
 
 ### Escala
 

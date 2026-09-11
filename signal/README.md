@@ -14,7 +14,7 @@ este archivo diga que la migración se hizo.
 | Tema oscuro | **Navy** (`#07172f` / `#0b2249`). A Matías le gusta el de Signal | Grafito frío (`3721d76`, 2026-09-10) |
 | Cuerpo de lectura | **17px** | 14px |
 | Alcance | **Todo al estilo de la app**: webapp y sitio con la misma marca | Sitio en arena + Poppins |
-| Fuente | 🟡 **Pendiente**: ver candidatas abajo | — |
+| Fuente | **Geist** (+ Geist Mono), autoalojada | SF Pro del diseño original, Poppins + Inter de hoy |
 
 ## Qué hay acá
 
@@ -65,12 +65,12 @@ se pueden autoalojar en la app y el sitio, sin pagar):
 | **Instrument Sans** | Más carácter en titulares, algo más angosta: entra más texto por fila | Menos pesos intermedios |
 | **Hanken Grotesk** | Grotesca amable, buena a 17px de cuerpo | Titulares menos apretados que SF |
 
-Recomendación: **Inter** con eje óptico, autoalojada (`@fontsource-variable/inter`), una sola fuente en
-todas las plataformas.
+**Elegida: Geist** (2026-09-11, Matías). Se autoaloja en la app y el sitio (paquete `geist` de npm o los
+archivos de la release de Vercel); nunca se deja librada a la fuente del sistema.
 
 ## Cómo se aplica cuando llegue el momento
 
-1. Cerrar la fuente y escribirla en `tokens.css`.
+1. Autoalojar Geist y Geist Mono en `webapp/` y `sitio/` (hoy la webapp no carga ninguna fuente web).
 2. Etiquetar la versión actual del repo como `v1-arena` y promover `signal/` a la raíz (`tokens.css`,
    `DESIGN.md`, `USAGE.md`, manifests). Regenerar `design-tokens.json` y `tailwind-v4.css`.
 3. En `kit-real-estate`: copiar a `design/`, ajustar `scripts/sincronizar-tokens.mjs` y la capa de

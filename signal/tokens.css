@@ -71,11 +71,13 @@
   /* Nuevo = --link sobre --accent-soft — 4.97 */
 
   /* ─── Tipografía ──────────────────────────────────────────────── */
-  /* 🟡 PENDIENTE: fuente definitiva. SF Pro solo existe en Apple (su licencia
-   * no permite servirla como webfont); fuera de Apple cae a lo que siga. */
-  --font-display: "SF Pro Display", -apple-system, BlinkMacSystemFont, "Inter", "Helvetica Neue", Arial, sans-serif;
-  --font-body:    "SF Pro Text", -apple-system, BlinkMacSystemFont, "Inter", "Helvetica Neue", Arial, sans-serif;
-  --font-mono:    "SF Mono", ui-monospace, "JetBrains Mono", Menlo, Consolas, monospace;
+  /* Geist (Vercel, SIL OFL 1.1), elegida por Matías el 2026-09-11. Una sola
+   * familia en todas las plataformas, AUTOALOJADA: sin eso cae a Helvetica/Arial
+   * y la marca se ve distinta según el equipo. Variable 100–900, así que los
+   * pesos 520/620/650 existen de verdad. Mono de la misma familia. */
+  --font-display: "Geist", "Helvetica Neue", Arial, sans-serif;
+  --font-body:    "Geist", "Helvetica Neue", Arial, sans-serif;
+  --font-mono:    "Geist Mono", ui-monospace, Menlo, Consolas, monospace;
 
   /* Escala — 10 pasos. El cuerpo por defecto es 17px (decisión 2026-09-11). */
   --text-2xs:  11px;   /* eyebrow, cabecera de lista, chip de estado */
